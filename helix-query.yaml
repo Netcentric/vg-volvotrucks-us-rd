@@ -57,6 +57,34 @@ indices:
       content:
         select: main
         value: textContent(el)
+  stories:
+    include:
+      - '/news-and-stories/stories/**'
+    exclude:
+      - '/news-and-stories/stories/'
+    target: /stories.json
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, "content")
+      linkText:
+        select: head > meta[property="linkText"]
+        value: attribute(el, "content")
+      description:
+        select: head > meta[property="og:description"]
+        value: attribute(el, "content")
+      author:
+        select: head > meta[name="author"]
+        value: attribute(el, "content")
+      image:
+        select: head > meta[property="og:image"]
+        value: match(attribute(el, "content"), "https:\/\/[^/]+(/.*)")
+      readingTime:
+        select: head > meta[name="readingtime"]
+        value: attribute(el, "content")
+      publishDate:
+        select: head > meta[name="publish-date"]
+        value: parseTimestamp(attribute(el, "content"), MM/DD/YYYY)
   magazine-articles:
     include:
       - '/news-and-stories/volvo-trucks-magazine/**'
