@@ -1,0 +1,20 @@
+
+  .section.dark , .v2-background-dark-wrapper{
+    background-color: var(--c-main-black);
+  }
+  
+  .section.grey {
+    background-color: var(--c-grey-600);
+  }
+
+  .v2-background-grey-wrapper {
+    background-color: var(--c-grey-400);
+  }
+
+  .section.dark, .section.grey , .v2-background-dark-wrapper, .v2-background-grey-wrapper {
+    color: var(--c-white);
+  }
+
+  .v2-background-dark, .v2-background-grey {
+    padding: 20px;
+  }
