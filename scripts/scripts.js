@@ -19,6 +19,7 @@ import {
   loadDelayed,
   loadTemplate,
   createElement,
+  variantsClassesToBEM,
 } from './common.js';
 
 import {
@@ -333,11 +334,17 @@ function buildTruckCarouselBlock(main) {
 }
 
 function decorateSectionBackgrounds(main) {
-  main.querySelectorAll(':scope > .section[data-background]').forEach((section) => {
-    const src = section.dataset.background;
-    const picture = createOptimizedPicture(src, '', false);
-    section.appendChild(picture);
-    section.classList.add('section-with-background');
+  main.querySelectorAll(':scope > .section').forEach((section) => {
+    const variantClasses = ['black', 'grey'];
+    variantsClassesToBEM(section.classList, variantClasses, 'section');
+
+    // console.log(main.querySelectorAll(':scope > .section[data-background]'));
+    if (section.dataset.background) {
+      const src = section.dataset.background;
+      const picture = createOptimizedPicture(src, '', false);
+      section.appendChild(picture);
+      section.classList.add('section-with-background');
+    }
   });
 }
 

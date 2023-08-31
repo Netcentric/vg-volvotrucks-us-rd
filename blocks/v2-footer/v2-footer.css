@@ -3,7 +3,7 @@
 }
 
 .v2-footer {
-  background: var(--c-background-card);
+  background: var(--c-grey-50);
 }
 
 .v2-footer :is(.v2-footer__title, p, a) {

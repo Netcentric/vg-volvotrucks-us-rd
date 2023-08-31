@@ -160,14 +160,16 @@
   --c-warning-yellow: #F7D302;
 
   /* Global colors */
-  --c-background-card: #f7f7f7;
+  --c-background: var(--c-grey-50);
   --volvo-text-gray: var(--c-grey-4);
   --volvo-text-light-gray: var(--c-grey-2);
-  --text-color: var(--c-grey-4);
+  --text-color: var(--c-main-black);
   --btn-background-hover: var(--c-grey-1);
   --input-background-color: var(--c-grey-1);
   --overlay-background-color: var(--c-grey-1);
   --light-border-focus: #2B8EDE;
+  --card-background: var(--c-grey-50);
+  --card-text: var(--ff-volvo-novum);
 
   /* Motions */
   --duration-small: 160ms;
@@ -634,14 +636,14 @@ main .section.highlight {
   background-color: var(--highlight-background-color);
 }
 
-.section-dark {
+.section--black {
   background-color: var(--c-main-black);
   color: var(--c-white);
 }
 
-.section-darkgrey {
-  background-color: var(--c-grey-600);
-  color: var(--c-white);
+.section--grey {
+  background-color: var(--c-grey-50);
+  color: var(--c-black);
 }
 
 body.disable-scroll, body.disable-scroll main {
@@ -1131,8 +1133,10 @@ main.blue-contract .section.section-with-title p {
 
 .redesign-v2 a.button.tertiary,
 .redesign-v2 button.tertiary {
-  background-color: var(--c-white);
-  color: var(--c-main-black);
+  background-color: transparent;
+  color: var(--text-color);
+  padding: 0;
+  text-transform: uppercase;
 }
 
 .redesign-v2 a.button.tertiary:hover,

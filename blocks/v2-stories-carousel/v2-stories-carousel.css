@@ -59,7 +59,7 @@ main .section.v2-stories-carousel-container .v2-stories-carousel-wrapper {
 }
 
 .v2-stories-carousel-text {
-  color: var(--c-main-black);
+  color: var(--text-color);
   font-family: var(--font-family-body);
   font-size: var(--f-body-font-size);
   letter-spacing: var(--f-body-letter-spacing);
@@ -118,6 +118,11 @@ ul.v2-stories-carousel-meta {
   margin-top: 16px;
 }
 
+.v2-stories-carousel-cta .icon svg { 
+  height: 24px;
+  width: 24px;
+} 
+
 /* Arrow controls */
 .v2-stories-carousel-arrowcontrols {
   display: none;
@@ -153,6 +158,7 @@ ul.v2-stories-carousel-meta {
   padding: 10px;
   position: relative;
   line-height: 0;
+  color: var(--c-main-black);
 }
 
 .v2-stories-carousel-arrowcontrols button:hover,
