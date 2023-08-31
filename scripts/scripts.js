@@ -338,7 +338,6 @@ function decorateSectionBackgrounds(main) {
     const variantClasses = ['black', 'grey'];
     variantsClassesToBEM(section.classList, variantClasses, 'section');
 
-    // console.log(main.querySelectorAll(':scope > .section[data-background]'));
     if (section.dataset.background) {
       const src = section.dataset.background;
       const picture = createOptimizedPicture(src, '', false);

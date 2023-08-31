@@ -80,11 +80,6 @@ main .section.v2-video-container .v2-video-wrapper {
   color: var(--c-white);
 }
 
-.v2-video__content a .icon svg { 
-  height: 24px;
-  width: 24px;
-}
-
 @media (min-width: 744px) {
   .v2-video {
     --video-inset: inset(32px 48px round 8px);

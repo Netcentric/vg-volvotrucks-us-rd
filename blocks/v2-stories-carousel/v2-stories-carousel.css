@@ -118,11 +118,6 @@ ul.v2-stories-carousel-meta {
   margin-top: 16px;
 }
 
-.v2-stories-carousel-cta .icon svg { 
-  height: 24px;
-  width: 24px;
-} 
-
 /* Arrow controls */
 .v2-stories-carousel-arrowcontrols {
   display: none;

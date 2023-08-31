@@ -168,8 +168,9 @@
   --input-background-color: var(--c-grey-1);
   --overlay-background-color: var(--c-grey-1);
   --light-border-focus: #2B8EDE;
-  --card-background: var(--c-grey-50);
-  --card-text: var(--ff-volvo-novum);
+  --card-background: var(--c-grey-900);
+  --card-text: var(--c-white);
+  --card-white: var(--c-white);
 
   /* Motions */
   --duration-small: 160ms;
@@ -1139,6 +1140,12 @@ main.blue-contract .section.section-with-title p {
   text-transform: uppercase;
 }
 
+.redesign-v2 button.tertiary .icon svg,
+.redesign-v2 a.button.tertiary .icon svg {
+  height: 24px;
+  width: 24px;
+}
+
 .redesign-v2 a.button.tertiary:hover,
 .redesign-v2 button.tertiary:hover {
   text-decoration: underline;
@@ -1150,19 +1157,13 @@ main.blue-contract .section.section-with-title p {
   background-color: var(--c-grey-100);
 }
 
-.redesign-v2 a.button.tertiary.dark,
-.redesign-v2 button.tertiary.dark {
-  color: var(--c-white);
-  background-color: var(--c-main-black);
-}
-
-.redesign-v2 a.button.tertiary.dark:hover,
-.redesign-v2 button.tertiary.dark:hover {
+.redesign-v2 .section--black a.button.tertiary:hover,
+.redesign-v2 .section--black button.tertiary:hover {
   background-color: var(--c-grey-900);
 }
 
-.redesign-v2 a.button.tertiary.dark:active,
-.redesign-v2 button.tertiary.dark:active {
+.redesign-v2 .section--black a.button.tertiary:active,
+.redesign-v2 .section--black button.tertiary:active {
   background-color: var(--c-grey-800);
 }
 
@@ -1207,6 +1208,7 @@ main.blue-contract .section.section-with-title p {
   display: flex;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 .redesign-v2 .icon svg {
   fill: currentcolor;
   height: 1em;

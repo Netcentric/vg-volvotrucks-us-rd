@@ -54,11 +54,6 @@
   margin: 0;
 }
 
-.v2-dlt__content .icon svg {
-  height: 24px;
-  width: 24px;
-}
-
 @media (min-width: 744px) {
   .v2-dealer-locator-teaser {
     height: 665px;
