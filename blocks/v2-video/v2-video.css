@@ -76,8 +76,13 @@ main .section.v2-video-container .v2-video-wrapper {
   line-height: var(--f-heading-5-line-height);
 }
 
-.v2-video .v2-video__button.standalone-link {
+.v2-video__content a.button.tertiary {
   color: var(--c-white);
+}
+
+.v2-video__content a .icon svg { 
+  height: 24px;
+  width: 24px;
 }
 
 @media (min-width: 744px) {
