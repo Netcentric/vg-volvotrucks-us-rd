@@ -168,7 +168,7 @@
   --input-background-color: var(--c-grey-1);
   --overlay-background-color: var(--c-grey-1);
   --light-border-focus: #2B8EDE;
-  --card-background: var(--c-grey-900);
+  --card-background: var(--c-grey-50);
   --card-text: var(--c-white);
   --card-white: var(--c-white);
 
@@ -638,13 +638,14 @@ main .section.highlight {
 }
 
 .section--black {
-  background-color: var(--c-main-black);
-  color: var(--c-white);
+  --card-background: var(--c-grey-900);
+  --card-text: var(--c-white);
 }
 
-.section--grey {
-  background-color: var(--c-grey-50);
+.section--gray {
   color: var(--c-black);
+
+  --card-background: var(--c-white);
 }
 
 body.disable-scroll, body.disable-scroll main {

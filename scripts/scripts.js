@@ -335,7 +335,7 @@ function buildTruckCarouselBlock(main) {
 
 function decorateSectionBackgrounds(main) {
   main.querySelectorAll(':scope > .section').forEach((section) => {
-    const variantClasses = ['black', 'grey'];
+    const variantClasses = ['black', 'gray'];
     variantsClassesToBEM(section.classList, variantClasses, 'section');
 
     if (section.dataset.background) {

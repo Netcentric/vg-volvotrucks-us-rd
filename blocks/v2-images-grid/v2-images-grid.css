@@ -16,7 +16,7 @@
 }
 
 .v2-images-grid-item {
-  background-color: var(--card-white);
+  background-color: var(--card-background);
   color: var(--text-color);
   flex: none;
   margin-right: var(--v2-images-grid-gutter);
