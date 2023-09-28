@@ -163,9 +163,9 @@ const rebuildCategoryItem = (item) => {
 
 const optimiseImage = (picture) => {
   const img = picture.querySelector('img');
-  const newPicture = createOptimizedPicture(img.src, img.alt, false, [{ width: '200' }]);
+  const newPicture = createOptimizedPicture(img.src, img.alt, false, [{ media: '(min-width: 1200px)', width: '200' }]);
 
-  img.replaceWith(newPicture);
+  picture.replaceWith(newPicture);
 };
 
 const buildMenuContent = (menuData, navEl, menuFooter) => {
