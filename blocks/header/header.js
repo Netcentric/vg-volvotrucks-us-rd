@@ -12,6 +12,10 @@ const createLogo = (logoWrapper) => {
   if (logoImage.parentElement.tagName === 'A') {
     logoLink = logoImage.parentElement;
     logoLink.classList.add(`${blockClass}__logo-link`);
+    const logoLinkText = createElement('span', { classes: ['screenreader'] });
+    logoLinkText.append('Go to Volvo Trucks homepage');
+
+    logoLink.append(logoLinkText);
   }
 
   logoImage.classList.add(`${blockClass}__logo-image`);
@@ -75,7 +79,7 @@ const createActions = (actionsWrapper) => {
         aria-expanded="false"
         aria-controls="header-main-nav, header-actions-list"
       >
-        <span class="icon icon-close" />
+        <span class="icon icon-close" aria-hidden="true" />
       </button>
     </li>
   `);
@@ -96,7 +100,7 @@ const mobileActions = () => {
       aria-label="${searchLabel}"
       class="${blockClass}__search-button ${blockClass}__action-link ${blockClass}__link"
     >
-      <span class="icon icon-search-icon"></span>
+      <span class="icon icon-search-icon" aria-hidden="true"></span>
     </a>
     <button
       aria-label="${openMenuLabel}"
@@ -104,7 +108,7 @@ const mobileActions = () => {
       aria-expanded="false"
       aria-controls="header-main-nav, header-actions-list"
     >
-      <span class="icon icon-hamburger-icon"></span>
+      <span class="icon icon-hamburger-icon" aria-hidden="true"></span>
     </button>
   `);
 
