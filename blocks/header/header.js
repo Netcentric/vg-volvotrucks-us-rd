@@ -87,19 +87,19 @@ const createActions = (actionsWrapper) => {
 
 const mobileActions = () => {
   const mobileActionsEl = createElement('div', { classes: [`${blockClass}__mobile-actions`] });
-  const searchLable = getTextLabel('Search');
-  const openMenuLable = getTextLabel('Open menu');
+  const searchLabel = getTextLabel('Search');
+  const openMenuLabel = getTextLabel('Open menu');
 
   const actions = document.createRange().createContextualFragment(`
     <a
       href="#"
-      aria-label="${searchLable}"
+      aria-label="${searchLabel}"
       class="${blockClass}__search-button ${blockClass}__action-link ${blockClass}__link"
     >
       <span class="icon icon-search-icon"></span>
     </a>
     <button
-      aria-label="${openMenuLable}"
+      aria-label="${openMenuLabel}"
       class="${blockClass}__hamburger-menu ${blockClass}__action-link ${blockClass}__link"
       aria-expanded="false"
       aria-controls="header-main-nav, header-actions-list"
@@ -195,6 +195,7 @@ const buildMenuContent = (menuData, navEl, menuFooter) => {
       // closing other open menus - on desktop
       if (desktopMQ.matches && menuEl.classList.contains(`${blockClass}__main-nav-item`)) {
         const openMenus = document.querySelectorAll(`.${blockClass}__menu-open`);
+        navEl.parentElement.classList.toggle(`${blockClass}--menu-open`, isExpanded);
 
         [...openMenus].filter((menu) => menu !== menuEl).forEach((menu) => {
           menu.classList.remove(`${blockClass}__menu-open`);
@@ -203,9 +204,11 @@ const buildMenuContent = (menuData, navEl, menuFooter) => {
       }
 
       // disabling scroll when menu is open
-      document.body.classList[isExpanded ? 'add' : 'remove']('disable-scroll');
+      if (!desktopMQ.matches) {
+        document.body.classList[isExpanded ? 'add' : 'remove']('disable-scroll');
+      }
     };
-    // createing overview link - visible only on mobile
+    // creating overview link - visible only on mobile
     createOverviewLink(tabName, accordionContentWrapper);
 
     categories.forEach((cat) => {
@@ -313,7 +316,7 @@ export default async function decorate(block) {
   };
 
   const closeHamburgerMenu = () => {
-    block.classList.remove(`${blockClass}--hamburger-open`);
+    block.classList.remove(`${blockClass}--menu-open`, `${blockClass}--hamburger-open`);
     document.body.classList.remove('disable-scroll');
 
     setAriaForMenu(false);
@@ -326,7 +329,7 @@ export default async function decorate(block) {
 
   // add action for hamburger
   navContent.querySelector(`.${blockClass}__hamburger-menu`).addEventListener('click', () => {
-    block.classList.add(`${blockClass}--hamburger-open`);
+    block.classList.add(`${blockClass}--menu-open`, `${blockClass}--hamburger-open`);
     document.body.classList.add('disable-scroll');
 
     setAriaForMenu(true);
@@ -355,8 +358,9 @@ export default async function decorate(block) {
     const openMenu = block.querySelector(`.${blockClass}__main-nav-item.${blockClass}__menu-open`);
 
     if (isTargetOutsideMenu && openMenu) {
+      block.classList.remove(`${blockClass}--menu-open`);
       openMenu.classList.remove(`${blockClass}__menu-open`);
-      openMenu.setAttribute('aria-expanded', false);
+      openMenu.querySelector(':scope > a').setAttribute('aria-expanded', false);
       document.body.classList.remove('disable-scroll');
     }
   });
