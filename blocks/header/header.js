@@ -163,7 +163,7 @@ const rebuildCategoryItem = (item) => {
 
 const optimiseImage = (picture) => {
   const img = picture.querySelector('img');
-  const newPicture = createOptimizedPicture(img.src, img.alt, false, [{ media: '(min-width: 1200px)', width: '200' }]);
+  const newPicture = createOptimizedPicture(img.src, img.alt, false, [{ media: '(min-width: 1200px) and (min-resolution: 2x)', width: '320' }, { media: '(min-width: 1200px)', width: '180' }]);
 
   picture.replaceWith(newPicture);
 };
