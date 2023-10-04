@@ -168,7 +168,7 @@ const optimiseImage = (picture) => {
   picture.replaceWith(newPicture);
 };
 
-const buildMenuContent = (menuData, navEl, menuFooter) => {
+const buildMenuContent = (menuData, navEl) => {
   menuData.querySelectorAll('picture').forEach(optimiseImage);
 
   const menus = [...menuData.querySelectorAll('.menu')];
@@ -213,7 +213,6 @@ const buildMenuContent = (menuData, navEl, menuFooter) => {
 
     categories.forEach((cat) => {
       const title = cat.querySelector(':scope > p > a');
-      const subtitle = cat.querySelector(':scope > p:nth-child(2)');
       const list = cat.querySelector(':scope > ul');
       const isImagesList = !!cat.querySelector('img');
       let extraClasses = '';
@@ -231,7 +230,6 @@ const buildMenuContent = (menuData, navEl, menuFooter) => {
       const menuContent = document.createRange().createContextualFragment(`
         <div class="${blockClass}__menu-content ${extraClasses}">
           ${title.outerHTML}
-          <span class="${blockClass}__category-subtitle">${subtitle?.innerHTML || ''}</span>
           <div class="${blockClass}__category-content ${blockClass}__accordion-container">
             <div class="${blockClass}__accordion-content-wrapper">
               ${list.outerHTML}
@@ -245,7 +243,7 @@ const buildMenuContent = (menuData, navEl, menuFooter) => {
     });
 
     navLink?.addEventListener('click', onAccordionItemClick);
-    accordionContentWrapper.parentElement.append(menuFooter.cloneNode(true));
+    // accordionContentWrapper.parentElement.append(menuFooter.cloneNode(true));
   });
 };
 
@@ -275,7 +273,6 @@ export default async function decorate(block) {
     navigationContainer,
     actionsContainer,
     menuContent,
-    menuContentFooter,
   ] = content.children;
   const nav = createElement('nav', { classes: [`${blockClass}__nav`] });
   const navContent = document.createRange().createContextualFragment(`
@@ -348,8 +345,7 @@ export default async function decorate(block) {
   block.append(nav);
 
   setAriaForMenu(false);
-  menuContentFooter.classList.add(`${blockClass}__menu-content-footer`);
-  buildMenuContent(menuContent, nav, menuContentFooter);
+  buildMenuContent(menuContent, nav);
   initAriaForAccordions();
 
   // hiding nav when clicking outside the menu
