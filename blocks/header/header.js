@@ -247,7 +247,6 @@ const buildMenuContent = (menuData, navEl) => {
     });
 
     navLink?.addEventListener('click', onAccordionItemClick);
-    // accordionContentWrapper.parentElement.append(menuFooter.cloneNode(true));
   });
 };
 
