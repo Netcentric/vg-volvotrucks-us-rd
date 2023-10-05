@@ -121,7 +121,7 @@ const addHeaderScrollBehaviour = (header) => {
   let prevPosition = 0;
 
   window.addEventListener('scroll', () => {
-    if (window.scrollY > prevPosition) {
+    if (window.scrollY > prevPosition && !document.body.classList.contains('disable-scroll')) {
       header.classList.add(`${blockClass}--hidden`);
     } else {
       header.classList.remove(`${blockClass}--hidden`);
@@ -353,11 +353,18 @@ export default async function decorate(block) {
 
   // hiding nav when clicking outside the menu
   document.addEventListener('click', (event) => {
-    const isTargetOutsideMenu = !event.target.closest(`.${blockClass}__main-nav`);
+    let isTargetOutsideMenu;
+
+    if (desktopMQ.matches) {
+      isTargetOutsideMenu = !event.target.closest(`.${blockClass}__main-nav`);
+    } else {
+      isTargetOutsideMenu = !event.target.closest(`.${blockClass}`);
+    }
+
     const openMenu = block.querySelector(`.${blockClass}__main-nav-item.${blockClass}__menu-open`);
 
     if (isTargetOutsideMenu && openMenu) {
-      block.classList.remove(`${blockClass}--menu-open`);
+      block.classList.remove(`${blockClass}--menu-open`, `${blockClass}--hamburger-open`);
       openMenu.classList.remove(`${blockClass}__menu-open`);
       openMenu.querySelector(':scope > a').setAttribute('aria-expanded', false);
       document.body.classList.remove('disable-scroll');
