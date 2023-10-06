@@ -317,9 +317,9 @@ export default async function decorate(block) {
 
   const closeHamburgerMenu = () => {
     block.classList.remove(`${blockClass}--menu-open`, `${blockClass}--hamburger-open`);
-    block.querySelectorAll(`.${blockClass}__main-nav-item.${blockClass}__menu-open`).forEach((el) => {
+    block.querySelectorAll(`.${blockClass}__menu-open`).forEach((el) => {
       el.classList.remove(`${blockClass}__menu-open`);
-      el.querySelector(':scope > a').setAttribute('aria-expanded', false);
+      el.querySelector(':scope [aria-expanded="true"]').setAttribute('aria-expanded', false);
     });
     document.body.classList.remove('disable-scroll');
 
