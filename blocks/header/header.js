@@ -208,9 +208,7 @@ const buildMenuContent = (menuData, navEl) => {
       }
 
       // disabling scroll when menu is open
-      if (!desktopMQ.matches) {
-        document.body.classList[isExpanded ? 'add' : 'remove']('disable-scroll');
-      }
+      document.body.classList[isExpanded ? 'add' : 'remove']('disable-scroll');
     };
     // creating overview link - visible only on mobile
     createOverviewLink(tabName, accordionContentWrapper);
@@ -343,7 +341,7 @@ export default async function decorate(block) {
     el.addEventListener('click', closeHamburgerMenu);
   });
 
-  // hiding the hamburger menu when switch to desktop
+  // hide the hamburger menu when switching to desktop
   desktopMQ.addEventListener('change', closeHamburgerMenu);
 
   addHeaderScrollBehaviour(block);
@@ -355,20 +353,15 @@ export default async function decorate(block) {
   buildMenuContent(menuContent, nav);
   initAriaForAccordions();
 
-  // hiding nav when clicking outside the menu
+  // hide nav when clicking outside the menu on desktop
   document.addEventListener('click', (event) => {
-    let isTargetOutsideMenu;
+    if (!desktopMQ.matches) return;
 
-    if (desktopMQ.matches) {
-      isTargetOutsideMenu = !event.target.closest(`.${blockClass}__main-nav`);
-    } else {
-      isTargetOutsideMenu = !event.target.closest(`.${blockClass}`);
-    }
-
+    const isTargetOutsideMenu = !event.target.closest(`.${blockClass}__main-nav`);
     const openMenu = block.querySelector(`.${blockClass}__main-nav-item.${blockClass}__menu-open`);
 
     if (isTargetOutsideMenu && openMenu) {
-      block.classList.remove(`${blockClass}--menu-open`, `${blockClass}--hamburger-open`);
+      block.classList.remove(`${blockClass}--menu-open`);
       openMenu.classList.remove(`${blockClass}__menu-open`);
       openMenu.querySelector(':scope > a').setAttribute('aria-expanded', false);
       document.body.classList.remove('disable-scroll');
