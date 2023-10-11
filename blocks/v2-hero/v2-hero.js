@@ -3,7 +3,7 @@ import {
   createVideo,
 } from '../../scripts/video-helper.js';
 import {
-  createElement,
+  createElement, getTextLabel,
   removeEmptyTags,
   variantsClassesToBEM,
 } from '../../scripts/common.js';
@@ -23,6 +23,8 @@ export default async function decorate(block) {
     const video = createVideo(link.getAttribute('href'), `${blockName}__video`, {
       muted: true,
       autoplay: true,
+      loop: true,
+      playsinline: true,
     });
     block.prepend(video);
     link.remove();
@@ -61,7 +63,10 @@ export default async function decorate(block) {
     const playIcon = block.querySelector('.icon-play-video');
     const pauseIcon = block.querySelector('.icon-pause-video');
 
-    playPauseButton.setAttribute('aria-label', 'Pause video');
+    const pauseVideoLabel = getTextLabel('Pause video');
+    const playVideoLabel = getTextLabel('Play video');
+
+    playPauseButton.setAttribute('aria-label', pauseVideoLabel);
 
     // Toggle the play/pause icon on click
     playPauseButton.addEventListener('click', () => {
@@ -70,11 +75,11 @@ export default async function decorate(block) {
       if (!isPaused) {
         pauseIcon.style.display = 'none';
         playIcon.style.display = 'flex';
-        playPauseButton.setAttribute('aria-label', 'Play video');
+        playPauseButton.setAttribute('aria-label', playVideoLabel);
       } else {
         pauseIcon.style.display = 'flex';
         playIcon.style.display = 'none';
-        playPauseButton.setAttribute('aria-label', 'Pause video');
+        playPauseButton.setAttribute('aria-label', pauseVideoLabel);
       }
     });
   }
