@@ -1105,7 +1105,7 @@ main.blue-contract .section.section-with-title p {
   text-align: left;
   text-transform: uppercase;
   transition: all var(--duration-small) var(--easing-standard);
-  white-space: wrap;
+  white-space: normal;
 }
 
 .redesign-v2 a.button.primary,
