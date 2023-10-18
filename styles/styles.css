@@ -23,6 +23,17 @@
 }
 
 @font-face {
+  font-family: 'VolvoNovum-Light Fallback';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Arial');
+  ascent-override: 98.46%;
+  descent-override: 22.10%;
+  line-gap-override: 0.00%;
+  size-adjust: 99.53%;
+}
+
+@font-face {
   font-family: 'VolvoBroadProDigital Fallback';
   src: local('Arial');
   font-style: normal;
@@ -46,8 +57,9 @@
 
  :root {
   /* fonts */
-  --ff-volvo-novum-medium: 'VolvoNovum-Medium', 'VolvoNovum-Medium Fallback', sans-serif;
   --ff-volvo-novum: 'VolvoNovum', 'VolvoNovum Fallback', sans-serif;
+  --ff-volvo-novum-medium: 'VolvoNovum-Medium', 'VolvoNovum-Medium Fallback', sans-serif;
+  --ff-volvo-novum-light: 'VolvoNovum-Light', 'VolvoNovum-Light Fallback', sans-serif;
   --ff-volvo-broadprodigital: 'VolvoBroadProDigital', 'VolvoBroadProDigital Fallback', sans-serif;
   --ff-fontawesome: 'fontawesome', 'fontawesome Fallback';
   --font-family-body: var(--ff-volvo-novum);
@@ -1382,6 +1394,7 @@ main.blue-contract .section.section-with-title p {
 
 .redesign-v2 .pretitle {
   color: var(--text-color);
+  font-family: var(--ff-volvo-novum-light);
   font-feature-settings: 'clig' off, 'liga' off;
   font-size: var(--f-body-2-font-size);
   letter-spacing: var(--f-body-2-letter-spacing);

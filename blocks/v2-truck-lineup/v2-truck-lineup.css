@@ -115,16 +115,18 @@ main .section.v2-truck-lineup-container .v2-truck-lineup-wrapper {
   text-wrap: balance;
 }
 
-.v2-truck-lineup__title {
-  margin-right: 5px;
-}
-
 .v2-truck-lineup__title,
 p.v2-truck-lineup__description {
-  color: var(--c-grey-800);
+  color: var(--c-grey-4);
   display: inline;
+  font-family: var(--ff-volvo-novum-light);
   font-size: var(--f-heading-5-font-size);
   line-height: var(--f-heading-5-line-height);
+}
+
+.v2-truck-lineup__title {
+  margin-right: 5px;
+  color: var(--c-main-black);
 }
 
 .v2-truck-lineup__buttons-container {
@@ -262,6 +264,13 @@ ul.v2-truck-lineup__navigation {
 }
 
 @media screen and (min-width: 744px) {
+  .v2-truck-lineup__title,
+  p.v2-truck-lineup__description {
+    font-family: var(--ff-volvo-novum-light);
+    font-size: var(--f-heading-4-font-size);
+    line-height: var(--f-heading-4-line-height);
+  }
+
   .v2-truck-lineup__arrow-controls {
     display: block;
   }

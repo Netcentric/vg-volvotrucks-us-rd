@@ -19,6 +19,14 @@
 }
 
 @font-face {
+  font-family: VolvoNovum-Light;
+  src: url('/fonts/VolvoNovum-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: VolvoBroadProDigital;
   src: url('/fonts/VolvoBroadProDigital.woff2') format('woff2'),
        url('/fonts/volvobroadprodigital.woff') format('woff');
