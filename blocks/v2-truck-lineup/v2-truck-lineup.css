@@ -132,14 +132,11 @@ p.v2-truck-lineup__description {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 16px;
 }
 
 .v2-truck-lineup__buttons-container .button-container {
   margin: 16px 0 0;
-}
-
-.v2-truck-lineup__buttons-container .button-container + .button-container {
-  margin-left: 16px;
 }
 
 /* Navigation */
