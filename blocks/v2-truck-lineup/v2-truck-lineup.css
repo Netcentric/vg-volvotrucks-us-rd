@@ -135,7 +135,11 @@ p.v2-truck-lineup__description {
 }
 
 .v2-truck-lineup__buttons-container .button-container {
-  margin: 16px 0 0 16px;
+  margin: 16px 0 0;
+}
+
+.v2-truck-lineup__buttons-container .button-container + .button-container {
+  margin-left: 16px;
 }
 
 /* Navigation */
@@ -280,23 +284,31 @@ ul.v2-truck-lineup__navigation {
   }
 
   .v2-truck-lineup__content {
-    max-width: 931px;
+    max-width: var(--wrapper-width);
   }
 
   .v2-truck-lineup__content .default-content-wrapper {
     align-items: flex-start;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 567px 80px 430px 1fr;
   }
 
   .v2-truck-lineup__text {
     width: 567px;
+    max-width: none;
     margin: 0;
     text-align: left;
+    text-wrap: wrap;
+    grid-column: 2;
   }
 
   .v2-truck-lineup__buttons-container,
   .v2-truck-lineup__buttons-container .button-container {
     margin-top: 0;
+  }
+
+  .v2-truck-lineup__buttons-container {
+    justify-content: start;
+    grid-column: 4;
   }
 }
