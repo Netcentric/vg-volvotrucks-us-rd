@@ -77,13 +77,13 @@ main .section.v2-truck-lineup-container .v2-truck-lineup-wrapper {
 }
 
 .v2-truck-lineup__image-item:first-child {
-  margin-left: 50vw;
+  margin-left: 20vw;
 }
 
 .v2-truck-lineup__images-container::after {
   content: '';
   display: block;
-  flex: 0 0 50vw;
+  flex: 0 0 20vw;
   min-height: 1px; /* In this case, Safari doesn't render element properly without height */
 }
 
