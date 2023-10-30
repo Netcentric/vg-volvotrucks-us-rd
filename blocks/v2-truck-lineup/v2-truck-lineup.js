@@ -141,25 +141,27 @@ const setCarouselPosition = (carousel, index) => {
   smoothScrollHorizontal(carousel, targetX, 1200);
 };
 
-const createArrowControls = (carousel) => {
-  function scroll(direction) {
-    const activeItem = carousel.querySelector(`.${blockName}__image-item.active`);
-    let index = [...activeItem.parentNode.children].indexOf(activeItem);
-    if (direction === 'left') {
-      index -= 1;
-      if (index === -1) {
-        index = carousel.childElementCount - 1;
-      }
-    } else {
-      index += 1;
-      if (index > carousel.childElementCount - 1) {
-        index = 0;
-      }
-    }
+const navigate = (carousel, direction) => {
+  if (carousel.classList.contains('is-animating')) return;
 
-    setCarouselPosition(carousel, index);
+  const activeItem = carousel.querySelector(`.${blockName}__image-item.active`);
+  let index = [...activeItem.parentNode.children].indexOf(activeItem);
+  if (direction === 'left') {
+    index -= 1;
+    if (index === -1) {
+      index = carousel.childElementCount - 1;
+    }
+  } else {
+    index += 1;
+    if (index > carousel.childElementCount - 1) {
+      index = 0;
+    }
   }
 
+  setCarouselPosition(carousel, index);
+};
+
+const createArrowControls = (carousel) => {
   const arrowControls = createElement('ul', { classes: [`${blockName}__arrow-controls`] });
   const arrows = document.createRange().createContextualFragment(`
     <li>
@@ -180,8 +182,8 @@ const createArrowControls = (carousel) => {
   arrowControls.append(...arrows.children);
   carousel.insertAdjacentElement('beforebegin', arrowControls);
   const [prevButton, nextButton] = arrowControls.querySelectorAll(':scope button');
-  prevButton.addEventListener('click', () => scroll('left'));
-  nextButton.addEventListener('click', () => scroll('right'));
+  prevButton.addEventListener('click', () => navigate(carousel, 'left'));
+  nextButton.addEventListener('click', () => navigate(carousel, 'right'));
 };
 
 export default function decorate(block) {
