@@ -1,0 +1,132 @@
+.v2-static-content-carousel {
+  --static-content-carousel-row-gap: 32px;
+  --static-content-carousel-list-gap: 24px;
+  --static-content-carousel-col-gap: 16px;
+  --static-content-card-width: 305px;
+  --static-content-card-height: 250px;
+}
+
+
+.v2-static-content-carousel__row {
+  display: flex;
+  flex-flow: column;
+  gap: var(--static-content-carousel-row-gap);
+}
+
+.v2-static-content-carousel__col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--static-content-carousel-col-gap);
+}
+
+.v2-static-content-carousel__images-list {
+  list-style-type: none;
+  display: flex;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  scroll-snap-align: start;
+  scroll-snap-type: x mandatory;
+  gap: var(--static-content-carousel-list-gap);
+}
+
+.v2-static-content-carousel__images-list::-webkit-scrollbar {
+  display: none;
+}
+
+.v2-static-content-carousel__images-list-item {
+  scroll-snap-align: start;
+}
+
+.v2-static-content-carousel__heading {
+  font-family: var(--ff-volvo-novum-medium);
+  font-size: var(--f-heading-4-font-size);
+  letter-spacing: var(--f-heading-4-letter-spacing);
+  line-height: var(--f-heading-4-line-height);
+}
+
+.v2-static-content-carousel__text {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.v2-static-content-carousel__figure {
+  margin: 0;
+}
+
+.v2-static-content-carousel__figure img {
+  min-width: var(--static-content-card-width);
+  min-height: var(--static-content-card-height);
+  border-radius: var(--border-radius);
+}
+
+.v2-static-content-carousel__figure-text {
+  padding-top: 16px;
+  font-size: var(--f-body-font-size);
+  line-height: var(--f-body-line-heigh);
+  letter-spacing: var(--f-body-letter-spacing);
+}
+
+.v2-static-content-carousel__arrowcontrols {
+  list-style-type: none;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.v2-static-content-carousel__button {
+  background: transparent;
+  border: none;
+}
+
+.v2-static-content-carousel__button:focus {
+  outline: 0;
+}
+
+.v2-static-content-carousel__button:focus-visible {
+  outline: 2px solid var(--light-border-focus);
+  outline-offset: 1px;
+}
+
+.v2-static-content-carousel__button .icon-arrow-left svg,
+.v2-static-content-carousel__button .icon-arrow-right svg { 
+  width: 48px;
+  height: 48px;
+}
+
+.v2-static-content-carousel__button--disabled svg path {
+  fill: var(--c-grey-2)
+}
+
+@media screen and (min-width: 744px) {
+  .v2-static-content-carousel {
+    --static-content-carousel-row-gap: 48px;
+    --static-content-carousel-list-gap: 32px;
+    --static-content-carousel-col-gap: 24px;
+    --static-content-card-width: 525px;
+    --static-content-card-height: 432px;
+  }
+
+  .v2-static-content-carousel__images-list-col {
+    gap: 32px;
+  }
+
+  p.v2-static-content-carousel__text {
+    font-size: var(--f-body-2-font-size);
+    letter-spacing: var(--f-subtitle-2-letter-spacing);
+    line-height: var(--f-caption-line-height);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .v2-static-content-carousel__col {
+    min-width: 377px;
+  }
+
+  .v2-static-content-carousel__row {
+    flex-direction: row;
+  }
+
+  .v2-static-content-carousel__text-col {
+    align-self: center;
+  }
+}
