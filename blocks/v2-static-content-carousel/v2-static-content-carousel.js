@@ -1,27 +1,41 @@
 import { createElement, adjustPretitle } from '../../scripts/common.js';
 import { decorateIcons } from '../../scripts/lib-franklin.js';
+import { smoothScrollHorizontal } from '../../scripts/motion-helper.js';
 
 const blockName = 'v2-static-content-carousel';
 
+const updateActiveClass = (elements, targetElement) => {
+  elements.forEach((el) => {
+    if (el === targetElement) {
+      el.classList.add('active');
+      const index = [...el.parentNode.children].indexOf(el);
+      let arrowControl = document.querySelector(`.${blockName}__button:disabled`);
+
+      if (arrowControl) {
+        arrowControl.disabled = false;
+        arrowControl = null;
+      }
+      // disable arrow buttons
+      if (index === 0) {
+        arrowControl = document.querySelector(`.${blockName}__button-prev`);
+      } else if (index === el.parentNode.children.length - 1) {
+        arrowControl = document.querySelector(`.${blockName}__button-next`);
+      }
+      if (arrowControl) {
+        arrowControl.disabled = true;
+      }
+    } else {
+      el.classList.remove('active');
+    }
+  });
+};
+
 const listenScroll = (carousel) => {
-  const elements = carousel.querySelectorAll(`.${blockName}__images-list-item > *`);
-  let arrowControl;
+  const elements = carousel.querySelectorAll(`.${blockName}__images-list-item`);
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      arrowControl?.classList.remove(`${blockName}__button--disabled`);
-      arrowControl = null;
-
       if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-
-        if (!entry.target.parentElement.previousElementSibling) {
-          arrowControl = document.querySelector(`.${blockName}__button--prev`);
-        } else if (!entry.target.parentElement.nextElementSibling) {
-          arrowControl = document.querySelector(`.${blockName}__button--next`);
-        }
-        arrowControl?.classList.add(`${blockName}__button--disabled`);
-      } else {
-        entry.target.classList.remove('active');
+        updateActiveClass(elements, entry.target);
       }
     });
   }, {
@@ -34,23 +48,64 @@ const listenScroll = (carousel) => {
   });
 };
 
-const createArrowControls = (ulItems) => {
+const getScrollOffset = (carousel) => {
+  const first = carousel.firstElementChild;
+  const second = first.nextElementSibling;
+  return second.getBoundingClientRect().x - first.getBoundingClientRect().x;
+};
+
+const setCarouselPosition = (carousel, index) => {
+  const elements = carousel.querySelectorAll(':scope > *');
+  const scrollOffset = getScrollOffset(carousel);
+  const targetX = index * scrollOffset;
+
+  smoothScrollHorizontal(carousel, targetX, 500);
+  updateActiveClass(elements, elements[index]);
+};
+
+const navigate = (carousel, direction) => {
+  if (carousel.classList.contains('is-animating')) return;
+
+  const activeItem = carousel.querySelector(`.${blockName}__images-list-item.active`);
+  let index = [...activeItem.parentNode.children].indexOf(activeItem);
+
+  if (direction === 'left') {
+    index -= 1;
+    if (index === -1) { // Go to the last item if at the start
+      index = carousel.childElementCount - 1;
+    }
+  } else {
+    index += 1;
+    if (index > carousel.childElementCount - 1) {
+      index = 0; // Go to the first item if at the end
+    }
+  }
+
+  setCarouselPosition(carousel, index);
+};
+
+const createArrowControls = (carousel) => {
   const arrowControls = createElement('ul', { classes: [`${blockName}__arrowcontrols`] });
   const arrows = document.createRange().createContextualFragment(`
     <li>
-      <button aria-label="Previous" class="${blockName}__button v2-static-content-carousel__button--prev">
+      <button aria-label="Previous" class="${blockName}__button ${blockName}__button-prev">
         <span class="icon icon-arrow-left" aria-hidden="true" />
       </button>
     </li>
     <li>
-      <button aria-label="Next" class="${blockName}__button v2-static-content-carousel__button--next">
+      <button aria-label="Next" class="${blockName}__button ${blockName}__button-next">
         <span class="icon icon-arrow-right" aria-hidden="true" />
       </button>
     </li>
   `);
   arrowControls.append(...arrows.children);
   decorateIcons(arrowControls);
-  ulItems.append(arrowControls);
+  carousel.insertAdjacentElement('afterend', arrowControls);
+
+  const [prevButton, nextButton] = arrowControls.querySelectorAll(':scope button');
+  prevButton.addEventListener('click', () => navigate(carousel, 'left'));
+  nextButton.addEventListener('click', () => navigate(carousel, 'right'));
+
   return arrowControls;
 };
 
@@ -91,6 +146,7 @@ export default function decorate(block) {
     el.classList.add(`${blockName}__text`);
   });
 
-  createArrowControls(pictureCol);
-  listenScroll(pictureCol.querySelector(`.${blockName}__images-list`));
+  const carousel = pictureCol.querySelector(`.${blockName}__images-list`);
+  createArrowControls(carousel);
+  listenScroll(carousel);
 }
