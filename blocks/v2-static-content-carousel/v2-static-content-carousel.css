@@ -6,9 +6,9 @@
   --static-content-card-height: 250px;
 }
 
-.section.v2-static-content-carousel-container .v2-static-content-carousel-wrapper {
+/* .section.v2-static-content-carousel-container .v2-static-content-carousel-wrapper {
   padding-right: 0;
-}
+} */
 
 .v2-static-content-carousel__row {
   display: flex;
@@ -136,8 +136,10 @@
 
 @media screen and (min-width: 1200px) {
   .section.v2-static-content-carousel-container .v2-static-content-carousel-wrapper {
-    width: 1440px;
+    max-width: 1440px;
     padding-left: 64px;
+    width: 100%;
+    padding-right: 20px;
   }
 
   .v2-static-content-carousel {
@@ -162,7 +164,7 @@
     position: relative;
   }
 
-  .v2-static-content-carousel__images-list-col::after {
+  .v2-static-content-carousel__images-list-col--gradient::after {
     content: '';
     display: block;
     height: 100%;

@@ -4,11 +4,10 @@ import { smoothScrollHorizontal } from '../../scripts/motion-helper.js';
 
 const blockName = 'v2-static-content-carousel';
 
-const updateActiveClass = (elements, targetElement) => {
-  elements.forEach((el) => {
+const updateActiveClass = (elements, targetElement, carousel) => {
+  elements.forEach((el, index) => {
     if (el === targetElement) {
       el.classList.add('active');
-      const index = [...el.parentNode.children].indexOf(el);
       let arrowControl = document.querySelector(`.${blockName}__button:disabled`);
 
       if (arrowControl) {
@@ -24,6 +23,12 @@ const updateActiveClass = (elements, targetElement) => {
       if (arrowControl) {
         arrowControl.disabled = true;
       }
+
+      if (index !== el.parentNode.children.length - 1) {
+        carousel.parentElement.classList.add(`${blockName}__images-list-col--gradient`);
+      } else {
+        carousel.parentElement.classList.remove(`${blockName}__images-list-col--gradient`);
+      }
     } else {
       el.classList.remove('active');
     }
@@ -35,7 +40,7 @@ const listenScroll = (carousel) => {
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        updateActiveClass(elements, entry.target);
+        updateActiveClass(elements, entry.target, carousel);
       }
     });
   }, {
