@@ -1,11 +1,14 @@
 .v2-static-content-carousel {
   --static-content-carousel-row-gap: 32px;
-  --static-content-carousel-list-gap: 24px;
+  --static-content-carousel-list-gap: 8px;
   --static-content-carousel-col-gap: 16px;
   --static-content-card-width: 85%;
   --static-content-card-height: 250px;
 }
 
+.section.v2-static-content-carousel-container .v2-static-content-carousel-wrapper {
+  padding-right: 0;
+}
 
 .v2-static-content-carousel__row {
   display: flex;
@@ -17,6 +20,10 @@
   display: flex;
   flex-direction: column;
   gap: var(--static-content-carousel-col-gap);
+}
+
+.v2-static-content-carousel__text-col {
+  padding-right: 32px;
 }
 
 .v2-static-content-carousel__images-list {
@@ -109,9 +116,9 @@
 @media screen and (min-width: 744px) {
   .v2-static-content-carousel {
     --static-content-carousel-row-gap: 48px;
-    --static-content-carousel-list-gap: 32px;
+    --static-content-carousel-list-gap: 20px;
     --static-content-carousel-col-gap: 24px;
-    --static-content-card-width: calc((100% - var(--static-content-carousel-list-gap))/1.25);
+    --static-content-card-width: clamp(506px, 68%, calc((100% - var(--static-content-carousel-list-gap))/1.25));
     --static-content-card-height: 432px;
   }
 
@@ -123,11 +130,18 @@
     font-size: var(--f-body-2-font-size);
     letter-spacing: var(--f-subtitle-2-letter-spacing);
     line-height: var(--f-caption-line-height);
+    max-width: var(--text-block-max-width);
   }
 }
 
 @media screen and (min-width: 1200px) {
+  .section.v2-static-content-carousel-container .v2-static-content-carousel-wrapper {
+    width: 1440px;
+    padding-left: 64px;
+  }
+
   .v2-static-content-carousel {
+    --static-content-carousel-row-gap: 91px;
     --static-content-card-width: calc((100% - var(--static-content-carousel-list-gap))/1.80);
   }
 
@@ -139,11 +153,24 @@
     flex-direction: row;
   }
 
-  p.v2-static-content-carousel__text {
-    max-width: var(--text-block-max-width);
-  }
-
   .v2-static-content-carousel__text-col {
     align-self: center;
+    padding-right: 0;
+  }
+
+  .v2-static-content-carousel__images-list-col {
+    position: relative;
+  }
+
+  .v2-static-content-carousel__images-list-col::after {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 30px;
+    position: absolute;
+    top: 0;
+    pointer-events: none;
+    background: linear-gradient(90deg, rgb(255 255 255 / 0%) 0%, rgb(255 255 255 / 100%) 100%);
+    right: 0;
   }
 }
