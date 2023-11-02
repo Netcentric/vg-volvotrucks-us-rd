@@ -2,7 +2,7 @@
   --static-content-carousel-row-gap: 32px;
   --static-content-carousel-list-gap: 24px;
   --static-content-carousel-col-gap: 16px;
-  --static-content-card-width: 305px;
+  --static-content-card-width: 85%;
   --static-content-card-height: 250px;
 }
 
@@ -35,6 +35,7 @@
 
 .v2-static-content-carousel__images-list-item {
   scroll-snap-align: start;
+  flex: 0 0 var(--static-content-card-width);
 }
 
 .v2-static-content-carousel__heading {
@@ -54,9 +55,8 @@
 }
 
 .v2-static-content-carousel__figure img {
-  min-width: var(--static-content-card-width);
-  min-height: var(--static-content-card-height);
   border-radius: var(--border-radius);
+  aspect-ratio: 574/474;
 }
 
 .v2-static-content-carousel__figure-text {
@@ -71,6 +71,10 @@
   display: flex;
   gap: 24px;
   align-items: center;
+}
+
+.v2-static-content-carousel__button {
+  padding: 0;
 }
 
 .v2-static-content-carousel__button:focus {
@@ -107,7 +111,7 @@
     --static-content-carousel-row-gap: 48px;
     --static-content-carousel-list-gap: 32px;
     --static-content-carousel-col-gap: 24px;
-    --static-content-card-width: 525px;
+    --static-content-card-width: calc((100% - var(--static-content-carousel-list-gap))/1.25);
     --static-content-card-height: 432px;
   }
 
@@ -123,12 +127,20 @@
 }
 
 @media screen and (min-width: 1200px) {
+  .v2-static-content-carousel {
+    --static-content-card-width: calc((100% - var(--static-content-carousel-list-gap))/1.80);
+  }
+
   .v2-static-content-carousel__col {
-    min-width: 377px;
+    min-width: 337px;
   }
 
   .v2-static-content-carousel__row {
     flex-direction: row;
+  }
+
+  p.v2-static-content-carousel__text {
+    max-width: var(--text-block-max-width);
   }
 
   .v2-static-content-carousel__text-col {
