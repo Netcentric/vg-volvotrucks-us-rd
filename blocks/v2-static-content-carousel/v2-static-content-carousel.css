@@ -6,10 +6,6 @@
   --static-content-card-height: 250px;
 }
 
-/* .section.v2-static-content-carousel-container .v2-static-content-carousel-wrapper {
-  padding-right: 0;
-} */
-
 .v2-static-content-carousel__row {
   display: flex;
   flex-flow: column;

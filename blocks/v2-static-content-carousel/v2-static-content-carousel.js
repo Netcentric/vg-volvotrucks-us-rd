@@ -65,7 +65,7 @@ const setCarouselPosition = (carousel, index) => {
   const targetX = index * scrollOffset;
 
   smoothScrollHorizontal(carousel, targetX, 500);
-  updateActiveClass(elements, elements[index]);
+  updateActiveClass(elements, elements[index], carousel);
 };
 
 const navigate = (carousel, direction) => {
