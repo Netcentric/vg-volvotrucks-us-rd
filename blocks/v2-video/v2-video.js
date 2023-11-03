@@ -1,4 +1,4 @@
-import { addPlayIcon, createVideo } from '../../scripts/video-helper.js';
+import { createVideo } from '../../scripts/video-helper.js';
 
 const onHoverOrScroll = (element, handler) => {
   let isInViewport = false;
