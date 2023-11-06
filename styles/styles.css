@@ -1095,17 +1095,17 @@ main.blue-contract .section.section-with-title p {
   display: inline-flex;
   font-family: var(--font-family-body);
   font-size: 14px;
-  gap: 10px;
+  gap: 8px;
   justify-content: center;
   letter-spacing: 1.25px;
-  line-height: 100%;
+  line-height: 1.4;
   max-width: 21.5em;
   height: 48px;
-  padding: 0 36px;
+  padding: 0 32px;
   text-align: left;
   text-transform: uppercase;
   transition: all var(--duration-small) var(--easing-standard);
-  white-space: wrap;
+  white-space: normal;
 }
 
 .redesign-v2 a.button.primary,
@@ -1392,6 +1392,7 @@ main.blue-contract .section.section-with-title p {
   :root.redesign-v2 {
     --section-padding: 40px 0 56px;
     --section-div-padding: 24px 32px;
+    --text-block-max-width: 506px;
   }
 }
 
@@ -1405,6 +1406,7 @@ main.blue-contract .section.section-with-title p {
     --border-radius: 12px;
     --section-padding: 56px 0 136px;
     --section-div-padding: 24px 0;
+    --text-block-max-width: 694px;
   }
 
   .redesign-v2 .section div.full-width {

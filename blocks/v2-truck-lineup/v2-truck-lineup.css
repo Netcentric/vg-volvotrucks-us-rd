@@ -17,6 +17,11 @@
   }
 }
 
+.section + .v2-truck-lineup-container {
+  /* remove 40px section padding, add 16px margin  */
+  margin-top: -24px;
+}
+
 /* Full width block */
 main .section.v2-truck-lineup-container .v2-truck-lineup-wrapper {
   margin: 0;
@@ -72,13 +77,13 @@ main .section.v2-truck-lineup-container .v2-truck-lineup-wrapper {
 }
 
 .v2-truck-lineup__image-item:first-child {
-  margin-left: 50vw;
+  margin-left: 20vw;
 }
 
 .v2-truck-lineup__images-container::after {
   content: '';
   display: block;
-  flex: 0 0 50vw;
+  flex: 0 0 20vw;
   min-height: 1px; /* In this case, Safari doesn't render element properly without height */
 }
 
@@ -101,17 +106,17 @@ main .section.v2-truck-lineup-container .v2-truck-lineup-wrapper {
   width: 100%;
 
   /* fadeout */
-  transition: opacity 0.3s cubic-bezier(0, 0, 0, 1);
+  transition: opacity var(--duration-medium) var(--easing-exit);
 }
 
 .v2-truck-lineup__desc-item.active {
   opacity: 1;
-  transition: opacity 0.5s cubic-bezier(0, 0, 0, 1) 0.5s;
+  transition: opacity 0.5s var(--easing-entrance) var(--duration-medium);
 }
 
 .v2-truck-lineup__text {
   margin: 0 auto;
-  max-width: 400px;
+  max-width: 506px;
   text-wrap: balance;
 }
 
@@ -128,11 +133,15 @@ p.v2-truck-lineup__description {
 }
 
 .v2-truck-lineup__buttons-container {
-  margin-top: 32px;
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
 }
 
 .v2-truck-lineup__buttons-container .button-container {
-  margin: 10px 0;
+  margin: 16px 0 0;
 }
 
 /* Navigation */
@@ -231,7 +240,7 @@ ul.v2-truck-lineup__navigation {
   font-size: 0;
   line-height: 0;
   margin: 0;
-  padding: 10px;
+  padding: 12px;
   position: relative;
   opacity: 0;
   transition: opacity var(--duration-small) var(--easing-standard);
@@ -262,17 +271,13 @@ ul.v2-truck-lineup__navigation {
 }
 
 @media screen and (min-width: 744px) {
+  .section + .v2-truck-lineup-container {
+    /* remove 56px section padding, add 16px margin  */
+    margin-top: -40px;
+  }
+
   .v2-truck-lineup__arrow-controls {
     display: block;
-  }
-
-  .v2-truck-lineup__buttons-container {
-    display: flex;
-    justify-content: center;
-  }
-
-  .v2-truck-lineup__buttons-container .button-container {
-    margin-left: 16px;
   }
 }
 
@@ -281,28 +286,45 @@ ul.v2-truck-lineup__navigation {
     --truck-lineup-img-width: 60%;
   }
 
+  .section + .v2-truck-lineup-container {
+    /* remove 136px section padding, add 24px margin  */
+    margin-top: -112px;
+  }
+
   .v2-truck-lineup__image-item img {
     aspect-ratio: 16 / 9;
   }
 
   .v2-truck-lineup__content {
-    max-width: 1000px;
-  }
-
-  .v2-truck-lineup__content .default-content-wrapper {
-    align-items: flex-start;
-    display: flex;
-    justify-content: space-between;
+    max-width: var(--wrapper-width);
   }
 
   .v2-truck-lineup__text {
-    flex-basis: 60%;
-    margin: 0;
-    text-align: left;
+    max-width: 931px;
   }
 
-  .v2-truck-lineup__buttons-container {
-    flex-direction: row;
+  main:not(.truck-lineup-content-center) .v2-truck-lineup__content .default-content-wrapper {
+    align-items: flex-start;
+    display: grid;
+    grid-template-columns: 1fr 567px 80px 430px 1fr;
+  }
+
+  main:not(.truck-lineup-content-center) .v2-truck-lineup__text {
+    width: 567px;
+    max-width: none;
+    margin: 0;
+    text-align: left;
+    text-wrap: wrap;
+    grid-column: 2;
+  }
+
+  main:not(.truck-lineup-content-center) .v2-truck-lineup__buttons-container,
+  main:not(.truck-lineup-content-center) .v2-truck-lineup__buttons-container .button-container {
     margin-top: 0;
+  }
+
+  main:not(.truck-lineup-content-center) .v2-truck-lineup__buttons-container {
+    justify-content: start;
+    grid-column: 4;
   }
 }
