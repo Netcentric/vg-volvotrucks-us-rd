@@ -3,7 +3,7 @@ import {
   createVideo,
 } from '../../scripts/video-helper.js';
 import {
-  createElement, getTextLabel,
+  createElement,
   removeEmptyTags,
   variantsClassesToBEM,
 } from '../../scripts/common.js';

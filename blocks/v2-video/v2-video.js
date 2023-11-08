@@ -1,4 +1,4 @@
-import { createVideo } from '../../scripts/video-helper.js';
+import { createVideo, setPlaybackControls } from '../../scripts/video-helper.js';
 
 const onHoverOrScroll = (element, handler) => {
   let isInViewport = false;
@@ -60,18 +60,14 @@ export default async function decorate(block) {
   });
 
   videoLink.remove();
+
   block.prepend(video);
+
+  setPlaybackControls();
 
   onHoverOrScroll(block.querySelector(`.${blockClass}__content-wrapper`), (val) => {
     const action = val ? 'add' : 'remove';
 
     block.classList[action](`${blockClass}--full-width`);
   });
-
-  const playbackControls = document.querySelectorAll('.v2-hero__video .v2-video__playback-button, .v2-video__video .v2-video__playback-button');
-  playbackControls.forEach((control) => {
-    const parentElement = control.parentElement.parentElement;
-    const targetElement = parentElement.querySelector('video + div')
-    targetElement.append(control);
-  })
 }

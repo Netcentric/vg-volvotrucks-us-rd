@@ -132,6 +132,13 @@ export default async function decorate(block) {
         col.replaceWith(video);
         videoLinks[0].remove();
 
+        // setPlaybackControls();
+        const playbackControls = document.querySelectorAll('video > button');
+        playbackControls.forEach((control) => {
+          const { parentElement } = control.parentElement;
+          parentElement.append(control);
+        });
+
         return;
       }
 
