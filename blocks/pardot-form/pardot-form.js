@@ -1,7 +1,7 @@
 import { loadScript, sampleRUM } from '../../scripts/lib-franklin.js';
 
 const thankyouMessage = `<p class='pardot-forms-thanks-title'>Thank you</p>
-<p class='pardot-forms-thanks-text'>Your information has been submitted. Someone will be in touch with you shortly.</p>
+<p class='pardot-forms-thanks-text'>Your information has been submitted.</p>
 `;
 
 const errorMessage = `<p class='pardot-forms-error-title'>There's an error</p>
@@ -45,19 +45,21 @@ function constructPayload(form) {
   return { payload };
 }
 
-async function submissionSuccess(error, form) {
+async function submissionSuccess() {
   sampleRUM('form:submit');
   const thankyouDiv = document.createElement('div');
   thankyouDiv.innerHTML = thankyouMessage;
+  const form = document.querySelector('form');
   form.replaceWith(thankyouDiv);
 }
 
-async function submissionFailure(error, form) {
+async function submissionFailure() {
   const errorDiv = document.createElement('div');
   errorDiv.innerHTML = errorMessage;
-  form.replaceWith(errorDiv);
+  const form = document.querySelector('form');
   form.setAttribute('data-submitting', 'false');
   form.querySelector('button[type="submit"]').disabled = false;
+  form.replaceWith(errorDiv);
 }
 
 async function prepareRequest(form) {
