@@ -15,13 +15,34 @@ const errorMessage = `<p class='pardot-forms-error-title'>${getTextLabel('Error 
 // 3. the path of the spreadsheet
 const SUBMIT_ACTION = '';
 
-//callback
-window.logResult= function(json) {
-    if(json.result === "success"){
-        submissionSuccess();
-    } else if(json.result === "error") {
-        submissionFailure();
-    }
+async function submissionSuccess() {
+  sampleRUM('form:submit');
+  const thankyouDiv = document.createElement('div');
+  thankyouDiv.innerHTML = thankyouMessage;
+  const form = document.querySelector('form');
+  form.replaceWith(thankyouDiv);
+}
+
+async function submissionFailure() {
+  const errorDiv = document.createElement('div');
+  errorDiv.innerHTML = errorMessage;
+  const form = document.querySelector('form');
+  form.setAttribute('data-submitting', 'false');
+  form.querySelector('button[type="submit"]').disabled = false;
+  form.replaceWith(errorDiv);
+}
+
+function serialize(obj) {
+  const str = Object.keys(obj).map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(obj[key])}`);
+  return str.join('&');
+}
+// eslint-disable-next-line func-names
+window.logResult = function (json) {
+  if (json.result === 'success') {
+    submissionSuccess();
+  } else if (json.result === 'error') {
+    submissionFailure();
+  }
 };
 
 function generateUnique() {
@@ -41,44 +62,16 @@ function constructPayload(form) {
       }
     }
   });
-  payload['callback'] = 'logResult';
+  payload.callback = 'logResult';
   return { payload };
-}
-
-async function submissionSuccess() {
-  sampleRUM('form:submit');
-  const thankyouDiv = document.createElement('div');
-  thankyouDiv.innerHTML = thankyouMessage;
-  const form = document.querySelector('form');
-  form.replaceWith(thankyouDiv);
-}
-
-async function submissionFailure() {
-  const errorDiv = document.createElement('div');
-  errorDiv.innerHTML = errorMessage;
-  const form = document.querySelector('form');
-  form.setAttribute('data-submitting', 'false');
-  form.querySelector('button[type="submit"]').disabled = false;
-  form.replaceWith(errorDiv);
 }
 
 async function prepareRequest(form) {
   const { payload } = constructPayload(form);
-  const body = JSON.stringify({ data: payload });
   const url = form.dataset.action;
 
-  var serializedData = serialize(payload);
-  loadScript(url + '?' + serializedData, { type: 'text/javascript', charset: 'UTF-8'});
-}
-
-function serialize(obj){
-  let str = [];
-  for(let p in obj){
-      if(obj.hasOwnProperty(p)){
-          str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
-      }
-  }
-  return str.join('&');
+  const serializedData = serialize(payload);
+  loadScript(`${url}?${serializedData}`, { type: 'text/javascript', charset: 'UTF-8' });
 }
 
 async function handleSubmit(form) {
@@ -352,7 +345,6 @@ function decorateValidation(form) {
     el.addEventListener('invalid', showError);
   });
 }
-
 
 async function createForm(formURL) {
   const { pathname } = new URL(formURL);
