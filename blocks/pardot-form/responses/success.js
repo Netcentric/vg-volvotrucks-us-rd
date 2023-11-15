@@ -1,1 +1,2 @@
-logResult({ 'result' : 'success' });
+// eslint-disable-next-line no-undef
+logResult({ result: 'success' });
