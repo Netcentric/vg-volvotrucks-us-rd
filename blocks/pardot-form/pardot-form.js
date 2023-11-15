@@ -17,7 +17,6 @@ const SUBMIT_ACTION = '';
 
 //callback
 window.logResult= function(json) {
-    debugger;
     if(json.result === "success"){
         submissionSuccess();
     } else if(json.result === "error") {
