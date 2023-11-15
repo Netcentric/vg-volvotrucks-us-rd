@@ -1,11 +1,12 @@
 import { loadScript, sampleRUM } from '../../scripts/lib-franklin.js';
+import { getTextLabel } from '../../scripts/common.js';
 
-const thankyouMessage = `<p class='pardot-forms-thanks-title'>Thank you</p>
-<p class='pardot-forms-thanks-text'>Your information has been submitted.</p>
+const thankyouMessage = `<p class='pardot-forms-thanks-title'>${getTextLabel('Successful submission title')}</p>
+<p class='pardot-forms-thanks-text'>${getTextLabel('Successful submission text')}</p>
 `;
 
-const errorMessage = `<p class='pardot-forms-error-title'>There's an error</p>
-<p class='pardot-forms-error-text'>Your information has not been submitted successfuly. Please try again later.</p>
+const errorMessage = `<p class='pardot-forms-error-title'>${getTextLabel('Error submission title')}</p>
+<p class='pardot-forms-error-text'>${getTextLabel('Error submission text')}</p>
 `;
 
 // Form Block identifies the submit endpoint via these rules and in order
