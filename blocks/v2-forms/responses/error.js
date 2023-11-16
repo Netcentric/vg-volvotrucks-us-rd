@@ -1,2 +1,2 @@
 // eslint-disable-next-line no-undef
-logResponse({ result: 'error' });
+logResult({ result: 'error' });

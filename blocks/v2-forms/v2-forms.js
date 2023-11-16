@@ -80,17 +80,18 @@ const addForm = async (block) => {
 
   block.style.display = displayValue;
 
+  const formObj = document.querySelector('form');
   // eslint-disable-next-line prefer-destructuring
-  form.addEventListener('submit', (e) => {
+  formObj.addEventListener('submit', (e) => {
     let isValid = true;
-    if (form.hasAttribute('novalidate')) {
-      isValid = form.checkValidity();
+    if (formObj.hasAttribute('novalidate')) {
+      isValid = formObj.checkValidity();
     }
     e.preventDefault();
     if (isValid) {
       e.submitter.setAttribute('disabled', '');
-      form.dataset.action = e.submitter.formAction;
-      handleSubmit(form);
+      formObj.dataset.action = e.submitter.formAction;
+      handleSubmit(formObj);
     }
   });
 };

@@ -29,7 +29,7 @@ async function submissionFailure() {
 }
 
 // eslint-disable-next-line func-names
-window.logResponse = function (json) {
+window.logResult = function (json) {
   if (json.result === 'success') {
     submissionSuccess();
   } else if (json.result === 'error') {
