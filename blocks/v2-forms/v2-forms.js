@@ -1,9 +1,47 @@
+import { loadScript } from '../../scripts/lib-franklin.js';
 import { createElement } from '../../scripts/common.js';
 
 // cache contains the form element that should be reused
 const formCache = new Map();
 
 const blockName = 'v2-forms';
+
+function serialize(obj) {
+  const str = Object.keys(obj).map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(obj[key])}`);
+  return str.join('&');
+}
+
+function constructPayload(form) {
+  const payload = {};
+  [...form.elements].forEach((fe) => {
+    if (fe.name) {
+      if (fe.type === 'radio') {
+        if (fe.checked) payload[fe.name] = fe.value;
+      } else if (fe.type === 'checkbox') {
+        if (fe.checked) payload[fe.name] = payload[fe.name] ? `${payload[fe.name]},${fe.value}` : fe.value;
+      } else if (fe.type !== 'file') {
+        payload[fe.name] = fe.value;
+      }
+    }
+  });
+  payload.callback = 'logResponse';
+  return { payload };
+}
+
+async function prepareRequest(form) {
+  const { payload } = constructPayload(form);
+  const url = form.dataset.action;
+
+  const serializedData = serialize(payload);
+  loadScript(`${url}?${serializedData}`, { type: 'text/javascript', charset: 'UTF-8' });
+}
+
+async function handleSubmit(form) {
+  if (form.getAttribute('data-submitting') !== 'true') {
+    form.setAttribute('data-submitting', 'true');
+    await prepareRequest(form);
+  }
+}
 
 const addForm = async (block) => {
   const displayValue = block.style.display;
@@ -41,6 +79,20 @@ const addForm = async (block) => {
   formCache.set(formName, formWrapper);
 
   block.style.display = displayValue;
+
+  // eslint-disable-next-line prefer-destructuring
+  form.addEventListener('submit', (e) => {
+    let isValid = true;
+    if (form.hasAttribute('novalidate')) {
+      isValid = form.checkValidity();
+    }
+    e.preventDefault();
+    if (isValid) {
+      e.submitter.setAttribute('disabled', '');
+      form.dataset.action = e.submitter.formAction;
+      handleSubmit(form);
+    }
+  });
 };
 
 export default async function decorate(block) {
