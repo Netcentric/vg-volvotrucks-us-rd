@@ -24,7 +24,7 @@ function constructPayload(form) {
       }
     }
   });
-  payload.callback = 'logResponse';
+  payload.callback = 'logResult';
   return { payload };
 }
 
@@ -59,10 +59,6 @@ const addForm = async (block) => {
       action="${formAction}"
     >${formContent.default}
 
-      <div style="position:absolute; left:-9999px; top: -9999px;">
-          <label for="pardot_extra_field">Comments</label>
-          <input type="text" id="pardot_extra_field" name="pardot_extra_field" />
-      </div>
     </form>
   `;
 
@@ -90,7 +86,7 @@ const addForm = async (block) => {
     e.preventDefault();
     if (isValid) {
       e.submitter.setAttribute('disabled', '');
-      formObj.dataset.action = e.submitter.formAction;
+      formObj.dataset.action = e.currentTarget.action;
       handleSubmit(formObj);
     }
   });
