@@ -1,3 +1,4 @@
+import { createElement, getTextLabel } from '../../scripts/common.js';
 import { loadCSS } from '../../scripts/lib-franklin.js';
 // eslint-disable-next-line import/no-cycle
 import { createIframe, isLowResolutionVideoUrl } from '../../scripts/video-helper.js';
@@ -8,10 +9,27 @@ const styles$ = new Promise((r) => {
 
 const HIDE_MODAL_CLASS = 'modal-hidden';
 
-const createModal = () => {
-  const modalBackground = document.createElement('div');
+const createModalTopBar = (parentEl) => {
+  const topBar = document.createRange().createContextualFragment(`
+    <div class="modal-top-bar">
+      <div class="modal-top-bar-content">
+        <button class="modal-close-button" aria-label=${getTextLabel('close')}>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.97979 4.97979C5.17505 4.78453 5.49163 4.78453 5.6869 4.97979L16 15.2929L26.3131 4.97979C26.5084 4.78453 26.825 4.78453 27.0202 4.97979C27.2155 5.17505 27.2155 5.49163 27.0202 5.6869L16.7071 16L27.0202 26.3131C27.2155 26.5084 27.2155 26.825 27.0202 27.0202C26.825 27.2155 26.5084 27.2155 26.3131 27.0202L16 16.7071L5.6869 27.0202C5.49163 27.2155 5.17505 27.2155 4.97979 27.0202C4.78453 26.825 4.78453 26.5084 4.97979 26.3131L15.2929 16L4.97979 5.6869C4.78453 5.49163 4.78453 5.17505 4.97979 4.97979Z" fill="var(--color-icon, #000)"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  `);
 
-  modalBackground.classList.add('modal-background', HIDE_MODAL_CLASS);
+  parentEl.prepend(...topBar.children);
+  // eslint-disable-next-line no-use-before-define
+  parentEl.querySelector('.modal-close-button').addEventListener('click', () => hideModal());
+};
+
+const createModal = () => {
+  const modalBackground = createElement('div', { classes: ['modal-background', HIDE_MODAL_CLASS] });
+
   modalBackground.addEventListener('click', () => {
     // eslint-disable-next-line no-use-before-define
     hideModal();
@@ -24,8 +42,8 @@ const createModal = () => {
     }
   };
 
-  const modalContent = document.createElement('div');
-  modalContent.classList.add('modal-content');
+  const modalContent = createElement('div', { classes: ['modal-content'] });
+  createModalTopBar(modalBackground);
   modalBackground.appendChild(modalContent);
   // preventing initial animation when added to DOM
   modalBackground.style = 'display: none';
@@ -36,25 +54,34 @@ const createModal = () => {
     event.stopPropagation();
   });
 
-  async function showModal(newUrl, beforeBanner, beforeIframe) {
+  const clearModalContent = () => {
+    modalContent.innerHTML = '';
+    modalContent.className = 'modal-content';
+  };
+
+  async function showModal(newContent, beforeBanner, beforeIframe) {
     await styles$;
     modalBackground.style = '';
     window.addEventListener('keydown', keyDownAction);
 
-    if (newUrl) {
+    if (newContent && (typeof newContent !== 'string')) {
+      clearModalContent();
+    }
+
+    if (newContent) {
       let videoOrIframe = null;
-      if (isLowResolutionVideoUrl(newUrl)) {
+      if (isLowResolutionVideoUrl(newContent)) {
         // We can't use the iframe for videos, because if the Content-Type
         // `application/octet-stream` is returned instead of `video/mp4`, the
         // file is downloaded instead of displayed. So we use the video element instead.
         videoOrIframe = document.createElement('video');
-        videoOrIframe.setAttribute('src', newUrl);
+        videoOrIframe.setAttribute('src', newContent);
         videoOrIframe.setAttribute('controls', '');
         videoOrIframe.setAttribute('autoplay', '');
         videoOrIframe.classList.add('modal-video');
         modalContent.append(videoOrIframe);
       } else {
-        videoOrIframe = createIframe(newUrl, { parentEl: modalContent, classes: 'modal-video' });
+        videoOrIframe = createIframe(newContent, { parentEl: modalContent, classes: 'modal-video' });
       }
 
       if (beforeBanner) {

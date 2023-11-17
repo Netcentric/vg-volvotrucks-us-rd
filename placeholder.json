@@ -1,7 +1,7 @@
 {
-  "total": 30,
+  "total": 31,
   "offset": 0,
-  "limit": 30,
+  "limit": 31,
   "data": [
     {
       "Key": "Low resolution video message",
@@ -54,19 +54,19 @@
     {
       "Key": "vinlabel",
       "Text": "Enter your 17-digit VIN (Vehicle Identification Number)"
-    }, 
+    },
     {
       "Key": "submit",
       "Text": "Submit"
-    }, 
+    },
     {
       "Key": "vinformat",
       "Text": "The VIN entered is not valid for Volvo Trucks, Nova Bus, or Prevost vehicles"
-    }, 
+    },
     {
       "Key": "result text",
       "Text": "${count} recalls available for \"${vin}\" VIN"
-    }, 
+    },
     {
       "Key": "recalls",
       "Text": "Recalls"
@@ -86,7 +86,7 @@
     {
       "Key": "remedy_description",
       "Text": "Remedy"
-    }, 
+    },
     {
       "Key": "published_info",
       "Text": "Information last updated"
@@ -102,11 +102,11 @@
     {
       "Key": "recall-incomplete",
       "Text": "Recall Incomplete"
-    }, 
+    },
     {
       "Key": "recall-incomplete-no-remedy",
       "Text": "Recall In Complete, remedy not available"
-    }, 
+    },
     {
       "Key": "loading recalls",
       "Text": " Loading Recalls ....."
@@ -118,7 +118,7 @@
     {
       "Key": "mfr_notes",
       "Text": "Next steps"
-    }, 
+    },
     {
       "Key": "mfr_recall_number",
       "Text": "Brand Recall Number"
@@ -130,6 +130,10 @@
     {
       "Key": "recall_oldest_info",
       "Text": "Recall information available since: Jan 15, 2008"
+    },
+    {
+      "Key": "Close",
+      "Text": "Close"
     }
   ],
   ":type": "sheet"
