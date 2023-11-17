@@ -2,7 +2,7 @@ import { createElement, getTextLabel } from './common.js';
 
 /* video helpers */
 export function isLowResolutionVideoUrl(url) {
-  return url.split('?')[0].endsWith('.mp4');
+  return (typeof url === 'string') && url.split('?')[0].endsWith('.mp4');
 }
 
 export function isVideoLink(link) {

@@ -11,6 +11,7 @@ import {
   getMetadata,
   toClassName,
   getHref,
+  loadBlocks,
 } from './lib-franklin.js';
 
 import {
@@ -390,6 +391,41 @@ function decorateHyperlinkImages(container) {
     });
 }
 
+document.addEventListener('open-modal', (event) => {
+  [...event.detail.content].forEach((el) => console.log(
+    el.outerHTML,
+  ));
+
+  // eslint-disable-next-line import/no-cycle
+  import('../common/modal/modal.js').then((modal) => {
+    modal.showModal(event.detail.content);
+  });
+});
+
+const handleModalLinks = (link) => {
+  link.addEventListener('click', async (event) => {
+    event.preventDefault();
+    const modalContentLink = link.getAttribute('href').split('modal-content=')[1];
+    const resp = await fetch(`${modalContentLink}.plain.html`);
+    const main = document.createElement('main');
+
+    if (resp.ok) {
+      main.innerHTML = await resp.text();
+      // eslint-disable-next-line no-use-before-define
+      decorateMain(main, main);
+      await loadBlocks(main);
+    }
+
+    const modalEvent = new CustomEvent('open-modal', {
+      detail: {
+        content: main.children,
+      },
+    });
+
+    document.dispatchEvent(modalEvent, { bubbles: true });
+  });
+};
+
 export function decorateLinks(block) {
   [...block.querySelectorAll('a')]
     .filter(({ href }) => !!href)
@@ -401,6 +437,10 @@ export function decorateLinks(block) {
       }
       if (isSoundcloudLink(link)) {
         addSoundcloudShowHandler(link);
+      }
+      if (link.getAttribute('href').startsWith('/modal-content=')) {
+        handleModalLinks(link);
+        return;
       }
 
       const url = new URL(link.href);
@@ -584,7 +624,7 @@ export const MEDIA_BREAKPOINTS = {
   DESKTOP: 'DESKTOP',
 };
 
-export function getImageForBreakpoint(imagesList, onChange = () => {}) {
+export function getImageForBreakpoint(imagesList, onChange = () => { }) {
   const mobileMQ = window.matchMedia('(max-width: 743px)');
   const tabletMQ = window.matchMedia('(min-width: 744px) and (max-width: 1199px)');
   const desktopMQ = window.matchMedia('(min-width: 1200px)');

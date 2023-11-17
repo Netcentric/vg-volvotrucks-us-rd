@@ -10,6 +10,7 @@
   opacity: 1;
 
   --background-color: var(--c-white);
+  --top-bar-height: 64px;
 }
 
 .modal-background--black {
@@ -39,6 +40,14 @@
   background-color: var(--c-grey-1);
 }
 
+.modal-content--wide {
+  margin: 0;
+  overflow: auto;
+  height: calc(100% - var(--top-bar-height));
+  padding: 16px;
+  background-color: var(--background-color);
+}
+
 .modal-top-bar {
   display: flex;
   justify-content: center;
@@ -49,7 +58,7 @@
   justify-content: flex-end;
   margin: 0 16px;
   gap: 10px;
-  height: 64px;
+  height: var(--top-bar-height);
   align-items: center;
   width: 100%;
 }

@@ -66,9 +66,9 @@ const createModal = () => {
 
     if (newContent && (typeof newContent !== 'string')) {
       clearModalContent();
-    }
-
-    if (newContent) {
+      modalContent.classList.add('modal-content--wide');
+      modalContent.append(...newContent);
+    } else if (newContent) {
       let videoOrIframe = null;
       if (isLowResolutionVideoUrl(newContent)) {
         // We can't use the iframe for videos, because if the Content-Type
