@@ -7,7 +7,8 @@
   background: var(--background-color);
   color: var(--text-color);
   z-index: 1051;
-  transition: opacity var(--duration-small) var(--easing-entrance), visibility var(--duration-small) var(--easing-entrance);
+  transition: opacity var(--duration-small) var(--easing-entrance),
+    visibility var(--duration-small) var(--easing-entrance);
   opacity: 1;
 
   --background-color: var(--c-white);
@@ -65,12 +66,19 @@
 
 .modal-top-bar-content {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   margin: 0 16px;
   gap: 10px;
   height: var(--top-bar-height);
   align-items: center;
   width: 100%;
+}
+
+.modal-top-bar-heading {
+  font-family: var(--ff-volvo-novum);
+  font-size: var(--f-heading-5-font-size);
+  line-height: var(--f-heading-5-line-height);
+  margin: 0;
 }
 
 .modal-top-bar .modal-close-button {
