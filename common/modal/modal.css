@@ -5,12 +5,14 @@
   width: 100vw;
   height: 100vh;
   background: var(--background-color);
+  color: var(--text-color);
   z-index: 1051;
   transition: opacity var(--duration-small) var(--easing-entrance), visibility var(--duration-small) var(--easing-entrance);
   opacity: 1;
 
   --background-color: var(--c-white);
   --top-bar-height: 64px;
+  --text-color: var(--c-black);
 }
 
 @supports (height: 1svh) {
@@ -19,11 +21,13 @@
   }
 }
 
-.modal-background--black {
+.modal-black {
   --background-color: var(--c-black);
+  --text-color: var(--c-white);
+  --color-icon: var(--c-white);
 }
 
-.modal-background--grey {
+.modal-grey {
   --background-color: var(--c-grey-50);
 }
 
@@ -94,10 +98,6 @@
 .modal-top-bar svg {
   height: 24px;
   width: 24px;
-}
-
-.modal-background--black .modal-top-bar svg {
-  --color-icon: var(--c-white);
 }
 
 .modal-content .modal-video {

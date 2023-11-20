@@ -394,7 +394,9 @@ function decorateHyperlinkImages(container) {
 document.addEventListener('open-modal', (event) => {
   // eslint-disable-next-line import/no-cycle
   import('../common/modal/modal.js').then((modal) => {
-    modal.showModal(event.detail.content);
+    const modalClass = [...event.detail.target.closest('.section').classList].find((el) => el.startsWith('modal-'));
+
+    modal.showModal(event.detail.content, { modalClasses: [modalClass] });
   });
 });
 
@@ -415,6 +417,7 @@ const handleModalLinks = (link) => {
     const modalEvent = new CustomEvent('open-modal', {
       detail: {
         content: main.children,
+        target: event.target,
       },
     });
 

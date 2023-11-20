@@ -8,6 +8,7 @@ const styles$ = new Promise((r) => {
 });
 
 const HIDE_MODAL_CLASS = 'modal-hidden';
+let currentModalClasses = null;
 
 const createModalTopBar = (parentEl) => {
   const topBar = document.createRange().createContextualFragment(`
@@ -60,9 +61,11 @@ const createModal = () => {
     modalContent.className = 'modal-content';
   };
 
-  async function showModal(newContent, beforeBanner, beforeIframe) {
+  async function showModal(newContent, { beforeBanner, beforeIframe, modalClasses = [] }) {
     await styles$;
     modalBackground.style = '';
+    modalBackground.classList.add(...modalClasses);
+    currentModalClasses = modalClasses;
     window.addEventListener('keydown', keyDownAction);
 
     if (newContent && (typeof newContent !== 'string')) {
@@ -124,6 +127,11 @@ const createModal = () => {
     modalContent.querySelector('iframe, video')?.remove();
     modalContent.querySelector('.modal-before-banner')?.remove();
     modalContent.querySelector('.modal-before-iframe')?.remove();
+
+    if (currentModalClasses) {
+      modalBackground.classList.remove(currentModalClasses);
+      currentModalClasses = null;
+    }
   }
 
   return {

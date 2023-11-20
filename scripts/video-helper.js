@@ -49,7 +49,7 @@ export function showVideoModal(linkUrl) {
       beforeBanner = createLowResolutionBanner();
     }
 
-    modal.showModal(linkUrl, beforeBanner);
+    modal.showModal(linkUrl, { beforeBanner });
   });
 }
 
@@ -91,7 +91,7 @@ export function addSoundcloudShowHandler(link) {
       episodeInfo.querySelector('h2').innerText = title?.innerText || '';
       episodeInfo.querySelector('p').innerText = text?.innerText || '';
 
-      modal.showModal(link.getAttribute('href'), null, episodeInfo);
+      modal.showModal(link.getAttribute('href'), { beforeIframe: episodeInfo });
     });
   });
 }
