@@ -6,11 +6,17 @@
   height: 100vh;
   background: var(--background-color);
   z-index: 1051;
-  transition: opacity 0.15s linear, visibility 0.15s linear;
+  transition: opacity var(--duration-small) var(--easing-entrance), visibility var(--duration-small) var(--easing-entrance);
   opacity: 1;
 
   --background-color: var(--c-white);
   --top-bar-height: 64px;
+}
+
+@supports (height: 1svh) {
+  .modal-background {
+    height: 100svh;
+  }
 }
 
 .modal-background--black {
@@ -69,6 +75,20 @@
   border: 0;
   background: inherit;
   display: flex;
+  border-radius: 1px;
+  min-height: 44px;
+  min-width: 44px;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-top-bar .modal-close-button:focus {
+  outline: 0;
+}
+
+.modal-top-bar .modal-close-button:focus-visible {
+  outline: 2px solid var(--light-border-focus);
+  outline-offset: 5px;
 }
 
 .modal-top-bar svg {

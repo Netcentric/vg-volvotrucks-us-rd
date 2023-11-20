@@ -392,10 +392,6 @@ function decorateHyperlinkImages(container) {
 }
 
 document.addEventListener('open-modal', (event) => {
-  [...event.detail.content].forEach((el) => console.log(
-    el.outerHTML,
-  ));
-
   // eslint-disable-next-line import/no-cycle
   import('../common/modal/modal.js').then((modal) => {
     modal.showModal(event.detail.content);

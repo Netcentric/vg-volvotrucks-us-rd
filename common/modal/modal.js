@@ -25,6 +25,7 @@ const createModalTopBar = (parentEl) => {
   parentEl.prepend(...topBar.children);
   // eslint-disable-next-line no-use-before-define
   parentEl.querySelector('.modal-close-button').addEventListener('click', () => hideModal());
+  parentEl.querySelector('.modal-top-bar').addEventListener('click', (event) => event.stopPropagation());
 };
 
 const createModal = () => {
@@ -109,6 +110,7 @@ const createModal = () => {
 
     modalContent.classList.add('modal-content-fade-in');
     modalBackground.classList.remove(HIDE_MODAL_CLASS);
+    modalBackground.querySelector('.modal-top-bar .modal-close-button').focus();
 
     // disable page scrolling
     document.body.classList.add('disable-scroll');
@@ -119,7 +121,7 @@ const createModal = () => {
     modalContent.classList.remove('modal-content-fade-in');
     window.removeEventListener('keydown', keyDownAction);
     document.body.classList.remove('disable-scroll');
-    modalContent.querySelector('iframe, video').remove();
+    modalContent.querySelector('iframe, video')?.remove();
     modalContent.querySelector('.modal-before-banner')?.remove();
     modalContent.querySelector('.modal-before-iframe')?.remove();
   }
