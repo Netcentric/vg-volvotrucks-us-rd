@@ -6,8 +6,8 @@ import { getTextLabel, createElement } from '../../scripts/common.js';
 const blockName = 'v2-newsletter';
 
 //* init response handling *
-const successTitle = `${getTextLabel('Successful submission title')}`;
-const successText = `${getTextLabel('Successful submission text')}`;
+const successTitle = `${getTextLabel('Success newsletter title')}`;
+const successText = `${getTextLabel('Success newsletter text')}`;
 
 async function submissionSuccess() {
   sampleRUM('form:submit');
