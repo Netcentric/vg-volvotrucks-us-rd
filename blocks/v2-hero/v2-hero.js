@@ -10,6 +10,7 @@ import {
 
 const variantClasses = ['centered', 'left', 'bottom', 'dark'];
 let intervalId = null;
+const blockName = 'v2-hero';
 
 function updateCountdown(eventTime, block) {
   const now = new Date();
@@ -17,8 +18,8 @@ function updateCountdown(eventTime, block) {
 
   // Check if the event time has passed
   if (diff <= 0) {
+    block.querySelector(`.${blockName}__countdown-wrapper`).remove()
     clearInterval(intervalId);
-    // TODO: remove the element
     return;
   }
 
@@ -33,23 +34,19 @@ function updateCountdown(eventTime, block) {
   const hourLabel = hours > 1 ? "hours" : "hour";
   const minuteLabel = minutes > 1 ? "minutes" : "minute";
   const secondLabel = seconds > 1 ? "seconds" : "second";
-  console.log(days)
-
-  console.log(block.querySelector(':scope #days').parentElement.querySelector('.v2-hero__countdown-label').textContent)
 
   block.querySelector('#days').textContent = days.toString().padStart(2, '0');
   block.querySelector('#hours').textContent = hours.toString().padStart(2, '0');
   block.querySelector('#minutes').textContent = minutes.toString().padStart(2, '0');
   block.querySelector('#seconds').textContent = seconds.toString().padStart(2, '0');
 
-  block.querySelector(':scope #days').parentElement.querySelector('.v2-hero__countdown-label').textContent = dayLabel
-  block.querySelector(':scope #hours').parentElement.querySelector('.v2-hero__countdown-label').textContent = hourLabel
-  block.querySelector(':scope #minutes').parentElement.querySelector('.v2-hero__countdown-label').textContent = minuteLabel
-  block.querySelector(':scope #seconds').parentElement.querySelector('.v2-hero__countdown-label').textContent = secondLabel
+  block.querySelector(':scope #days').parentElement.querySelector(`.${blockName}__countdown-label`).textContent = dayLabel
+  block.querySelector(':scope #hours').parentElement.querySelector(`.${blockName}__countdown-label`).textContent = hourLabel
+  block.querySelector(':scope #minutes').parentElement.querySelector(`.${blockName}__countdown-label`).textContent = minuteLabel
+  block.querySelector(':scope #seconds').parentElement.querySelector(`.${blockName}__countdown-label`).textContent = secondLabel
 }
 
 export default async function decorate(block) {
-  const blockName = 'v2-hero';
 
   // add Hero variant classnames
   variantsClassesToBEM(block.classList, variantClasses, blockName);
