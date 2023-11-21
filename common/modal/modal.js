@@ -135,6 +135,7 @@ const createModal = () => {
     modalContent.classList.add('modal-content-fade-in');
     modalBackground.classList.remove(HIDE_MODAL_CLASS);
     modalBackground.querySelector('.modal-top-bar .modal-close-button').focus();
+    modalBackground.setAttribute('aria-hidden', 'false');
 
     // disable page scrolling
     document.body.classList.add('disable-scroll');
@@ -148,8 +149,9 @@ const createModal = () => {
     modalContent.querySelector('iframe, video')?.remove();
     modalContent.querySelector('.modal-before-banner')?.remove();
     modalContent.querySelector('.modal-before-iframe')?.remove();
+    modalBackground.setAttribute('aria-hidden', 'true');
 
-    if (currentModalClasses) {
+    if (currentModalClasses.length) {
       modalBackground.classList.remove(currentModalClasses);
       currentModalClasses = null;
     }

@@ -22,13 +22,13 @@
   }
 }
 
-.modal-black {
+.modal--black {
   --background-color: var(--c-black);
   --text-color: var(--c-white);
   --color-icon: var(--c-white);
 }
 
-.modal-grey {
+.modal--gray {
   --background-color: var(--c-grey-50);
 }
 
@@ -55,7 +55,6 @@
   margin: 0;
   overflow: auto;
   height: calc(100% - var(--top-bar-height));
-  padding: 16px;
   background-color: var(--background-color);
 }
 
@@ -69,9 +68,10 @@
   justify-content: space-between;
   margin: 0 16px;
   gap: 10px;
-  height: var(--top-bar-height);
+  min-height: var(--top-bar-height);
   align-items: center;
   width: 100%;
+  padding: 32px 0;
 }
 
 .modal-top-bar-heading {

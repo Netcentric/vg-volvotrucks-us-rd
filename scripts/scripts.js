@@ -394,9 +394,18 @@ function decorateHyperlinkImages(container) {
 document.addEventListener('open-modal', (event) => {
   // eslint-disable-next-line import/no-cycle
   import('../common/modal/modal.js').then((modal) => {
-    const modalClass = [...event.detail.target.closest('.section').classList].find((el) => el.startsWith('modal-'));
+    const variantClasses = ['black', 'gray'];
+    const modalClasses = [...event.detail.target.closest('.section').classList].filter((el) => el.startsWith('modal-'));
+    // changing the modal variants classes to BEM naming
+    variantClasses.forEach((variant) => {
+      const index = modalClasses.findIndex((el) => el === `modal-${variant}`);
 
-    modal.showModal(event.detail.content, { modalClasses: [modalClass] });
+      if (index >= 0) {
+        modalClasses[index] = modalClasses[index].replace('modal-', 'modal--');
+      }
+    });
+
+    modal.showModal(event.detail.content, { modalClasses });
   });
 });
 
