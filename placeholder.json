@@ -142,6 +142,10 @@
     {
       "Key": "vinformat-length",
       "Text": "Please fill out this field"
+    },
+    {
+      "Key": "Copy to clipboard",
+      "Text": "Copy to clipboard"
     }
   ],
   ":type": "sheet"

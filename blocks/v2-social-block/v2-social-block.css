@@ -1,0 +1,115 @@
+.redesign-v2 .section.v2-social-block-container {
+  padding: 40px 16px;
+}
+
+.v2-social-block-container {
+  --social-block-padding: 24px 16px;
+  --social-block-gap: 16px;
+  --social-block-list-gap: 24px;
+}
+
+.redesign-v2 .section .v2-social-block-wrapper {
+  padding: var(--social-block-padding);
+  border-radius: 8px;
+  background-color: var(--c-grey-50);
+}
+
+.v2-social-block__list-wrapper {
+  display: flex;
+  flex-flow: column;
+  gap: var(--social-block-gap);
+  align-items: center;
+}
+
+.v2-social-block__title {
+  font-family: var(--font-family-body);
+  font-size: var(--f-heading-5-font-size);
+  letter-spacing: var(--f-heading-5-letter-spacing);
+  line-height: var(--f-heading-5-line-height);
+}
+
+.v2-social-block__list {
+  list-style-type: none;
+  display: flex;
+  gap: var(--social-block-list-gap);
+}
+
+.v2-social-block__button:any-link {
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.v2-social-block__button .icon svg {
+  height: 24px;
+  width: 24px;
+}
+
+.v2-social-block__tooltip {
+  position: relative; 
+}
+
+.v2-social-block__tooltip::after, 
+.v2-social-block__tooltip::before {
+  opacity: 0;
+  pointer-events: none;
+  bottom: 100%;
+  left: 50%;
+  position: absolute;
+  z-index: 3;
+  transform: translate(-50%, 10px);
+  transform-origin: top;
+  transition: all var(--duration-small) ease-out var(--duration-small);
+}
+
+.v2-social-block__tooltip::after {
+  background-color: var(--c-white);
+  content: attr(data-tooltip);
+  padding: 8px;
+  white-space: nowrap;
+  margin-bottom: 15px;
+  border-radius: 8px;
+}
+
+.v2-social-block__tooltip::before {
+  width: 0;
+  height: 0;
+  content: "";
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid var(--c-white);
+  margin-bottom: 6px; 
+}
+
+.v2-social-block__tooltip:hover::before,
+.v2-social-block__tooltip:hover::after {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+
+@media screen and (min-width: 744px) {
+  .redesign-v2 .section.v2-social-block-container {
+    padding: 40px 32px;
+  }
+
+  .v2-social-block-container {
+    --social-block-padding: 32px;
+  }
+
+  .v2-social-block__list-wrapper {
+    max-width: 680px;
+    margin: auto;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .redesign-v2 .section.v2-social-block-container {
+    padding: 48px 0;
+  }
+
+  .v2-social-block-container {
+    --social-block-padding: 48px 40px;
+    --social-block-gap: 32px;
+    --social-block-list-gap: 40px;
+  }  
+}
