@@ -5,28 +5,34 @@ import { getTextLabel, createElement } from '../../scripts/common.js';
 
 const blockName = 'v2-newsletter';
 
-const thankyouMessage = `<p class='pardot-forms-thanks-title'>${getTextLabel('Successful submission title')}</p>
-<p class='pardot-forms-thanks-text'>${getTextLabel('Successful submission text')}</p>`;
-
-const errorMessage = `<p class='pardot-forms-error-title'>${getTextLabel('Error submission title')}</p>
-<p class='pardot-forms-error-text'>${getTextLabel('Error submission text')}</p>`;
+//* init response handling *
+const successTitle = `${getTextLabel('Successful submission title')}`;
+const successText = `${getTextLabel('Successful submission text')}`;
 
 async function submissionSuccess() {
   sampleRUM('form:submit');
-  const thankyouDiv = document.createElement('div');
-  thankyouDiv.innerHTML = thankyouMessage;
-  const form = document.querySelector('form');
-  form.replaceWith(thankyouDiv);
+  const form = document.querySelector('form[data-submitting=true]');
+  form.setAttribute('data-submitting', 'false');
+  const title = document.querySelector(`.${blockName}__title`);
+  const message = document.createElement('p');
+  message.textContent = successText;
+  title.textContent = successTitle;
+  form.replaceWith(message);
 }
 
+const errorTitle = `${getTextLabel('Error submission title')}`;
+const errorText = `${getTextLabel('Error submission text')}`;
+
 async function submissionFailure() {
-  const errorDiv = document.createElement('div');
-  errorDiv.innerHTML = errorMessage;
-  const form = document.querySelector('form');
+  const form = document.querySelector('form[data-submitting=true]');
   form.setAttribute('data-submitting', 'false');
-  form.querySelector('button[type="submit"]').disabled = false;
-  form.replaceWith(errorDiv);
+  const title = document.querySelector(`.${blockName}__title`);
+  const message = document.createElement('p');
+  message.textContent = errorText;
+  title.textContent = errorTitle;
+  form.replaceWith(message);
 }
+//* end response handling *
 
 // eslint-disable-next-line func-names
 window.logResult = function (json) {
@@ -36,6 +42,7 @@ window.logResult = function (json) {
     submissionFailure();
   }
 };
+
 export default async function decorate(block) {
   const formLimk = block.firstElementChild.innerText.trim();
   const html = block.firstElementChild.nextElementSibling.firstElementChild.innerHTML;

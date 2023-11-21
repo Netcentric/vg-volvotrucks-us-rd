@@ -1,12 +1,12 @@
 import { loadScript, sampleRUM } from '../../scripts/lib-franklin.js';
 import { getTextLabel } from '../../scripts/common.js';
 
-const thankyouMessage = `<p class='pardot-forms-thanks-title'>${getTextLabel('Successful submission title')}</p>
-<p class='pardot-forms-thanks-text'>${getTextLabel('Successful submission text')}</p>
+const successMessage = `<p class='pardot-form__title pardot-form__title--success'>${getTextLabel('Successful submission title')}</p>
+<p class='pardot-form__text pardot-form__text--success'>${getTextLabel('Successful submission text')}</p>
 `;
 
-const errorMessage = `<p class='pardot-forms-error-title'>${getTextLabel('Error submission title')}</p>
-<p class='pardot-forms-error-text'>${getTextLabel('Error submission text')}</p>
+const errorMessage = `<p class='pardot-form__title pardot-form__title--error'>${getTextLabel('Error submission title')}</p>
+<p class='pardot-form__text pardot-form__text--error'>${getTextLabel('Error submission text')}</p>
 `;
 
 // Form Block identifies the submit endpoint via these rules and in order
@@ -17,16 +17,17 @@ const SUBMIT_ACTION = '';
 
 async function submissionSuccess() {
   sampleRUM('form:submit');
-  const thankyouDiv = document.createElement('div');
-  thankyouDiv.innerHTML = thankyouMessage;
-  const form = document.querySelector('form');
-  form.replaceWith(thankyouDiv);
+  const successDiv = document.createElement('div');
+  successDiv.innerHTML = successMessage;
+  const form = document.querySelector('form[data-submitting=true]');
+  form.setAttribute('data-submitting', 'false');
+  form.replaceWith(successDiv);
 }
 
 async function submissionFailure() {
   const errorDiv = document.createElement('div');
   errorDiv.innerHTML = errorMessage;
-  const form = document.querySelector('form');
+  const form = document.querySelector('form[data-submitting=true]');
   form.setAttribute('data-submitting', 'false');
   form.querySelector('button[type="submit"]').disabled = false;
   form.replaceWith(errorDiv);
