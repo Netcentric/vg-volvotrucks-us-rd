@@ -9,6 +9,44 @@ import {
 } from '../../scripts/common.js';
 
 const variantClasses = ['centered', 'left', 'bottom', 'dark'];
+let intervalId = null;
+
+function updateCountdown(eventTime, block) {
+  const now = new Date();
+  const diff = eventTime - now;
+
+  // Check if the event time has passed
+  if (diff <= 0) {
+    clearInterval(intervalId);
+    // TODO: remove the element
+    return;
+  }
+
+  // Calculate time left
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+  // Format labels
+  const dayLabel = days > 1 ? "days" : "day";
+  const hourLabel = hours > 1 ? "hours" : "hour";
+  const minuteLabel = minutes > 1 ? "minutes" : "minute";
+  const secondLabel = seconds > 1 ? "seconds" : "second";
+  console.log(days)
+
+  console.log(block.querySelector(':scope #days').parentElement.querySelector('.v2-hero__countdown-label').textContent)
+
+  block.querySelector('#days').textContent = days.toString().padStart(2, '0');
+  block.querySelector('#hours').textContent = hours.toString().padStart(2, '0');
+  block.querySelector('#minutes').textContent = minutes.toString().padStart(2, '0');
+  block.querySelector('#seconds').textContent = seconds.toString().padStart(2, '0');
+
+  block.querySelector(':scope #days').parentElement.querySelector('.v2-hero__countdown-label').textContent = dayLabel
+  block.querySelector(':scope #hours').parentElement.querySelector('.v2-hero__countdown-label').textContent = hourLabel
+  block.querySelector(':scope #minutes').parentElement.querySelector('.v2-hero__countdown-label').textContent = minuteLabel
+  block.querySelector(':scope #seconds').parentElement.querySelector('.v2-hero__countdown-label').textContent = secondLabel
+}
 
 export default async function decorate(block) {
   const blockName = 'v2-hero';
@@ -44,6 +82,41 @@ export default async function decorate(block) {
 
   const content = block.querySelector(':scope > div > div');
   content.classList.add(`${blockName}__content`);
+
+  // Countdown timer
+  const blockSection = block.parentElement?.parentElement;
+  if (blockSection && blockSection.dataset?.countdownDate) {
+    const countDownWrapper = createElement('div', {classes: `${blockName}__countdown-wrapper`});
+    countDownWrapper.innerHTML = `<div class="${blockName}__countdown">
+  <div class="${blockName}__countdown-segment">
+    <div id="days" class="${blockName}__countdown-number">00</div>
+    <div class="${blockName}__countdown-label">Days</div>
+  </div>
+  <div class="${blockName}__countdown-colon">:</div>
+  <div class="${blockName}__countdown-segment">
+    <div id="hours" class="${blockName}__countdown-number">00</div>
+    <div class="${blockName}__countdown-label">Hours</div>
+  </div>
+  <div class="${blockName}__countdown-colon">:</div>
+  <div class="${blockName}__countdown-segment">
+    <div id="minutes" class="${blockName}__countdown-number">00</div>
+    <div class="${blockName}__countdown-label">Minutes</div>
+  </div>
+  <div class="${blockName}__countdown-colon">:</div>
+  <div class="${blockName}__countdown-segment">
+    <div id="seconds" class="${blockName}__countdown-number">00</div>
+    <div class="${blockName}__countdown-label">Seconds</div>
+  </div>
+</div>`;
+    content.prepend(countDownWrapper);
+
+    const eventTimeIso = blockSection.dataset.countdownDate;
+    const eventTime = new Date(eventTimeIso);
+    updateCountdown(eventTime, block)
+    intervalId = setInterval(function () {
+      updateCountdown(eventTime, block);
+    }, 1000);
+  }
 
   // convert all headings to h1
   const headings = [...content.querySelectorAll('h1, h2, h3, h4, h5, h6')];
