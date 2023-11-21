@@ -405,7 +405,7 @@ document.addEventListener('open-modal', (event) => {
       }
     });
 
-    modal.showModal(event.detail.content, { modalClasses });
+    modal.showModal(event.detail.content, { modalClasses, invokeContext: event.detail.target });
   });
 });
 
