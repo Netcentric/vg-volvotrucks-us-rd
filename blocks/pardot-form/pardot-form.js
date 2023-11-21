@@ -37,8 +37,8 @@ function serialize(obj) {
   const str = Object.keys(obj).map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(obj[key])}`);
   return str.join('&');
 }
-// eslint-disable-next-line func-names
-window.logResult = function (json) {
+
+window.logResult = function logResult(json) {
   if (json.result === 'success') {
     submissionSuccess();
   } else if (json.result === 'error') {

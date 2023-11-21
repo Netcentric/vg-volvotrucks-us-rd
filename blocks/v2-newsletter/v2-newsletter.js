@@ -34,8 +34,7 @@ async function submissionFailure() {
 }
 //* end response handling *
 
-// eslint-disable-next-line func-names
-window.logResult = function (json) {
+window.logResult = function logResult(json) {
   if (json.result === 'success') {
     submissionSuccess();
   } else if (json.result === 'error') {
@@ -44,7 +43,7 @@ window.logResult = function (json) {
 };
 
 export default async function decorate(block) {
-  const formLimk = block.firstElementChild.innerText.trim();
+  const formLink = block.firstElementChild.innerText.trim();
   const html = block.firstElementChild.nextElementSibling.firstElementChild.innerHTML;
 
   const container = createElement('div', { classes: `${blockName}__container` });
@@ -62,7 +61,7 @@ export default async function decorate(block) {
         <div>subscribe</div>
       </div>
       <div>
-        <div>${formLimk}</div>
+        <div>${formLink}</div>
       </div>
     </div>`);
 
