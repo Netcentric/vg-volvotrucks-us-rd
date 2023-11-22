@@ -131,9 +131,7 @@ export default async function decorate(block) {
   // render all paragraph as H6 with the class
   const paragraphs = [...content.querySelectorAll('p')];
   paragraphs.forEach((paragraph) => paragraph.classList.add(`h6`));
-
-  //TODO: fix layout shift when second vs seconds and the rest
-
+  
 
   const buttonsWrapper = createElement('div', {classes: `${blockName}__buttons-wrapper`});
   const ctaButtons = content.querySelectorAll('.button-container > a');
