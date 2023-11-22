@@ -39,7 +39,7 @@ export default async function decorate(block) {
           console.error('Failed to copy: ', err);
         }
       });
-      anchor.classList.add('tooltip', 'tooltip--bottom', 'show');
+      anchor.classList.add('tooltip', 'tooltip--right');
     }
   });
   unwrapDivs(block);

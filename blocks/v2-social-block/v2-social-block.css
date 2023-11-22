@@ -54,10 +54,6 @@
   width: 24px;
 }
 
-.section--black-background.v2-social-block-container {
-  background-color: transparent;
-}
-
 @media screen and (min-width: 744px) {
   .redesign-v2 .section.v2-social-block-container {
     padding: 40px 32px;
