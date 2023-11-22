@@ -169,7 +169,7 @@
   font-size: var(--f-heading-3-5-font-size);
   line-height: var(--f-heading-3-5-line-height);
   letter-spacing: 0.25px;
-  grid-area: number;
+  font-feature-settings: 'tnum';
 }
 
 .v2-hero__countdown-label {
