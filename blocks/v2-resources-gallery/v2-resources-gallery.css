@@ -128,8 +128,7 @@
 .v2-resources-gallery__rows-wrapper {
   display: flex;
   flex-wrap: wrap;
-  gap: 32px;
-  row-gap: 40px;
+  gap: 40px 32px;
 }
 
 .v2-resources-gallery__item--has-documents .button {
@@ -194,8 +193,7 @@ html {
   }
 
   .v2-resources-gallery__rows-wrapper {
-    gap: 80px;
-    row-gap: 48px;
+    gap: 48px 80px;
   }
 
   .v2-resources-gallery__item {
