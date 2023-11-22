@@ -67,6 +67,11 @@
   margin-bottom: 8px;
 }
 
+.v2-resources-gallery .v2-resources-gallery__row--has-video:has(+ .v2-resources-gallery__rows-wrapper),
+.v2-resources-gallery .v2-resources-gallery__row--has-video:has(+ .v2-resources-gallery__row--has-video.hidden) {
+  margin-bottom: 40px;
+}
+
 .v2-resources-gallery__toggle-resources {
   font-size: var(--f-button-font-size);
   background: none;
@@ -124,6 +129,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 32px;
+  row-gap: 40px;
 }
 
 .v2-resources-gallery__item--has-documents .button {
@@ -131,7 +137,7 @@
 }
 
 .v2-resources-gallery__item--has-documents .button-container {
-  margin-bottom: 0;
+  margin: 0;
 }
 
 .v2-resources-gallery__item--has-documents .button-container a.tertiary {
@@ -145,10 +151,6 @@
 
 .section--black-background .v2-resources-gallery__item--has-documents .button-container a.tertiary {
   color: var(--c-cta-blue-default);
-}
-
-.section--black-background .v2-resources-gallery__item--has-documents .button-container a.tertiary svg path {
-  fill: var(--c-cta-blue-default);
 }
 
 .v2-resources-gallery__item--has-documents .button-container a.button.tertiary:hover {
@@ -170,7 +172,7 @@
 /* stylelint-disable-next-line no-descending-specificity */
 .v2-resources-gallery__item--has-documents .button-container + p {
   padding-left: 32px;
-  margin-top: 8px;
+  margin: 0;
   color: var(--c-grey-4);
 }
 
@@ -192,7 +194,8 @@ html {
   }
 
   .v2-resources-gallery__rows-wrapper {
-    gap: 16px;
+    gap: 80px;
+    row-gap: 48px;
   }
 
   .v2-resources-gallery__item {
@@ -234,8 +237,18 @@ html {
   }
 
   .v2-resources-gallery__rows-wrapper .v2-resources-gallery__row--has-documents {
-    width: calc(33.33% - 12px);
-    flex-grow: initial;
+    width: calc(33.33% - 80px);
+    flex-grow: 1;
+  }
+
+  .v2-resources-gallery__rows-wrapper .v2-resources-gallery__row--has-documents:last-child {
+    flex-grow: unset;
+    width: calc(33.33% - 48px);
+  }
+
+  .v2-resources-gallery__rows-wrapper .v2-resources-gallery__row--has-documents:has( + .v2-resources-gallery__row--has-documents:last-child) {
+    flex-grow: unset;
+    width: calc(33.33% - 52px);
   }
 }
 
@@ -255,6 +268,15 @@ html {
 
   .v2-resources-gallery__toggle-resources-icon {
     right: -96px;
+  }
+
+  .v2-resources-gallery__rows-wrapper .v2-resources-gallery__item--has-documents {
+    display: flex;
+    align-items: center;
+  }
+
+  .v2-resources-gallery__item--has-documents .button-container + p {
+    padding-left: 8px;
   }
 }
 
