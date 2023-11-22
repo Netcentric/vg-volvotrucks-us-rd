@@ -18,7 +18,7 @@ function updateCountdown(eventTime, block) {
 
   // Check if the event time has passed
   if (diff <= 0) {
-    block.querySelector(`.${blockName}__countdown-wrapper`).remove()
+    block.querySelector(`.${blockName}__countdown-wrapper`).remove();
     clearInterval(intervalId);
     return;
   }
@@ -30,24 +30,23 @@ function updateCountdown(eventTime, block) {
   const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
   // Format labels
-  const dayLabel = days > 1 ? "days" : "day";
-  const hourLabel = hours > 1 ? "hours" : "hour";
-  const minuteLabel = minutes > 1 ? "minutes" : "minute";
-  const secondLabel = seconds > 1 ? "seconds" : "second";
+  const dayLabel = days > 1 ? 'days' : 'day';
+  const hourLabel = hours > 1 ? 'hours' : 'hour';
+  const minuteLabel = minutes > 1 ? 'minutes' : 'minute';
+  const secondLabel = seconds > 1 ? 'seconds' : 'second';
 
   block.querySelector('#days').textContent = days.toString().padStart(2, '0');
   block.querySelector('#hours').textContent = hours.toString().padStart(2, '0');
   block.querySelector('#minutes').textContent = minutes.toString().padStart(2, '0');
   block.querySelector('#seconds').textContent = seconds.toString().padStart(2, '0');
 
-  block.querySelector(':scope #days').parentElement.querySelector(`.${blockName}__countdown-label`).textContent = dayLabel
-  block.querySelector(':scope #hours').parentElement.querySelector(`.${blockName}__countdown-label`).textContent = hourLabel
-  block.querySelector(':scope #minutes').parentElement.querySelector(`.${blockName}__countdown-label`).textContent = minuteLabel
-  block.querySelector(':scope #seconds').parentElement.querySelector(`.${blockName}__countdown-label`).textContent = secondLabel
+  block.querySelector(':scope #days').parentElement.querySelector(`.${blockName}__countdown-label`).textContent = dayLabel;
+  block.querySelector(':scope #hours').parentElement.querySelector(`.${blockName}__countdown-label`).textContent = hourLabel;
+  block.querySelector(':scope #minutes').parentElement.querySelector(`.${blockName}__countdown-label`).textContent = minuteLabel;
+  block.querySelector(':scope #seconds').parentElement.querySelector(`.${blockName}__countdown-label`).textContent = secondLabel;
 }
 
 export default async function decorate(block) {
-
   // add Hero variant classnames
   variantsClassesToBEM(block.classList, variantClasses, blockName);
 
@@ -83,7 +82,7 @@ export default async function decorate(block) {
   // Countdown timer
   const blockSection = block.parentElement?.parentElement;
   if (blockSection && blockSection.dataset?.countdownDate) {
-    const countDownWrapper = createElement('div', {classes: `${blockName}__countdown-wrapper`});
+    const countDownWrapper = createElement('div', { classes: `${blockName}__countdown-wrapper` });
     countDownWrapper.innerHTML = `<div class="${blockName}__countdown">
   <div class="${blockName}__countdown-segment">
     <div id="days" class="${blockName}__countdown-number">00</div>
@@ -109,8 +108,8 @@ export default async function decorate(block) {
 
     const eventTimeIso = blockSection.dataset.countdownDate;
     const eventTime = new Date(eventTimeIso);
-    updateCountdown(eventTime, block)
-    intervalId = setInterval(function () {
+    updateCountdown(eventTime, block);
+    intervalId = setInterval(() => {
       updateCountdown(eventTime, block);
     }, 1000);
   }
@@ -130,10 +129,9 @@ export default async function decorate(block) {
 
   // render all paragraph as H6 with the class
   const paragraphs = [...content.querySelectorAll('p')];
-  paragraphs.forEach((paragraph) => paragraph.classList.add(`h6`));
-  
+  paragraphs.forEach((paragraph) => paragraph.classList.add('h6'));
 
-  const buttonsWrapper = createElement('div', {classes: `${blockName}__buttons-wrapper`});
+  const buttonsWrapper = createElement('div', { classes: `${blockName}__buttons-wrapper` });
   const ctaButtons = content.querySelectorAll('.button-container > a');
   [...ctaButtons].forEach((b, i) => {
     if (i > 0) { // change next buttons to be secondary
