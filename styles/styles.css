@@ -1051,7 +1051,7 @@ main.blue-contract .section.section-with-title p {
   --card-text: var(--c-white);
   --c-cta-blue-default: #44A1FF;
   --text-subtle: var(--c-grey-2);
-  --background-gradient: rgb(0 0 0 / 100%);
+  --background-gradient: rgb(20 20 20 / 100%);
 
   color: var(--text-color);
   background-color: var(--c-main-black);
