@@ -120,7 +120,7 @@
   display: inline-flex;
   flex-flow: column wrap;
   gap: 24px;
-  padding: var(--section-div-padding);
+  padding: 24px 0;
 }
 
 /* Scroll icon */
