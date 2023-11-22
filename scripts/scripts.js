@@ -412,7 +412,7 @@ document.addEventListener('open-modal', (event) => {
 const handleModalLinks = (link) => {
   link.addEventListener('click', async (event) => {
     event.preventDefault();
-    const modalContentLink = link.getAttribute('href').split('modal-content=')[1];
+    const modalContentLink = link.getAttribute('data-modal-content');
     const resp = await fetch(`${modalContentLink}.plain.html`);
     const main = document.createElement('main');
 
@@ -447,6 +447,10 @@ export function decorateLinks(block) {
         addSoundcloudShowHandler(link);
       }
       if (link.getAttribute('href').startsWith('/modal-content=')) {
+        const href = link.getAttribute('href');
+        link.setAttribute('data-modal-content', href.split('modal-content=')[1]);
+        // removing the `/modal-content=` so the link can be opened in the other tab by coping link
+        link.setAttribute('href', link.getAttribute('href').replace('/modal-content=', ''));
         handleModalLinks(link);
         return;
       }
