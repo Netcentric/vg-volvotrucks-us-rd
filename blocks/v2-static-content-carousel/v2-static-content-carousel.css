@@ -96,6 +96,7 @@
 .v2-static-content-carousel__button:disabled:hover {
   background: transparent;
   border: none;
+  border-radius: 4px;
 }
 
 .v2-static-content-carousel__button .icon-arrow-left svg,
