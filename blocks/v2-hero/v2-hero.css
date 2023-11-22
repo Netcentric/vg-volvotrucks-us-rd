@@ -109,18 +109,18 @@
   font-size: 70px;
   line-height: 85%;
   letter-spacing: 5px;
+  margin-bottom: 8px;
 }
 
-.v2-hero__title,
 .v2-hero__content p {
-  margin: 10px 0 0;
+  margin: 0;
 }
 
 .v2-hero__buttons-wrapper {
   display: inline-flex;
   flex-flow: column wrap;
-  gap: 8px;
-  margin-top: 24px;
+  gap: 24px;
+  padding: var(--section-div-padding);
 }
 
 /* Scroll icon */
@@ -151,9 +151,12 @@
 .v2-hero__countdown {
   display: grid;
   grid-template-columns: repeat(7, max-content);
-  justify-content: center;
   grid-gap: 16px;
   padding: var(--section-div-padding);
+}
+
+.v2-hero--centered .v2-hero__countdown, .v2-hero--bottom .v2-hero__countdown {
+  justify-content: center;
 }
 
 .v2-hero__countdown-segment {
@@ -176,6 +179,7 @@
   line-height: 125%;
   letter-spacing: 0.4px;
   text-transform: capitalize;
+  font-size: var(--f-caption-font-size);
 }
 
 .v2-hero__countdown-colon {

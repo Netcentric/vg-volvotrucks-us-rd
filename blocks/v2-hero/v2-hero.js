@@ -126,9 +126,15 @@ export default async function decorate(block) {
     } else {
       heading.classList.add(`${blockName}__title`);
     }
-  });
+  }); 
+  
+  const paragraphs = [...content.querySelectorAll('p')];
+  paragraphs.forEach((paragraph) => paragraph.classList.add(`h6`));
 
-  const buttonsWrapper = createElement('div', { classes: `${blockName}__buttons-wrapper` });
+  //TODO: fix layout shift when second vs seconds and the rest
+
+
+  const buttonsWrapper = createElement('div', {classes: `${blockName}__buttons-wrapper`});
   const ctaButtons = content.querySelectorAll('.button-container > a');
   [...ctaButtons].forEach((b, i) => {
     if (i > 0) { // change next buttons to be secondary
