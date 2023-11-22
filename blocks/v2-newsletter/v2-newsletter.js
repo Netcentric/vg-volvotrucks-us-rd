@@ -6,8 +6,8 @@ import { getTextLabel, createElement } from '../../scripts/common.js';
 const blockName = 'v2-newsletter';
 
 //* init response handling *
-const successTitle = `${getTextLabel('Success newsletter title')}`;
-const successText = `${getTextLabel('Success newsletter text')}`;
+const successTitle = getTextLabel('Success newsletter title');
+const successText = getTextLabel('Success newsletter text');
 
 async function submissionSuccess() {
   sampleRUM('form:submit');
@@ -20,8 +20,8 @@ async function submissionSuccess() {
   form.replaceWith(message);
 }
 
-const errorTitle = `${getTextLabel('Error submission title')}`;
-const errorText = `${getTextLabel('Error submission text')}`;
+const errorTitle = getTextLabel('Error submission title');
+const errorText = getTextLabel('Error submission text');
 
 async function submissionFailure() {
   const form = document.querySelector('form[data-submitting=true]');
