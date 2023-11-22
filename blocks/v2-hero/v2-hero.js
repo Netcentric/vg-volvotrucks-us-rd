@@ -126,8 +126,9 @@ export default async function decorate(block) {
     } else {
       heading.classList.add(`${blockName}__title`);
     }
-  }); 
-  
+  });
+
+  // render all paragraph as H6 with the class
   const paragraphs = [...content.querySelectorAll('p')];
   paragraphs.forEach((paragraph) => paragraph.classList.add(`h6`));
 
