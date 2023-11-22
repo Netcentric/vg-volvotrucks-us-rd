@@ -150,7 +150,7 @@
 
 .v2-hero__countdown {
   display: grid;
-  grid-template-columns: repeat(7, max-content);
+  grid-template-columns: repeat(3, minmax(max-content, 50px) max-content) minmax(max-content, 50px);
   grid-gap: 16px;
   padding: var(--section-div-padding);
 }
@@ -160,7 +160,6 @@
 }
 
 .v2-hero__countdown-segment {
-  flex: 1;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -183,7 +182,6 @@
 }
 
 .v2-hero__countdown-colon {
-  flex: none;
   font-family: var(--ff-volvo-novum-medium);
   font-size: var(--f-heading-3-5-font-size);
   line-height: var(--f-heading-3-5-line-height);
