@@ -144,8 +144,8 @@
       "Text": "Please fill out this field"
     },
     {
-      "Key": "Copy to clipboard",
-      "Text": "Copy to clipboard"
+      "Key": "Copied",
+      "Text": "Copied!"
     }
   ],
   ":type": "sheet"

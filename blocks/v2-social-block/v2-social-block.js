@@ -23,18 +23,23 @@ export default async function decorate(block) {
 
     const copyLink = item.querySelector('.icon-link');
     if (copyLink) {
-      anchor.dataset.tooltip = getTextLabel('Copy to clipboard');
+      anchor.dataset.tooltip = getTextLabel('Copied');
 
       anchor.addEventListener('click', async (e) => {
         e.preventDefault();
         try {
           await navigator.clipboard.writeText(`${anchor.href}`);
+          anchor.classList.add('show');
+
+          setTimeout(() => {
+            anchor.classList.remove('show');
+          }, 1000);
         } catch (err) {
           /* eslint-disable-next-line no-console */
           console.error('Failed to copy: ', err);
         }
       });
-      anchor.classList.add(`${blockName}__tooltip`);
+      anchor.classList.add('tooltip', 'tooltip--bottom', 'show');
     }
   });
   unwrapDivs(block);
