@@ -110,6 +110,7 @@
   line-height: 85%;
   letter-spacing: 5px;
   margin-bottom: 8px;
+  text-wrap: balance;
 }
 
 .v2-hero__content p {
