@@ -38,7 +38,8 @@
 
 @supports (height: 1svh) {
   .v2-hero {
-    height: calc(100svh - var(--nav-height));
+    min-height: calc(100svh - var(--nav-height));
+    height: auto;
   }
 
   .v2-inpage-navigation-wrapper + .v2-hero-container .v2-hero {
@@ -63,7 +64,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  min-height: calc(100svh - var(--nav-height));
   padding: var(--v2-hero-padding);
   padding-bottom: calc((var(--v2-hero-padding) * 2) + var(--scroll-icon-height));
   background: linear-gradient(180deg, rgb(255 255 255 / 50%) 0%, rgb(255 255 255 / 0%) 100%);
