@@ -8,10 +8,27 @@
   --social-block-list-gap: 12px;
 }
 
+.v2-social-block {
+  --social-link-color: var(--c-main-black);
+  --social-text-color: var(--c-main-black);
+}
+
 .redesign-v2 .section .v2-social-block-wrapper {
   padding: var(--social-block-padding);
   border-radius: 8px;
-  background-color: var(--card-background);
+}
+
+.v2-social-block-wrapper--black {
+  background-color: var(--c-main-black);
+}
+
+.v2-social-block--black {
+  --social-link-color: var(--c-white);
+  --social-text-color: var(--c-grey-2);
+}
+
+.v2-social-block-wrapper--gray {
+  background-color: var(--c-grey-50);
 }
 
 .v2-social-block__list-wrapper {
@@ -27,6 +44,7 @@
   letter-spacing: var(--f-heading-5-letter-spacing);
   line-height: var(--f-heading-5-line-height);
   margin-bottom: 0;
+  color: var(--social-text-color);
 }
 
 .v2-social-block__list {
@@ -35,7 +53,7 @@
 }
 
 .v2-social-block__button:any-link {
-  color: var(--text-color);
+  color: var(--social-link-color);
   background-color: transparent;
   align-items: center;
   display: inline-flex;

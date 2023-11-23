@@ -1501,7 +1501,7 @@ main.blue-contract .section.section-with-title p {
   position: absolute;
   opacity: 0;
   visibility: hidden;
-  transition: opacity var(--duration-small) linear;
+  transition: opacity var(--duration-small) linear, visibility var(--duration-small) linear;
 }
 
 .redesign-v2 .tooltip.show::before,
