@@ -59,6 +59,10 @@
   width: 100%;
 }
 
+.v2-hero--background-right .v2-hero__image, .v2-hero--background-right .v2-hero__video {
+  object-position: center right;
+}
+
 .v2-hero__content-wrapper {
   color: var(--c-main-black);
   position: relative;
@@ -153,7 +157,7 @@
 .v2-hero__countdown {
   display: flex;
   gap: 32px;
-  padding: var(--section-div-padding);
+  padding: 24px 0;
 }
 
 .v2-hero--centered .v2-hero__countdown, .v2-hero--bottom .v2-hero__countdown {
@@ -163,6 +167,7 @@
 .v2-hero__countdown-segment {
   position: relative;
   flex-basis: 50px;
+  text-align: center;
 }
 
 .v2-hero__countdown-segment + .v2-hero__countdown-segment::before {

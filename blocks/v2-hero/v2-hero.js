@@ -6,7 +6,7 @@ import {
   createElement, getTextLabel, removeEmptyTags, variantsClassesToBEM,
 } from '../../scripts/common.js';
 
-const variantClasses = ['centered', 'left', 'bottom', 'dark'];
+const variantClasses = ['centered', 'left', 'bottom', 'dark', 'background-right'];
 let intervalId = null;
 const blockName = 'v2-hero';
 
