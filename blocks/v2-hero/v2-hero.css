@@ -175,10 +175,10 @@
 }
 
 .v2-hero__countdown-label {
-  line-height: 125%;
+  font-size: var(--f-caption-font-size);
+  line-height: var(--f-caption-line-height);
   letter-spacing: 0.4px;
   text-transform: capitalize;
-  font-size: var(--f-caption-font-size);
 }
 
 .v2-hero__countdown-colon {
