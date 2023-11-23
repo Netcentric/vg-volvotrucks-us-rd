@@ -162,6 +162,7 @@
 
 .v2-hero__countdown-segment {
   position: relative;
+  flex-basis: 50px;
 }
 
 .v2-hero__countdown-segment + .v2-hero__countdown-segment::before {
