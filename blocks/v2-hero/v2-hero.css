@@ -169,9 +169,7 @@
 }
 
 .v2-hero__countdown-number {
-  font-family: var(--ff-volvo-novum-medium);
-  font-size: var(--f-heading-3-5-font-size);
-  line-height: var(--f-heading-3-5-line-height);
+  font: 400 var(--f-heading-3-5-font-size) / var(--f-heading-3-5-line-height) var(--ff-volvo-novum-medium);
   letter-spacing: 0.25px;
   font-feature-settings: 'tnum';
 }
@@ -184,9 +182,7 @@
 }
 
 .v2-hero__countdown-colon {
-  font-family: var(--ff-volvo-novum-medium);
-  font-size: var(--f-heading-3-5-font-size);
-  line-height: var(--f-heading-3-5-line-height);
+  font: 400 var(--f-heading-3-5-font-size) / var(--f-heading-3-5-line-height) var(--ff-volvo-novum-medium);
 }
 
 /* END - Countdown  */
