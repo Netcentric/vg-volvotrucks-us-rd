@@ -87,17 +87,14 @@ export default async function decorate(block) {
     <div id="days" class="${blockName}__countdown-number">00</div>
     <div class="${blockName}__countdown-label">Days</div>
   </div>
-  <div class="${blockName}__countdown-colon">:</div>
   <div class="${blockName}__countdown-segment">
     <div id="hours" class="${blockName}__countdown-number">00</div>
     <div class="${blockName}__countdown-label">Hours</div>
   </div>
-  <div class="${blockName}__countdown-colon">:</div>
   <div class="${blockName}__countdown-segment">
     <div id="minutes" class="${blockName}__countdown-number">00</div>
     <div class="${blockName}__countdown-label">Minutes</div>
   </div>
-  <div class="${blockName}__countdown-colon">:</div>
   <div class="${blockName}__countdown-segment">
     <div id="seconds" class="${blockName}__countdown-number">00</div>
     <div class="${blockName}__countdown-label">Seconds</div>
