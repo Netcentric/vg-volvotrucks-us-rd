@@ -3,14 +3,18 @@ import {
   createVideo,
 } from '../../scripts/video-helper.js';
 import {
-  createElement,
-  removeEmptyTags,
-  variantsClassesToBEM,
+  createElement, getTextLabel, removeEmptyTags, variantsClassesToBEM,
 } from '../../scripts/common.js';
 
 const variantClasses = ['centered', 'left', 'bottom', 'dark'];
 let intervalId = null;
 const blockName = 'v2-hero';
+
+function updateCountdownElement(block, elementId, value, label) {
+  const element = block.querySelector(`#${elementId}`);
+  element.textContent = value.toString().padStart(2, '0');
+  element.nextElementSibling.textContent = label;
+}
 
 function updateCountdown(eventTime, block) {
   const now = new Date();
@@ -30,20 +34,15 @@ function updateCountdown(eventTime, block) {
   const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
   // Format labels
-  const dayLabel = days > 1 ? 'days' : 'day';
-  const hourLabel = hours > 1 ? 'hours' : 'hour';
-  const minuteLabel = minutes > 1 ? 'minutes' : 'minute';
-  const secondLabel = seconds > 1 ? 'seconds' : 'second';
+  const dayLabel = days <= 1 ? getTextLabel('day') : `${getTextLabel('day')}s`;
+  const hourLabel = hours <= 1 ? getTextLabel('hour') : `${getTextLabel('hour')}s`;
+  const minuteLabel = minutes <= 1 ? getTextLabel('minute') : `${getTextLabel('minute')}s`;
+  const secondLabel = seconds <= 1 ? getTextLabel('second') : `${getTextLabel('second')}s`;
 
-  block.querySelector('#days').textContent = days.toString().padStart(2, '0');
-  block.querySelector('#hours').textContent = hours.toString().padStart(2, '0');
-  block.querySelector('#minutes').textContent = minutes.toString().padStart(2, '0');
-  block.querySelector('#seconds').textContent = seconds.toString().padStart(2, '0');
-
-  block.querySelector(':scope #days').parentElement.querySelector(`.${blockName}__countdown-label`).textContent = dayLabel;
-  block.querySelector(':scope #hours').parentElement.querySelector(`.${blockName}__countdown-label`).textContent = hourLabel;
-  block.querySelector(':scope #minutes').parentElement.querySelector(`.${blockName}__countdown-label`).textContent = minuteLabel;
-  block.querySelector(':scope #seconds').parentElement.querySelector(`.${blockName}__countdown-label`).textContent = secondLabel;
+  updateCountdownElement(block, 'days', days, dayLabel);
+  updateCountdownElement(block, 'hours', hours, hourLabel);
+  updateCountdownElement(block, 'minutes', minutes, minuteLabel);
+  updateCountdownElement(block, 'seconds', seconds, secondLabel);
 }
 
 export default async function decorate(block) {
