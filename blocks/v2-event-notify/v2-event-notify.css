@@ -1,0 +1,84 @@
+.v2-event-notify__container {
+  max-width: 694px;
+  margin: auto;
+}
+
+.v2-event-notify__container .v2-event-notify__text-wrapper  {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: center;
+  max-width: 506px;
+  margin: 40px auto;
+}
+
+.v2-event-notify__container .v2-event-notify__title {
+  font-size: var(--f-heading-4-font-size);
+  letter-spacing: var(--f-heading-4-letter-spacing);
+  line-height: var(--f-heading-4-line-height);
+  margin: 0;
+}
+
+.v2-event-notify__container .v2-event-notify__text-wrapper p {
+  margin: 0;
+}
+
+.v2-event-notify__container .v2-forms__container input {
+  background: var(--c-primary-white);
+  font-size: var(--f-body-font-size);
+  letter-spacing: var(--f-body-letter-spacing);
+  line-height: var(--f-body-line-height);
+}
+
+.v2-event-notify__container .event-notify__buttons {
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 744px) {
+  .v2-event-notify__container .event-notify__wrapper {
+    display: flex;
+    column-gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+
+  .v2-event-notify__container .event-notify__wrapper > * {
+    width: calc(50% - 8px);
+  }
+
+  .v2-event-notify__container .event-notify__agrement-section {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .v2-event-notify__container .event-notify__buttons {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1200px) {
+  .v2-event-notify__container .v2-event-notify__text-wrapper  {
+    margin: 48px auto;
+    max-width: unset;
+    gap: 24px;
+  }
+
+  .v2-event-notify__container .v2-event-notify__title {
+    font-size: var(--f-heading-3-font-size);
+    letter-spacing: var(--f-heading-3-letter-spacing);
+    line-height: var(--f-heading-3-line-height);
+    margin: 0;
+  }
+
+  .v2-event-notify__container .v2-event-notify__text-wrapper p {
+    font-size: var(--f-body-2-font-size);
+    letter-spacing: var(--f-body-2-letter-spacing);
+    line-height: var(--f-body-2-line-height);
+  }
+}
