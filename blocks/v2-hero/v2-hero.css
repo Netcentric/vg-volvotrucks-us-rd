@@ -186,9 +186,8 @@
 }
 
 .v2-hero__countdown-label {
-  font-size: var(--f-caption-font-size);
-  line-height: var(--f-caption-line-height);
-  letter-spacing: 0.4px;
+  font: 400 var(--f-caption-font-size) / var(--f-caption-line-height) var(--ff-volvo-novum);
+  letter-spacing: var(--f-caption-letter-spacing);
   text-transform: capitalize;
 }
 
