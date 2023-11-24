@@ -3,7 +3,7 @@
   margin: auto;
 }
 
-.v2-event-notify__container .v2-event-notify__text-wrapper  {
+.v2-event-notify__container .v2-event-notify__text-wrapper {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -23,11 +23,24 @@
   margin: 0;
 }
 
+.v2-event-notify__container .event-notify__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.v2-event-notify__container .event-notify__field-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .v2-event-notify__container .v2-forms__container input {
   background: var(--c-primary-white);
   font-size: var(--f-body-font-size);
   letter-spacing: var(--f-body-letter-spacing);
   line-height: var(--f-body-line-height);
+  margin: 0;
 }
 
 .v2-event-notify__container .event-notify__buttons {
@@ -37,12 +50,24 @@
   align-items: center;
 }
 
+.v2-event-notify__container .event-notify__agrement-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 40px;
+}
+
+.v2-event-notify__container .event-notify__error-message {
+  color: #bf2012;
+  font-size: var(--f-caption-font-size);
+  line-height: var(--f-caption-line-height);
+  letter-spacing: var(--f-caption-letter-spacing);
+}
+
 @media (min-width: 744px) {
   .v2-event-notify__container .event-notify__wrapper {
     display: flex;
-    column-gap: 16px;
-    flex-wrap: wrap;
-    margin-bottom: 24px;
+    flex-flow: row wrap;
   }
 
   .v2-event-notify__container .event-notify__wrapper > * {
@@ -63,7 +88,7 @@
 }
 
 @media (min-width: 1200px) {
-  .v2-event-notify__container .v2-event-notify__text-wrapper  {
+  .v2-event-notify__container .v2-event-notify__text-wrapper {
     margin: 48px auto;
     max-width: unset;
     gap: 24px;
@@ -80,5 +105,18 @@
     font-size: var(--f-body-2-font-size);
     letter-spacing: var(--f-body-2-letter-spacing);
     line-height: var(--f-body-2-line-height);
+  }
+
+  .v2-event-notify__container .event-notify__wrapper {
+    column-gap: 20px;
+    row-gap: 24px;
+  }
+
+  .v2-event-notify__container .event-notify__wrapper > * {
+    width: calc(50% - 10px);
+  }
+
+  .v2-event-notify__container .event-notify__agrement-section {
+    margin-top: 48px;
   }
 }

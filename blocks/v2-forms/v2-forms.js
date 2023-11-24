@@ -83,6 +83,11 @@ const addForm = async (block) => {
   const formObj = document.querySelector('form');
   // eslint-disable-next-line prefer-destructuring
   formObj.addEventListener('submit', (e) => {
+    if (formContent.onSubmit) {
+      e.preventDefault();
+      formContent.onSubmit(formObj, handleSubmit);
+    }
+
     let isValid = true;
     if (formObj.hasAttribute('novalidate')) {
       isValid = formObj.checkValidity();
@@ -94,6 +99,8 @@ const addForm = async (block) => {
       handleSubmit(formObj);
     }
   });
+
+  formContent?.postLoad(formObj);
 };
 
 export default async function decorate(block) {
