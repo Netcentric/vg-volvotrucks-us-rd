@@ -80,11 +80,11 @@
   text-align: center;
 }
 
-.v2-hero--left .v2-hero__content-wrapper {
+.v2-hero--left-center .v2-hero__content-wrapper {
   justify-content: center;
 }
 
-.v2-hero--bottom .v2-hero__content-wrapper {
+.v2-hero--center-bottom .v2-hero__content-wrapper {
   align-items: center;
   justify-content: flex-end;
   text-align: center;
@@ -104,7 +104,7 @@
 }
 
 .v2-hero--centered .v2-hero__content > *,
-.v2-hero--bottom .v2-hero__content > * {
+.v2-hero--center-bottom .v2-hero__content > * {
   margin-left: auto;
   margin-right: auto;
 }
@@ -160,7 +160,7 @@
   padding: 24px 0;
 }
 
-.v2-hero--centered .v2-hero__countdown, .v2-hero--bottom .v2-hero__countdown {
+.v2-hero--centered .v2-hero__countdown, .v2-hero--center-bottom .v2-hero__countdown {
   justify-content: center;
 }
 
