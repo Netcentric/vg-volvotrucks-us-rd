@@ -40,7 +40,11 @@ async function prepareRequest(form) {
 async function handleSubmit(form) {
   if (form.getAttribute('data-submitting') !== 'true') {
     form.setAttribute('data-submitting', 'true');
-    await prepareRequest(form);
+    try {
+      await prepareRequest(form);
+    } catch (error) {
+      window.logResult({ result: 'error' });
+    }
   }
 }
 

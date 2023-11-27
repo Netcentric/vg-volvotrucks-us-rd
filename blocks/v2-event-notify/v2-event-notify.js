@@ -47,7 +47,7 @@ window.logResult = function logResult(json) {
   if (json.result === 'success') {
     onSuccess();
   } else if (json.result === 'error') {
-    onError();
+    onError(json.log);
   }
 };
 
