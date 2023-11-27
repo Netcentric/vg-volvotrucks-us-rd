@@ -146,6 +146,10 @@
     {
       "Key": "Close",
       "Text": "Close"
+    },
+    {
+      "Key": "Copied",
+      "Text": "Copied!"
     }
   ],
   ":type": "sheet"
