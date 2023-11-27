@@ -121,6 +121,10 @@
   border-color: #bf2012;
 }
 
+.event-notify__policy {
+  margin: 16px 0 32px;
+}
+
 @media (min-width: 744px) {
   .v2-event-notify__container .event-notify__wrapper {
     display: flex;

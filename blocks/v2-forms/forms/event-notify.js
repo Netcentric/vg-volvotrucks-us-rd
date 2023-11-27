@@ -30,9 +30,8 @@ const formContent = `
       </label>
       <span class="${formName}__error-message ${formName}__error-message--hidden"></span>
     </div>
-    <p>
-      <a href="/" target="__blank">Policy</a>
-    </p>
+    <div class="${formName}__policy">
+    </div>
   </div>
 
   <div class="${formName}__buttons">

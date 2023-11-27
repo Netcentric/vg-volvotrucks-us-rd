@@ -63,7 +63,7 @@ export default async function decorate(block) {
 
   const formLink = contentData.link.innerText.trim();
   const beforeFormText = contentData['before form'];
-  // const policyText = contentData.policy;
+  const policyText = contentData.policy;
   socialsLinks = contentData.socials;
   socialsLinks.classList.add(`${blockName}__socials`);
   errorText = contentData['error message'];
@@ -99,6 +99,24 @@ export default async function decorate(block) {
   container.appendChild(formContainer);
 
   block.replaceWith(container);
+
+  // we can inject the policy content when form content loaded
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      const policyElAncestor = [...mutation.addedNodes].find((el) => el.querySelector('.event-notify__policy'));
+
+      if (policyElAncestor) {
+        policyElAncestor.querySelector('.event-notify__policy').append(policyText);
+        observer.disconnect();
+      }
+    });
+  });
+
+  observer.observe(container, {
+    childList: true,
+    attributes: false,
+    subtree: true,
+  });
 
   await loadBlock(formContainer.firstElementChild);
 }
