@@ -57,11 +57,9 @@
   background-color: transparent;
   align-items: center;
   display: inline-flex;
-  font-family: var(--font-family-body);
-  font-size: 14px;
+  font: var(--f-caption-font-size) / var(--f-caption-line-height) var(--font-family-body);
+  letter-spacing: 0.4px;
   justify-content: center;
-  letter-spacing: 1.25px;
-  line-height: 1.4;
   max-width: 21.5em;
   height: 48px;
   padding: 0 var(--social-block-gap);
