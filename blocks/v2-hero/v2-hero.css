@@ -41,10 +41,11 @@
     min-height: calc(100svh - var(--nav-height));
   }
 
-  .v2-inpage-navigation-wrapper + .v2-hero-container .v2-hero, .v2-inpage-navigation-wrapper + .v2-hero-container .v2-hero__content-wrapper {
+  .v2-inpage-navigation-wrapper + .v2-hero-container .v2-hero,
+  .v2-inpage-navigation-wrapper + .v2-hero-container .v2-hero__content-wrapper {
     min-height: calc(100svh - (var(--nav-height) + var(--inpage-navigation-height) - 2px));
-  } 
-  
+  }
+
 }
 
 .section.v2-hero-container {
