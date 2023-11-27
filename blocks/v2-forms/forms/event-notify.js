@@ -45,8 +45,9 @@ const checkFieldValidity = (field) => {
   const errorMessageEl = field.parentElement.querySelector(`:scope > .${formName}__error-message`);
 
   if (errorMessageEl) {
-    errorMessageEl.innerText = field.validity.validity ? '' : field.validationMessage;
-    errorMessageEl.classList[field.validity.validity ? 'add' : 'remove'](`${formName}__error-message--hidden`);
+    const isUserInvalid = field.parentElement.querySelector(':scope:user-invalid') === field;
+    errorMessageEl.innerText = isUserInvalid ? '' : field.validationMessage;
+    errorMessageEl.classList[isUserInvalid ? 'add' : 'remove'](`${formName}__error-message--hidden`);
   }
 };
 
