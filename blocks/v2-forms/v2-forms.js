@@ -43,7 +43,7 @@ async function handleSubmit(form) {
     try {
       await prepareRequest(form);
     } catch (error) {
-      window.logResult({ result: 'error' });
+      window.logResult({ result: 'error', log: error });
     }
   }
 }
