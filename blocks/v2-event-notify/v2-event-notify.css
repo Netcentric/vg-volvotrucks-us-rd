@@ -64,6 +64,57 @@
   letter-spacing: var(--f-caption-letter-spacing);
 }
 
+.v2-event-notify__container .v2-event-notify__message-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.v2-event-notify__container .v2-event-notify__message-text p {
+  margin: 0;
+}
+
+.v2-event-notify__container .v2-event-notify__button-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.v2-event-notify__container .v2-event-notify__socials {
+  margin-top: 40px;
+  padding: 24px 16px;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  align-items: center;
+  background: var(--c-grey-50);
+  border-radius: 8px;
+}
+
+.v2-event-notify__container .v2-event-notify__socials p {
+  margin: 0;
+  font-size: var(--f-body-2-font-size);
+  letter-spacing: var(--f-body-2-letter-spacing);
+  line-height: var(--f-body-2-line-height);
+}
+
+.v2-event-notify__container .v2-event-notify__social-list {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+
+.v2-event-notify__container .v2-event-notify__social-link:any-link {
+  color: var(--c-main-black);
+}
+
+.v2-event-notify__container .v2-event-notify__social-link span svg {
+  height: 24px;
+  width: 24px;
+}
+
 @media (min-width: 744px) {
   .v2-event-notify__container .event-notify__wrapper {
     display: flex;
@@ -84,6 +135,18 @@
   .v2-event-notify__container .event-notify__buttons {
     flex-direction: row;
     justify-content: center;
+  }
+
+  .v2-event-notify__container .v2-event-notify__message-text {
+    gap: 16px;
+  }
+
+  .v2-event-notify__container .v2-event-notify__socials {
+    padding: 32px;
+  }
+
+  .v2-event-notify__container .v2-event-notify__social-list {
+    gap: 40px;
   }
 }
 
@@ -118,5 +181,21 @@
 
   .v2-event-notify__container .event-notify__agrement-section {
     margin-top: 48px;
+  }
+
+  .v2-event-notify__container .v2-event-notify__message-text {
+    gap: 24px;
+    padding: 48px 0;
+  }
+
+  .v2-event-notify__container .v2-event-notify__socials p {
+    font-size: var(--f-heading-5-font-size);
+    letter-spacing: var(--f-heading-5-letter-spacing);
+    line-height: var(--f-heading-5-line-height);
+  }
+
+  .v2-event-notify__container .v2-event-notify__socials {
+    padding: 48px 40px;
+    gap: 32px;
   }
 }

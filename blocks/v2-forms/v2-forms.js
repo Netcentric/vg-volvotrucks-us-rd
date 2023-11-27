@@ -33,7 +33,8 @@ async function prepareRequest(form) {
   const url = form.dataset.action;
 
   const serializedData = serialize(payload);
-  loadScript(`${url}?${serializedData}`, { type: 'text/javascript', charset: 'UTF-8' });
+
+  return loadScript(`${url}&${serializedData}`, { type: 'text/javascript', charset: 'UTF-8' });
 }
 
 async function handleSubmit(form) {
@@ -96,11 +97,12 @@ const addForm = async (block) => {
     if (isValid) {
       e.submitter.setAttribute('disabled', '');
       formObj.dataset.action = e.currentTarget.action;
+
       handleSubmit(formObj);
     }
   });
 
-  formContent?.postLoad(formObj);
+  formContent.postLoad?.(formObj);
 };
 
 export default async function decorate(block) {

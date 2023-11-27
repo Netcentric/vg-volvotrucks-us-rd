@@ -37,7 +37,7 @@ const formContent = `
 
   <div class="${formName}__buttons">
     <button class="button primary" type="submit">Notify me</button>
-    <a class="button secondary">Add event to calendar</a>
+    <a class="button secondary ${formName}__add-event-button">Add event to calendar</a>
   </div>
 `;
 
@@ -62,13 +62,13 @@ export const postLoad = (form) => {
   });
 };
 
-export const onSubmit = (form, handleSubmit) => {
+export const onSubmit = async (form, handleSubmit) => {
   const fields = [...form.querySelectorAll('input')];
 
   fields.forEach(checkFieldValidity);
 
   if (form.checkValidity()) {
-    handleSubmit(form);
+    await handleSubmit(form);
   }
 };
 
