@@ -33,20 +33,6 @@ export default function decorate(block) {
     <span class="${blockName}__button-text"> ${getTextLabel('view all')} </span>
   `;
 
-  viewAllButton.addEventListener('click', () => {
-    const buttonText = viewAllButton.lastElementChild;
-
-    if (viewAllButton.ariaExpanded === 'true') {
-      viewAllButton.ariaExpanded = 'false';
-      buttonText.innerText = getTextLabel('view all');
-      block.classList.remove(`${blockName}__list--expand`);
-    } else {
-      viewAllButton.ariaExpanded = 'true';
-      buttonText.innerText = getTextLabel('view less');
-      block.classList.add(`${blockName}__list--expand`);
-    }
-  });
-
   blockHeading.append(viewAllButton);
 
   const videoWrapper = createElement('ul', { classes: `${blockName}__video-list` });
@@ -74,6 +60,7 @@ export default function decorate(block) {
 
         if (videoWrapper.children.length > 5) {
           listEle.classList.add(`${blockName}__video-list-item--hide`);
+          listEle.setAttribute('aria-hidden', true);
         }
 
         const videoTitle = listEle.querySelector('h3');
@@ -91,14 +78,16 @@ export default function decorate(block) {
       item.innerHTML = row.innerHTML;
       const links = item.querySelectorAll('a');
       [...links].forEach((link) => {
-        link.classList.add('tertiary');
+        link.classList.add('standalone-link');
         link.classList.remove('primary');
-        item.prepend(link);
-        link.nextElementSibling.remove();
+        const wrapper = link.parentElement;
+        wrapper.className = `${blockName}__document-link-wrapper`;
+        wrapper.append(wrapper.nextElementSibling);
       });
 
       if (documentWrapper.children.length > 5) {
         item.classList.add(`${blockName}__document-list-item--hide`);
+        item.setAttribute('aria-hidden', true);
       }
 
       documentWrapper.append(item);
@@ -108,6 +97,27 @@ export default function decorate(block) {
 
   block.append(videoWrapper);
   block.append(documentWrapper);
+
+  function toggleListEle(ariaValue) {
+    [...block.querySelectorAll(`li[aria-hidden="${ariaValue}"]`)].forEach((li) => {
+      li.setAttribute('aria-hidden', !ariaValue);
+    });
+  }
+
+  viewAllButton.addEventListener('click', () => {
+    const buttonText = viewAllButton.lastElementChild;
+    if (viewAllButton.ariaExpanded === 'true') {
+      viewAllButton.ariaExpanded = 'false';
+      buttonText.innerText = getTextLabel('view all');
+      block.classList.remove(`${blockName}__list--expand`);
+      toggleListEle(false);
+    } else {
+      viewAllButton.ariaExpanded = 'true';
+      buttonText.innerText = getTextLabel('view less');
+      block.classList.add(`${blockName}__list--expand`);
+      toggleListEle(true);
+    }
+  });
 
   unwrapDivs(block);
 }
