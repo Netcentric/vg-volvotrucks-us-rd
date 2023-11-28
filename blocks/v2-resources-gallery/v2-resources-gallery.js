@@ -1,113 +1,107 @@
 import { wrapImageWithVideoLink, selectVideoLink, isVideoLink } from '../../scripts/video-helper.js';
-import { createElement } from '../../scripts/common.js';
+import { createElement, getTextLabel, unwrapDivs } from '../../scripts/common.js';
 
 const blockName = 'v2-resources-gallery';
 
 export default function decorate(block) {
   const blockHeading = block.querySelector('div:first-child');
-  blockHeading.classList.add(`${blockName}__heading`);
+  blockHeading.classList.add(`${blockName}__heading-wrapper`);
+  const title = blockHeading.querySelector('h4');
+  title?.classList.add(`${blockName}__heading`);
+  unwrapDivs(blockHeading);
 
   const viewAllButton = createElement('button', {
-    classes: [`${blockName}__toggle-resources`, 'tertiary'],
-    props: {
-      type: 'button', title: 'Toggle resources list',
-    },
+    classes: [`${blockName}__button`, 'tertiary'],
+    props: { 'aria-expanded': false },
   });
-
-  const documentRowsWrapper = createElement('div', {
-    classes: `${blockName}__rows-wrapper`,
-  });
-
-  block.append(documentRowsWrapper);
-
-  const viewAllIcon = createElement('i', {
-    classes: `${blockName}__toggle-resources-icon`,
-  });
-
-  viewAllButton.innerText = 'view all';
-  viewAllButton.setAttribute('aria-expanded', 'false');
-
-  // Go through all rows
-  [...block.children].forEach((row) => [...row.children].forEach((elem) => {
-    // Add row and item classes accordingly
-    row.classList.add(`${blockName}__row`);
-    elem.classList.add(`${blockName}__item`);
-
-    // give p containing the image a specific class
-    const picture = elem.querySelector('picture');
-    if (picture && picture.closest('p')) picture.closest('p').classList.add('image');
-
-    const links = elem.querySelectorAll('a');
-    const videos = [...links].filter((link) => isVideoLink(link));
-
-    if (videos.length) {
-      // display image as link with play icon
-      const selectedLink = selectVideoLink(videos);
-      row.classList.add(`${blockName}__row--has-video`);
-      elem.classList.add(`${blockName}__item--has-video`);
-
-      if (selectedLink) {
-        picture.after(selectedLink);
-        wrapImageWithVideoLink(selectedLink, picture);
-      }
-
-      // remove all the videos links and exclude the selected one
-      videos.forEach((link) => link !== selectedLink && link.parentElement.remove());
-    } else {
-      row.classList.add(`${blockName}__row--has-documents`);
-      elem.classList.add(`${blockName}__item--has-documents`);
-      blockHeading.classList.remove(`${blockName}__row--has-documents`);
-      blockHeading.firstElementChild.classList.remove(`${blockName}__item--has-documents`);
-    }
-  }));
-
-  const allDocumentRows = block.querySelectorAll(`.${blockName}__row--has-documents`);
-  const videoRows = [].slice.call(block.querySelectorAll(`.${blockName}__row--has-video`), 2);
-  const documentRows = [].slice.call(block.querySelectorAll(`.${blockName}__row--has-documents`), 6);
-
-  allDocumentRows.forEach((row) => {
-    documentRowsWrapper.appendChild(row);
-  });
-
-  function toggleRows(rows) {
-    rows.forEach((row) => {
-      row.classList.add('hidden');
-
-      function toggle() {
-        row.classList.toggle('hidden');
-      }
-
-      viewAllButton.addEventListener('click', toggle);
-    });
-  }
+  viewAllButton.innerHTML = `
+    <span class="icon-plus">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.5 3.5C12.5 3.22386 12.2761 3 12 3C11.7239 3 11.5 3.22386 11.5 3.5V11.5H3.5C3.22386 11.5 3 11.7239 3 12C3 12.2761 3.22386 12.5 3.5 12.5H11.5V20.5C11.5 20.7761 11.7239 21 12 21C12.2761 21 12.5 20.7761 12.5 20.5V12.5H20.5C20.7761 12.5 21 12.2761 21 12C21 11.7239 20.7761 11.5 20.5 11.5H12.5V3.5Z" fill="#141414"/>
+      </svg>
+    </span>
+    <span class="icon-minus">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.5 11.5C3.22386 11.5 3 11.7239 3 12C3 12.2761 3.22386 12.5 3.5 12.5H20.5C20.7761 12.5 21 12.2761 21 12C21 11.7239 20.7761 11.5 20.5 11.5H3.5Z" fill="#141414"/>
+      </svg>
+    </span>
+    <span class="${blockName}__button-text"> ${getTextLabel('view all')} </span>
+  `;
 
   viewAllButton.addEventListener('click', () => {
+    const buttonText = viewAllButton.lastElementChild;
+
     if (viewAllButton.ariaExpanded === 'true') {
       viewAllButton.ariaExpanded = 'false';
-      viewAllButton.innerText = 'view all';
+      buttonText.innerText = getTextLabel('view all');
+      block.classList.remove(`${blockName}__list--expand`);
     } else {
       viewAllButton.ariaExpanded = 'true';
-      viewAllButton.innerText = 'view less';
+      buttonText.innerText = getTextLabel('view less');
+      block.classList.add(`${blockName}__list--expand`);
     }
   });
 
-  toggleRows(videoRows);
-  toggleRows(documentRows);
+  blockHeading.append(viewAllButton);
 
-  const documentLink = block.querySelectorAll(`.${blockName}__item--has-documents > .button-container > .button`);
+  const videoWrapper = createElement('ul', { classes: `${blockName}__video-list` });
+  const documentWrapper = createElement('ul', { classes: `${blockName}__document-list` });
+  const rows = block.querySelectorAll(':scope > div > div');
 
-  documentLink.forEach((link) => {
-    const downloadlinkIcon = document.createRange().createContextualFragment(`
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill-rule="evenodd" clip-rule="evenodd"
-        d="M4.5 2C4.22386 2 4 2.22386 4 2.5V21.5C4 21.7761 4.22386 22 4.5 22H19.5C19.7761 22 20 21.7761 20 21.5V9.5C20 9.36739 19.9473 9.24021 19.8536 9.14645L12.8536 2.14645C12.7598 2.05268 12.6326 2 12.5 2H4.5ZM5 21V3H12V9.5C12 9.77614 12.2239 10 12.5 10H19V21H5ZM18.2929 9L13 3.70711V9H18.2929Z"
-        fill="var(--c-cta-blue-default)"/>
-    </svg> `);
+  rows.forEach((row) => {
+    const picture = row.querySelector('picture');
+    const document = row.querySelector('.icon-documents');
 
-    link.classList.remove('primary');
-    link.classList.add('tertiary');
-    link.prepend(downloadlinkIcon);
+    if (picture) {
+      const listEle = createElement('li', { classes: `${blockName}__video-list-item` });
+      listEle.innerHTML = row.innerHTML;
+
+      const videos = [...listEle.querySelectorAll('a')].filter((link) => isVideoLink(link));
+
+      if (videos.length) {
+        // display image as link with play icon
+        const selectedLink = selectVideoLink(videos);
+        if (selectedLink) {
+          wrapImageWithVideoLink(selectedLink, picture);
+          selectedLink.parentElement.classList.add(`${blockName}__video-image`, 'image');
+        }
+
+        if (videoWrapper.children.length > 5) {
+          listEle.classList.add(`${blockName}__video-list-item--hide`);
+        }
+
+        const videoTitle = listEle.querySelector('h3');
+        videoTitle.classList.add(`${blockName}__video-title`);
+
+        // remove all the videos links and exclude the selected one
+        videos.forEach((link) => link !== selectedLink && link.parentElement.remove());
+
+        videoWrapper.append(listEle);
+        listEle.firstElementChild.remove();
+        row.innerHTML = '';
+      }
+    } else if (document) {
+      const item = createElement('li', { classes: `${blockName}__document-list-item` });
+      item.innerHTML = row.innerHTML;
+      const links = item.querySelectorAll('a');
+      [...links].forEach((link) => {
+        link.classList.add('tertiary');
+        link.classList.remove('primary');
+        item.prepend(link);
+        link.nextElementSibling.remove();
+      });
+
+      if (documentWrapper.children.length > 5) {
+        item.classList.add(`${blockName}__document-list-item--hide`);
+      }
+
+      documentWrapper.append(item);
+      row.innerHTML = '';
+    }
   });
 
-  blockHeading.append(viewAllIcon, viewAllButton);
+  block.append(videoWrapper);
+  block.append(documentWrapper);
+
+  unwrapDivs(block);
 }
