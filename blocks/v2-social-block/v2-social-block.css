@@ -67,7 +67,7 @@
 }
 
 .v2-social-block__button:focus-visible {
-  outline: 2px solid var(--light-border-focus);
+  outline: 2px solid var(--border-focus);
   outline-offset: 1px;
 }
 
@@ -103,5 +103,5 @@
   .v2-social-block-container {
     --social-block-padding: 48px 40px;
     --social-block-gap: 32px;
-  }  
+  }
 }

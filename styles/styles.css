@@ -177,12 +177,16 @@
   --c-main-black: #141414;
 
   /* Success / error colors */
-  --c-error-red: #C4001A;
-  --c-success-green: #47962D;
-  --c-warning-yellow: #F7D302;
+  --c-error-red: #BF2012;
+  --c-success-green: #1A6C31;
+  --c-warning-yellow: #FFA000;
 
   /* Global colors */
-  --light-border-focus: #2b8ede;
+  --border-subtle: var(--c-grey-200);
+  --border-strong: var(--c-grey-400);
+  --border-hover: #2b8ede;
+  --border-active: #004FBC;
+  --border-focus: #2b8ede;
 
   /* Motions */
   --duration-small: 160ms;
@@ -647,7 +651,7 @@ main p img {
 
 .redesign-v2 a.button:focus-visible,
 .redesign-v2 button:focus-visible {
-  outline: 2px solid var(--light-border-focus);
+  outline: 2px solid var(--border-focus);
   outline-offset: 2px;
 }
 
@@ -1495,7 +1499,7 @@ main.blue-contract .section.section-with-title p {
   user-select: none;
   font-size: var(--f-button-font-size);
   letter-spacing: var(--f-button-letter-spacing);
-  color: var(--c-main-black);
+  color: var(--text-color);
   font-family: var(--font-family-body);
   line-height: 100%;
   margin: 0;
@@ -1512,7 +1516,7 @@ main.blue-contract .section.section-with-title p {
   min-width: var(--checkbox-size);
   height: var(--checkbox-size);
   min-height: var(--checkbox-size);
-  border: 2px solid var(--c-grey-400);
+  border: 2px solid var(--border-strong);
   border-radius: 2px;
   margin: var(--checkbox-margin);
   align-self: flex-start;
@@ -1529,10 +1533,9 @@ main.blue-contract .section.section-with-title p {
 }
 
 .redesign-v2 .checkbox-with-label input[type='checkbox']:focus-visible + label::before {
-  outline: 2px solid var(--light-border-focus);
+  outline: 2px solid var(--border-focus);
   outline-offset: 1px;
 }
-
 
 .redesign-v2 .pretitle {
   color: var(--text-color);

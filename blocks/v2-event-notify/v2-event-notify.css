@@ -58,7 +58,7 @@
 }
 
 .v2-event-notify__container .event-notify__error-message {
-  color: #bf2012;
+  color: var(--c-error-red);
   font-size: var(--f-caption-font-size);
   line-height: var(--f-caption-line-height);
   letter-spacing: var(--f-caption-letter-spacing);
@@ -118,7 +118,7 @@
 .v2-event-notify__container input:user-invalid,
 .v2-event-notify__container input:user-invalid:hover,
 .v2-event-notify__container input:user-invalid:focus {
-  border-color: #bf2012;
+  border-color: var(--c-error-red);
 }
 
 .event-notify__policy {
