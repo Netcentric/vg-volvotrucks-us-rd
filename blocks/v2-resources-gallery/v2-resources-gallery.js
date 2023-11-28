@@ -1,4 +1,9 @@
-import { wrapImageWithVideoLink, selectVideoLink, isVideoLink } from '../../scripts/video-helper.js';
+import {
+  wrapImageWithVideoLink,
+  selectVideoLink,
+  isVideoLink,
+  addVideoShowHandler,
+} from '../../scripts/video-helper.js';
 import { createElement, getTextLabel, unwrapDivs } from '../../scripts/common.js';
 
 const blockName = 'v2-resources-gallery';
@@ -62,6 +67,7 @@ export default function decorate(block) {
         // display image as link with play icon
         const selectedLink = selectVideoLink(videos);
         if (selectedLink) {
+          addVideoShowHandler(selectedLink);
           wrapImageWithVideoLink(selectedLink, picture);
           selectedLink.parentElement.classList.add(`${blockName}__video-image`, 'image');
         }
