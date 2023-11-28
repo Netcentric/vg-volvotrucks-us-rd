@@ -1,23 +1,25 @@
+import { getTextLabel } from '../../../scripts/common.js';
+
 const formName = 'event-notify';
 const formContent = `
   <div class="${formName}__wrapper">
     <div class="${formName}__field-wrapper">
-      <label for="${formName}-name">First name*</label>
+      <label for="${formName}-name">${getTextLabel('event-notify:first-name')}*</label>
       <input type="text" id="${formName}-name" name="first_name" autocomplete="off" placeholder="" required />
       <span class="${formName}__error-message ${formName}__error-message--hidden"></span>
     </div>
     <div class="${formName}__field-wrapper">
-      <label for="${formName}-last-name">Last name*</label>
+      <label for="${formName}-last-name">${getTextLabel('event-notify:last-name')}*</label>
       <input type="text" id="${formName}-last-name" name="last_name" autocomplete="off" placeholder="" required />
       <span class="${formName}__error-message ${formName}__error-message--hidden"></span>
     </div>
     <div class="${formName}__field-wrapper">
-      <label for="${formName}-zip">ZIP*</label>
+      <label for="${formName}-zip">${getTextLabel('event-notify:zip')}*</label>
       <input type="text" id="${formName}-zip" name="zip" autocomplete="off" placeholder="" required />
       <span class="${formName}__error-message ${formName}__error-message--hidden"></span>
     </div>
     <div class="${formName}__field-wrapper">
-      <label for="${formName}-email">Email*</label>
+      <label for="${formName}-email">${getTextLabel('event-notify:email')}*</label>
       <input type="email" id="${formName}-email" name="email" autocomplete="off" placeholder="" required />
       <span class="${formName}__error-message ${formName}__error-message--hidden"></span>
     </div>
@@ -26,7 +28,7 @@ const formContent = `
     <div class="checkbox-with-label">
       <input type="checkbox" id="${formName}-agreement" name="marketing_consent" required/>
       <label for="${formName}-agreement">
-        I agree to receive email updates from Volvo Trucks North America
+        ${getTextLabel('event-notify:agreement')}
       </label>
       <span class="${formName}__error-message ${formName}__error-message--hidden"></span>
     </div>
@@ -35,8 +37,8 @@ const formContent = `
   </div>
 
   <div class="${formName}__buttons">
-    <button class="button primary" type="submit">Notify me</button>
-    <a class="button secondary ${formName}__add-event-button">Add event to calendar</a>
+    <button class="button primary" type="submit">${getTextLabel('event-notify:notify')}</button>
+    <a class="button secondary ${formName}__add-event-button">${getTextLabel('event-notify:add-event')}</a>
   </div>
 `;
 
