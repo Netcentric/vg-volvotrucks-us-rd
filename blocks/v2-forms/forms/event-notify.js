@@ -26,7 +26,7 @@ const formContent = `
   </div>
   <div class="${formName}__agrement-section">
     <div class="checkbox-with-label">
-      <input type="checkbox" id="${formName}-agreement" name="marketing_consent" required/>
+      <input type="checkbox" id="${formName}-agreement" name="marketing_consent" value="true" required/>
       <label for="${formName}-agreement">
         ${getTextLabel('event-notify:agreement')}
       </label>
