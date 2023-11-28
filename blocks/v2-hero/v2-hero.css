@@ -29,6 +29,7 @@
   min-height: calc(100vh - var(--nav-height));
   overflow: hidden;
   position: relative;
+  background-color: var(--c-grey-1);
 }
 
 /* Reduce the Hero height by the inpage-navigation height */
@@ -89,6 +90,10 @@
   align-items: center;
   justify-content: flex-end;
   text-align: center;
+}
+
+.v2-hero--dark {
+  background-color: var(--c-grey-4);
 }
 
 .v2-hero--dark .v2-hero__content-wrapper {
