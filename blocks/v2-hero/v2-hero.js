@@ -22,7 +22,7 @@ function updateCountdown(eventTime, block) {
 
   // Check if the event time has passed
   if (diff <= 0) {
-    block.querySelector(`.${blockName}__countdown-wrapper`).remove();
+    block.querySelector(`.${blockName}__countdown-wrapper`)?.remove();
     clearInterval(intervalId);
     return;
   }
