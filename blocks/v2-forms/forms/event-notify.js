@@ -3,12 +3,12 @@ const formContent = `
   <div class="${formName}__wrapper">
     <div class="${formName}__field-wrapper">
       <label for="${formName}-name">First name*</label>
-      <input type="text" id="${formName}-name" name="name" autocomplete="off" placeholder="" required />
+      <input type="text" id="${formName}-name" name="first_name" autocomplete="off" placeholder="" required />
       <span class="${formName}__error-message ${formName}__error-message--hidden"></span>
     </div>
     <div class="${formName}__field-wrapper">
       <label for="${formName}-last-name">Last name*</label>
-      <input type="text" id="${formName}-last-name" name="last-name" autocomplete="off" placeholder="" required />
+      <input type="text" id="${formName}-last-name" name="last_name" autocomplete="off" placeholder="" required />
       <span class="${formName}__error-message ${formName}__error-message--hidden"></span>
     </div>
     <div class="${formName}__field-wrapper">
@@ -24,7 +24,7 @@ const formContent = `
   </div>
   <div class="${formName}__agrement-section">
     <div class="checkbox-with-label">
-      <input type="checkbox" id="${formName}-agreement" name="agreement" required/>
+      <input type="checkbox" id="${formName}-agreement" name="marketing_consent" required/>
       <label for="${formName}-agreement">
         I agree to receive email updates from Volvo Trucks North America
       </label>
