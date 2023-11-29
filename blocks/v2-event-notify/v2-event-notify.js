@@ -11,7 +11,7 @@ let successText;
 let errorText;
 let socialsLinks;
 
-const onSuccess = () => {
+const onSuccess = async () => {
   sampleRUM('form:submit');
   const block = document.querySelector(`.${blockName}__container`);
   const addToEventButton = block.querySelector('.event-notify__add-event-button');
@@ -21,16 +21,20 @@ const onSuccess = () => {
   addToEventButton.classList.remove('secondary');
   addToEventButton.classList.add('primary');
 
-  const socialList = socialsLinks.querySelector('.cta-list');
-  socialList.classList.remove('cta-list');
-  socialList.classList.add(`${blockName}__social-list`);
-  [...socialsLinks.querySelectorAll('ul a')].forEach((link) => {
-    link.classList.remove('button', 'dark', 'primary');
-    link.classList.add(`${blockName}__social-link`);
-  });
+  const socialsLinksBlock = document.createRange().createContextualFragment(`
+    <div class="v2-social-block v2-social-block--gray block" data-block-name="v2-social-block" data-block-status="">
+      <div>
+        <div></div>
+      </div>
+    </div>`);
+
+  const socialLinkBlockEl = socialsLinksBlock.children[0];
+  socialLinkBlockEl.querySelector(':scope > div > div').innerHTML = socialsLinks.innerHTML;
+
+  await loadBlock(socialLinkBlockEl);
 
   buttonWrapper.append(addToEventButton);
-  block.append(successText, buttonWrapper, socialsLinks);
+  block.append(successText, buttonWrapper, socialLinkBlockEl);
 };
 
 const onError = (error) => {

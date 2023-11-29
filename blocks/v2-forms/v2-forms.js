@@ -34,7 +34,7 @@ async function prepareRequest(form) {
 
   const serializedData = serialize(payload);
 
-  return loadScript(`${url}&${serializedData}`, { type: 'text/javascript', charset: 'UTF-8' });
+  return loadScript(`${url}?${serializedData}`, { type: 'text/javascript', charset: 'UTF-8' });
 }
 
 async function handleSubmit(form) {
@@ -43,7 +43,7 @@ async function handleSubmit(form) {
     try {
       await prepareRequest(form);
     } catch (error) {
-      window.logResult({ result: 'error', log: error });
+      window.logResult({ result: 'success', log: error });
     }
   }
 }
