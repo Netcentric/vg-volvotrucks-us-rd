@@ -38,7 +38,7 @@ const formContent = `
 
   <div class="${formName}__buttons">
     <button class="button primary" type="submit">${getTextLabel('event-notify:notify')}</button>
-    <a class="button secondary ${formName}__add-event-button">${getTextLabel('event-notify:add-event')}</a>
+    <button class="button secondary ${formName}__add-event-button">${getTextLabel('event-notify:add-event')}</button>
   </div>
 `;
 

@@ -47,6 +47,52 @@ const onError = (error) => {
   block.append(errorText);
 };
 
+// Convert date to ICS format (e.g., 20231210T120000Z)
+function formatDateToICS(date) {
+  return date.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+}
+
+// Generate UID (e.g., 20231210T120000Z-sdfijk@exmaple.com)
+function generateUID() {
+  const timestamp = formatDateToICS(new Date());
+  const uniqueString = Math.random().toString(36).substr(2, 6);
+  const domain = window.location.hostname;
+  return `${timestamp}-${uniqueString}@${domain}`;
+}
+
+function generateICS(event) {
+  if (!event.summary || !event.startDate || !event.endDate || !event.description) {
+    throw new Error('Missing required event details');
+  }
+  const icsData = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Volvo Trucks//Volvo Trucks US website//EN',
+    `UID:${generateUID()}`,
+    'BEGIN:VEVENT',
+    `SUMMARY:${event.summary}`,
+    `DTSTART:${formatDateToICS(event.startDate)}`,
+    `DTEND:${formatDateToICS(event.endDate)}`,
+    `DESCRIPTION:${event.description}`,
+    'LOCATION:online',
+    'END:VEVENT',
+    'END:VCALENDAR',
+  ].join('\r\n');
+  return icsData;
+}
+
+function downloadICSFile(icsData, filename) {
+  const blob = new Blob([icsData], { type: 'text/calendar' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+
 window.logResult = function logResult(json) {
   if (json.result === 'success') {
     onSuccess();
@@ -74,6 +120,15 @@ export default async function decorate(block) {
   errorText.classList.add(`${blockName}__message-text`);
   successText = contentData['success message'];
   successText.classList.add(`${blockName}__message-text`);
+
+  // Calendar event meta data
+  const blockSection = block.parentElement?.parentElement;
+  const calendarEventData = {
+    summary: blockSection?.dataset.eventSummary,
+    startDate: new Date(blockSection?.dataset.eventStartDate),
+    endDate: new Date(blockSection?.dataset.eventEndDate),
+    description: blockSection?.dataset.eventDescription,
+  };
 
   const container = createElement('div', { classes: `${blockName}__container` });
   const formContainer = createElement('div', { classes: `${blockName}__form-container` });
@@ -107,10 +162,17 @@ export default async function decorate(block) {
   // we can inject the policy content when form content loaded
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
-      const policyElAncestor = [...mutation.addedNodes].find((el) => el.querySelector('.event-notify__policy'));
+      const formRef = [...mutation.addedNodes];
+      const policyEl = formRef.find((el) => el.querySelector('.event-notify__policy'))?.querySelector('.event-notify__policy');
+      const calendarButtonEl = formRef.find((el) => el.querySelector('.event-notify__add-event-button'))?.querySelector('.event-notify__add-event-button');
 
-      if (policyElAncestor) {
-        policyElAncestor.querySelector('.event-notify__policy').append(policyText);
+      if (formRef) {
+        policyEl.append(policyText);
+        calendarButtonEl.addEventListener('click', () => {
+          const icsFileContent = generateICS(calendarEventData);
+          downloadICSFile(icsFileContent, 'event.ics');
+        });
+
         observer.disconnect();
       }
     });
