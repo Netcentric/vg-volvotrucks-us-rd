@@ -1,3 +1,4 @@
+import { variantsClassesToBEM } from '../../scripts/common.js';
 import { createVideo, setPlaybackControls } from '../../scripts/video-helper.js';
 
 const onHoverOrScroll = (element, handler) => {
@@ -30,6 +31,8 @@ const onHoverOrScroll = (element, handler) => {
   });
 };
 
+const variantClasses = ['expanding'];
+
 export default async function decorate(block) {
   const blockName = 'v2-video';
   const videoLink = block.querySelector('a');
@@ -37,6 +40,8 @@ export default async function decorate(block) {
   const ctaButtons = block.querySelectorAll('.button-container a');
   const contentWrapper = block.querySelector(':scope > div');
   const content = block.querySelector(':scope > div > div');
+
+  variantsClassesToBEM(block.classList, variantClasses, blockName);
 
   if (!videoLink) {
     // eslint-disable-next-line no-console
@@ -65,9 +70,13 @@ export default async function decorate(block) {
 
   setPlaybackControls();
 
-  onHoverOrScroll(block.querySelector(`.${blockName}__content-wrapper`), (val) => {
-    const action = val ? 'add' : 'remove';
+  if (block.classList.contains(`${blockName}--expanding`)) {
+    onHoverOrScroll(block.querySelector(`.${blockName}__content-wrapper`), (val) => {
+      const action = val ? 'add' : 'remove';
 
-    block.classList[action](`${blockName}--full-width`);
-  });
+      block.classList[action](`${blockName}--full-width`);
+    });
+  } else {
+    block.classList.add(`${blockName}--full-width`);
+  }
 }

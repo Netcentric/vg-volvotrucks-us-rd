@@ -25,11 +25,14 @@ body .section.v2-video-container .v2-video-wrapper {
   display: flex;
   justify-content: center;
   height: 100vh;
+}
+
+.v2-video--expanding {
   clip-path: var(--video-inset);
   transition: var(--video-transition);
 }
 
-.v2-video.v2-video--full-width {
+.v2-video--expanding.v2-video--full-width {
   --video-inset: inset(0 0 round 0);
 }
 
