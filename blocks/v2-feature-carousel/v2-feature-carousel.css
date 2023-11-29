@@ -1,4 +1,5 @@
 :root {
+  --v2-feature-carousel-gap: 8px;
   --v2-feature-carousel-card-padding: 24px;
   --v2-feature-carousel-card-width: 150px;
   --v2-feature-carousel-card-height: 200px;
@@ -14,7 +15,7 @@
 
 .v2-feature-carousel .v2-feature-carousel__cards-list {
   display: flex;
-  gap: 16px;
+  gap: var(--v2-feature-carousel-gap);
   scroll-snap-type: x mandatory;
   overflow: auto;
   flex-flow: row nowrap;
@@ -60,6 +61,12 @@
 
 .v2-feature-carousel__card .icon-graph svg {
   fill: none;
+}
+
+@media screen and (min-width: 744px) {
+  :root {
+    --v2-feature-carousel-gap: 16px;
+  }
 }
 
 @media screen and (min-width: 1200px) {
