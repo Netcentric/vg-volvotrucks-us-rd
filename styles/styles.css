@@ -1246,6 +1246,7 @@ main.blue-contract .section.section-with-title p {
 .redesign-v2 button.secondary {
   border-color: var(--c-main-black);
   color: var(--c-main-black);
+  background-color: transparent;
 }
 
 .redesign-v2 a.button.secondary:hover,
