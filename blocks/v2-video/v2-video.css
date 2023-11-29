@@ -19,12 +19,14 @@ body .section.v2-video-container .v2-video-wrapper {
 .v2-video {
   --video-inset: inset(16px 16px round 8px);
   --video-transition: all var(--duration-large) ease-in-out;
+  --video-overlay: linear-gradient(0deg, rgb(0 0 0 / 50%) 20%, rgb(0 0 0 / 0%) 60%);
 
   position: relative;
   overflow: hidden;
   display: flex;
   justify-content: center;
   height: 100vh;
+  background: var(--c-grey-4);
 }
 
 .v2-video--expanding {
@@ -58,7 +60,7 @@ body .section.v2-video-container .v2-video-wrapper {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(0deg, rgb(0 0 0 / 50%) 0%, rgb(0 0 0 / 0%) 100%);
+  background: var(--video-overlay);
 }
 
 .v2-video .v2-video__content {
@@ -91,6 +93,7 @@ body .section.v2-video-container .v2-video-wrapper {
 
   .v2-video {
     --video-inset: inset(32px 32px round 8px);
+    --video-overlay: linear-gradient(0deg, rgb(0 0 0 / 50%) 20%, rgb(0 0 0 / 0%) 50%);
   }
 
   .v2-video .v2-video__content {
@@ -106,6 +109,7 @@ body .section.v2-video-container .v2-video-wrapper {
 
   .v2-video {
     --video-inset: inset(136px calc((100vw - var(--wrapper-width)) / 2) round 8px);
+    --video-overlay: linear-gradient(90deg, rgb(0 0 0 / 60%) 0%, rgb(0 0 0 / 0%) 50%);
   }
 
   .v2-video .v2-video__content-wrapper {

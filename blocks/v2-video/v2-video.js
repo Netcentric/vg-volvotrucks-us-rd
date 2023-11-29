@@ -72,8 +72,12 @@ export default async function decorate(block) {
 
   removeEmptyTags(block);
 
+  if (contentWrapper.innerHTML.trim().length === 0) {
+    contentWrapper.remove();
+  }
+
   if (block.classList.contains(`${blockName}--expanding`)) {
-    onHoverOrScroll(block.querySelector(`.${blockName}__content-wrapper`), (val) => {
+    onHoverOrScroll(block, (val) => {
       const action = val ? 'add' : 'remove';
 
       block.classList[action](`${blockName}--full-width`);
