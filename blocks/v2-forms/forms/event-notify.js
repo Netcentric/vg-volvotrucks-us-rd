@@ -24,7 +24,7 @@ const formContent = `
       <span class="${formName}__error-message ${formName}__error-message--hidden"></span>
     </div>
   </div>
-  <div class="${formName}__agrement-section">
+  <div class="${formName}__agreement-section">
     <div class="checkbox-with-label">
       <input type="checkbox" id="${formName}-agreement" name="marketing_consent" value="true" required/>
       <label for="${formName}-agreement">
