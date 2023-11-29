@@ -60,7 +60,6 @@
 }
 
 .v2-resources-gallery__video-list-item {
-  flex: none;
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
@@ -72,7 +71,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 96%;
+  width: calc(100% - 10px);
   margin-bottom: 8px;
 }
 
@@ -81,6 +80,11 @@
   letter-spacing: var(--f-body-letter-spacing);
   color: var(--text-subtle);
   margin: 0;
+}
+
+.v2-resources-gallery__video-list-item .link-with-video .icon-play-video svg {
+  width: 48px;
+  height: 48px;
 }
 
 .v2-resources-gallery__video-list .v2-resources-gallery__video-image {
@@ -166,15 +170,19 @@
   }
 
   .v2-resources-gallery__list--expand .v2-resources-gallery__video-list {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 1200px) {
   .v2-resources-gallery__video-list {
-    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
     overflow-x: unset;
-    grid-auto-flow: row;
+  }
+
+  .v2-resources-gallery__video-list,
+  .v2-resources-gallery__list--expand .v2-resources-gallery__video-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .v2-resources-gallery__document-link-wrapper {

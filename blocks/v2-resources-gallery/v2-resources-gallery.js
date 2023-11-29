@@ -22,12 +22,12 @@ export default function decorate(block) {
   viewAllButton.innerHTML = `
     <span class="icon-plus">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.5 3.5C12.5 3.22386 12.2761 3 12 3C11.7239 3 11.5 3.22386 11.5 3.5V11.5H3.5C3.22386 11.5 3 11.7239 3 12C3 12.2761 3.22386 12.5 3.5 12.5H11.5V20.5C11.5 20.7761 11.7239 21 12 21C12.2761 21 12.5 20.7761 12.5 20.5V12.5H20.5C20.7761 12.5 21 12.2761 21 12C21 11.7239 20.7761 11.5 20.5 11.5H12.5V3.5Z" fill="#141414"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.5 3.5C12.5 3.22386 12.2761 3 12 3C11.7239 3 11.5 3.22386 11.5 3.5V11.5H3.5C3.22386 11.5 3 11.7239 3 12C3 12.2761 3.22386 12.5 3.5 12.5H11.5V20.5C11.5 20.7761 11.7239 21 12 21C12.2761 21 12.5 20.7761 12.5 20.5V12.5H20.5C20.7761 12.5 21 12.2761 21 12C21 11.7239 20.7761 11.5 20.5 11.5H12.5V3.5Z" fill="var(--text-color)"/>
       </svg>
     </span>
     <span class="icon-minus">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.5 11.5C3.22386 11.5 3 11.7239 3 12C3 12.2761 3.22386 12.5 3.5 12.5H20.5C20.7761 12.5 21 12.2761 21 12C21 11.7239 20.7761 11.5 20.5 11.5H3.5Z" fill="#141414"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.5 11.5C3.22386 11.5 3 11.7239 3 12C3 12.2761 3.22386 12.5 3.5 12.5H20.5C20.7761 12.5 21 12.2761 21 12C21 11.7239 20.7761 11.5 20.5 11.5H3.5Z" fill="var(--text-color)"/>
       </svg>
     </span>
     <span class="${blockName}__button-text"> ${getTextLabel('view all')} </span>
@@ -35,8 +35,8 @@ export default function decorate(block) {
 
   blockHeading.append(viewAllButton);
 
-  const videoWrapper = createElement('ul', { classes: `${blockName}__video-list` });
-  const documentWrapper = createElement('ul', { classes: `${blockName}__document-list` });
+  const videoWrapper = createElement('div', { classes: `${blockName}__video-list` });
+  const documentWrapper = createElement('div', { classes: `${blockName}__document-list` });
   const rows = block.querySelectorAll(':scope > div > div');
 
   rows.forEach((row) => {
@@ -44,7 +44,7 @@ export default function decorate(block) {
     const document = row.querySelector('.icon-documents');
 
     if (picture) {
-      const listEle = createElement('li', { classes: `${blockName}__video-list-item` });
+      const listEle = createElement('div', { classes: `${blockName}__video-list-item` });
       listEle.innerHTML = row.innerHTML;
 
       const videos = [...listEle.querySelectorAll('a')].filter((link) => isVideoLink(link));
@@ -74,7 +74,7 @@ export default function decorate(block) {
         row.innerHTML = '';
       }
     } else if (document) {
-      const item = createElement('li', { classes: `${blockName}__document-list-item` });
+      const item = createElement('div', { classes: `${blockName}__document-list-item` });
       item.innerHTML = row.innerHTML;
       const links = item.querySelectorAll('a');
       [...links].forEach((link) => {
