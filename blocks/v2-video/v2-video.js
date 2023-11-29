@@ -1,4 +1,4 @@
-import { variantsClassesToBEM } from '../../scripts/common.js';
+import { removeEmptyTags, variantsClassesToBEM } from '../../scripts/common.js';
 import { createVideo, setPlaybackControls } from '../../scripts/video-helper.js';
 
 const onHoverOrScroll = (element, handler) => {
@@ -69,6 +69,8 @@ export default async function decorate(block) {
   block.prepend(video);
 
   setPlaybackControls();
+
+  removeEmptyTags(block);
 
   if (block.classList.contains(`${blockName}--expanding`)) {
     onHoverOrScroll(block.querySelector(`.${blockName}__content-wrapper`), (val) => {
