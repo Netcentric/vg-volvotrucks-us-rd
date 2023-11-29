@@ -31,7 +31,7 @@ const onHoverOrScroll = (element, handler) => {
 };
 
 export default async function decorate(block) {
-  const blockClass = 'v2-video';
+  const blockName = 'v2-video';
   const videoLink = block.querySelector('a');
   const headings = block.querySelectorAll('h1, h2, h3, h4, h5, h6');
   const ctaButtons = block.querySelectorAll('.button-container a');
@@ -44,18 +44,18 @@ export default async function decorate(block) {
     block.innerHTML = '';
   }
 
-  const video = createVideo(videoLink.getAttribute('href'), `${blockClass}__video`, {
+  const video = createVideo(videoLink.getAttribute('href'), `${blockName}__video`, {
     muted: true,
     autoplay: true,
     loop: true,
     playsinline: true,
   });
 
-  contentWrapper.classList.add(`${blockClass}__content-wrapper`);
-  content.classList.add(`${blockClass}__content`);
-  [...headings].forEach((heading) => heading.classList.add(`${blockClass}__heading`));
+  contentWrapper.classList.add(`${blockName}__content-wrapper`);
+  content.classList.add(`${blockName}__content`);
+  [...headings].forEach((heading) => heading.classList.add(`${blockName}__heading`));
   [...ctaButtons].forEach((button) => {
-    button.classList.add(`${blockClass}__button`, 'tertiary', 'dark');
+    button.classList.add(`${blockName}__button`, 'tertiary', 'dark');
     button.classList.remove('primary');
   });
 
@@ -65,9 +65,9 @@ export default async function decorate(block) {
 
   setPlaybackControls();
 
-  onHoverOrScroll(block.querySelector(`.${blockClass}__content-wrapper`), (val) => {
+  onHoverOrScroll(block.querySelector(`.${blockName}__content-wrapper`), (val) => {
     const action = val ? 'add' : 'remove';
 
-    block.classList[action](`${blockClass}--full-width`);
+    block.classList[action](`${blockName}--full-width`);
   });
 }
