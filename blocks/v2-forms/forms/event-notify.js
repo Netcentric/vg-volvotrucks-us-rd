@@ -38,7 +38,7 @@ const formContent = `
 
   <div class="${formName}__buttons">
     <button class="button primary" type="submit">${getTextLabel('event-notify:notify')}</button>
-    <button class="button secondary ${formName}__add-event-button">${getTextLabel('event-notify:add-event')}</button>
+    <button type="button" class="button secondary ${formName}__add-event-button">${getTextLabel('event-notify:add-event')}</button>
   </div>
 `;
 
@@ -71,6 +71,8 @@ export const onSubmit = async (form, handleSubmit) => {
 
   if (form.checkValidity()) {
     await handleSubmit(form);
+  } else {
+    form.querySelector('button[type="submit"').removeAttribute('disabled');
   }
 };
 
