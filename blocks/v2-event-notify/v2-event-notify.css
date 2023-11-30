@@ -94,6 +94,10 @@
   border-color: var(--c-error-red);
 }
 
+.v2-event-notify__container .event-notify__add-event-button {
+  cursor: pointer;
+}
+
 .event-notify__policy {
   margin: 16px 0 32px;
 }

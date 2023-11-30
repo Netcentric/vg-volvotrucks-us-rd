@@ -90,7 +90,6 @@ const addForm = async (block) => {
   formObj.addEventListener('submit', (e) => {
     if (formContent.onSubmit) {
       e.preventDefault();
-      e.submitter.setAttribute('disabled', '');
       formObj.dataset.action = e.currentTarget.action;
       formContent.onSubmit(formObj, handleSubmit);
     }
