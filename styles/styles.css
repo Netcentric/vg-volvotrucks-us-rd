@@ -790,8 +790,8 @@ a.button.text-link-with-video {
   top: 50%;
   right: 50%;
   transform: translate(50%, -50%);
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
 }
 
 .link-with-video .icon-play-video svg,
