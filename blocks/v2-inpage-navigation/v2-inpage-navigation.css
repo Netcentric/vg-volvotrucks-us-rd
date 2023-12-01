@@ -1,5 +1,5 @@
 :root {
-  --inpage-navigation-height: 72px;
+  --inpage-navigation-height: 58px;
 }
 
 .v2-inpage-navigation-wrapper {
@@ -34,11 +34,12 @@ then we change it for the next section item in main */
   border-width: 1px 0;
   border-style: solid;
   border-color: #EFEFEF;
+  height: var(--inpage-navigation-height);
 }
 
 .v2-inpage-navigation__wrapper {
   display: flex;
-  padding: 16px;
+  padding: 8px 16px;
 }
 
 .v2-inpage-navigation__dropdown {
@@ -127,9 +128,10 @@ then we change it for the next section item in main */
 
 .v2-inpage-navigation__item button,
 .v2-inpage-navigation__selected-item-wrapper {
+  padding: 0;
   background: none;
   border: 0;
-  color: var(--c-main-black);
+  color: var(--c-grey-4);
   cursor: pointer;
   display: block;
   font-family: var(--ff-volvo-novum);
@@ -139,23 +141,19 @@ then we change it for the next section item in main */
   margin: 0;
   width: 100%;
   border-radius: 1px;
-  }
+}
 
 .v2-inpage-navigation__item button:focus-visible {
   outline-offset: 5px;
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
-.v2-inpage-navigation__selected-item-wrapper,
 .v2-inpage-navigation__item--active button,
 .v2-inpage-navigation__item button:hover,
 .v2-inpage-navigation__item button:active,
-.v2-inpage-navigation__item button:focus,
-.v2-inpage-navigation__selected-item-wrapper:hover,
-.v2-inpage-navigation__selected-item-wrapper:active
-.v2-inpage-navigation__selected-item-wrapper:focus,
-.v2-inpage-navigation__dropdown--open .v2-inpage-navigation__selected-item-wrapper {
+.v2-inpage-navigation__item button:focus {
   font-family: var(--ff-volvo-novum-medium);
+  color: var(--c-main-black);
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
@@ -171,9 +169,9 @@ then we change it for the next section item in main */
 }
 
 .v2-inpage-navigation__selected-item-wrapper svg {
-  height: 16px;
+  width: 24px;
+  height: 24px;
   transition: transform var(--duration-small) var(--easing-standard);
-  width: 16px;
 }
 
 .v2-inpage-navigation__dropdown--open .v2-inpage-navigation__selected-item-wrapper svg {
@@ -184,7 +182,7 @@ then we change it for the next section item in main */
 
 .redesign-v2 a.button.v2-inpage-navigation__cta:any-link {
   height: auto;
-  padding: 8px 20px;
+  padding: 10px 20px;
   line-height: var(--f-button-line-height);
 }
 
@@ -207,7 +205,7 @@ then we change it for the next section item in main */
   .v2-inpage-navigation__wrapper {
     align-items: center;
     max-width: var(--wrapper-width);
-    padding: 11px 0;
+    padding: 10px 0;
     margin: 0 auto;
   }
 
@@ -260,7 +258,6 @@ then we change it for the next section item in main */
 
   .v2-inpage-navigation__item button {
     position: relative;
-    color: var(--c-grey-4);
     padding: 12px 0;
   }
 
