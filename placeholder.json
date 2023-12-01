@@ -144,6 +144,22 @@
       "Text": "Please fill out this field"
     },
     {
+      "Key": "day",
+      "Text": "day"
+    },
+    {
+      "Key": "hour",
+      "Text": "hour"
+    },
+    {
+      "Key": "minute",
+      "Text": "minute"
+    },
+    {
+      "Key": "second",
+      "Text": "second"
+    },
+    {
       "Key": "Close",
       "Text": "Close"
     },
@@ -178,6 +194,18 @@
     {
       "Key": "event-notify:add-event",
       "Text": "Add event to calendar"
+    },
+    {
+      "Key": "view all",
+      "Text": "View all"
+    },
+    {
+      "Key": "toggle list",
+      "Text": "Toggle resources list"
+    },
+    {
+      "Key": "view less",
+      "Text": "View less"
     }
   ],
   ":type": "sheet"
