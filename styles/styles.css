@@ -287,7 +287,8 @@
   --inpage-navigation-height: 0;
 
   /* Zindex inpage navigation */
-  --z-index-inpage-nav: 1051;
+  --z-index-inpage-nav: 1049;
+  --z-index-inpage-nav-open: 1051;
 }
 
 *,
