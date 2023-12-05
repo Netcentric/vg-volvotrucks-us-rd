@@ -105,7 +105,7 @@
   outline-offset: 5px;
 }
 
-.modal-top-bar svg {
+.modal-top-bar .icon svg {
   height: 24px;
   width: 24px;
 }
