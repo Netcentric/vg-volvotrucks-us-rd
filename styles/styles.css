@@ -1717,3 +1717,6 @@ main.blue-contract .section.section-with-title p {
 }
 
 /* generic tooltip styles  ends here */
+body.hidden-footer .footer-wrapper {
+  display: none;
+}

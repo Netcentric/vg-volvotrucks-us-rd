@@ -1,0 +1,26 @@
+.section.v2-embed-container {
+  padding: 0 !important;
+}
+
+.v2-embed-wrapper {
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+.v2-embed.block {
+  height: 100vh;
+}
+
+iframe, #configurator {
+  height: 100vh;
+  width: 100%;
+  border: unset;
+  position: relative;
+}
+
+.iframe--full-viewport,
+.configurator--full-viewport {
+  position: relative;
+  z-index: calc(var(--z-index-header) + 1); /* make sure that the iframe is not cover by header */
+}
