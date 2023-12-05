@@ -125,12 +125,6 @@ const createModal = () => {
         bannerWrapper.classList.add('modal-before-banner');
         bannerWrapper.addEventListener('click', (event) => event.stopPropagation());
         bannerWrapper.appendChild(beforeBanner);
-        const closeButton = document.createElement('button');
-        closeButton.classList.add('modal-close-button');
-        closeButton.innerHTML = '<i class="fa fa-close"></i>';
-        bannerWrapper.appendChild(closeButton);
-        // eslint-disable-next-line no-use-before-define
-        closeButton.addEventListener('click', () => hideModal());
 
         videoOrIframe.before(bannerWrapper);
       }
