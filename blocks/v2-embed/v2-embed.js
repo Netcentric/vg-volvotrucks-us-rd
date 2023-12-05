@@ -2,7 +2,7 @@ import { createElement } from '../../scripts/common.js';
 
 const emebdOnPage = (block) => {
   const scripts = [
-    '/scripts/v2-embed/runtime~app.fc549bea.bundle.js',
+    '/scripts/v2-embed/runtime.app.fc549bea.bundle.js',
     '/scripts/v2-embed/345.fc549bea.bundle.js',
     '/scripts/v2-embed/app.fc549bea.bundle.js',
   ];
