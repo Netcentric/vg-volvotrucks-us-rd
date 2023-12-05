@@ -2,14 +2,14 @@ import { createElement } from '../../scripts/common.js';
 
 const emebdOnPage = (block) => {
   const scripts = [
-    '/blocks/v2-embed/runtime~app.fc549bea.bundle.js',
-    '/blocks/v2-embed/345.fc549bea.bundle.js',
-    '/blocks/v2-embed/app.fc549bea.bundle.js',
+    '/scripts/v2-embed/runtime~app.fc549bea.bundle.js',
+    '/scripts/v2-embed/345.fc549bea.bundle.js',
+    '/scripts/v2-embed/app.fc549bea.bundle.js',
   ];
 
   const styles = [
-    '/blocks/v2-embed/345.fc549bea741b7e9d7142.css',
-    '/blocks/v2-embed/app.fc549bea741b7e9d7142.css',
+    '/scripts/v2-embed/345.fc549bea741b7e9d7142.css',
+    '/scripts/v2-embed/app.fc549bea741b7e9d7142.css',
   ];
 
   block.innerHTML = '<div id="configurator"></div>';
@@ -60,7 +60,7 @@ const embedWithIframe = (block) => {
   // iframe.document.close();
   //
   // `srcdoc` is probably not working on the mobile iOS - MDN has not data about it
-  iframe.setAttribute('src', '/blocks/v2-embed/index.html');
+  iframe.setAttribute('src', '/scripts/v2-embed/index.html');
   iframe.setAttribute('title', 'Volvo Trucks North America - Configurator');
 
   block.appendChild(iframe);
