@@ -1468,6 +1468,8 @@ main.blue-contract .section.section-with-title p {
   opacity: 1;
   margin: 0;
   z-index: -1;
+  appearance: none;
+  border: 0;
 }
 
 .redesign-v2 .checkbox-with-label input[type='checkbox'] + label {
