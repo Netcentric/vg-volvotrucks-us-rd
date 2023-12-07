@@ -168,8 +168,8 @@ export default async function decorate(block) {
         return;
       }
 
-      const policyEl = formRef.querySelector('.event-notify__policy')?.querySelector('.event-notify__policy');
-      const calendarButtonEl = formRef.find((el) => el.querySelector('.event-notify__add-event-button'))?.querySelector('.event-notify__add-event-button');
+      const policyEl = formRef.querySelector('.event-notify__policy');
+      const calendarButtonEl = formRef.querySelector('.event-notify__add-event-button');
 
       if (formRef) {
         policyEl.append(policyText);
