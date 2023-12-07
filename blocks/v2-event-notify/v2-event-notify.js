@@ -162,7 +162,7 @@ export default async function decorate(block) {
   // we can inject the policy content when form content loaded
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
-      const formRef = [...mutation.addedNodes].find((el) => el instanceof Element && el.classList.contains('.v2-forms__container'));
+      const formRef = [...mutation.addedNodes].find((el) => el instanceof Element && el.classList.contains('v2-forms__container'));
 
       if (!formRef) {
         return;
