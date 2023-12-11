@@ -134,7 +134,7 @@
   .v2-media-gallery__images-list {
     flex-direction: column;
     gap: 32px;
-    max-width: 700px;
+    max-width: var(--text-block-max-width);
   }
 
   .v2-media-gallery__heading {
@@ -153,7 +153,7 @@
 
   .v2-media-gallery__images-list-item {
     max-width: unset;
-    width: 700px;
+    width: var(--text-block-max-width);
   }
 
   .v2-media-gallery__images-list-item:first-child {
