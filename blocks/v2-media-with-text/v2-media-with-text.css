@@ -22,16 +22,17 @@ h4.v2-media-with-text__heading {
   width: 100%;
 }
 
-.v2-media-with-text__picture {
-  flex: 0 0 70%;
-}
-
 .v2-media-with-text__paragraph {
   text-align: center;
 }
 
+.v2-media-with-text--single-image-1 .v2-media-with-text__picture {
+  aspect-ratio: 16 / 10;
+}
+
 .v2-media-with-text--single-image-1 .v2-media-with-text__paragraph {
   text-align: left;
+  margin: -8px 0 0;
 }
 
 /* Single video modal 1 */
@@ -45,16 +46,42 @@ h4.v2-media-with-text__heading {
 }
 
 /* Single image 2 left */
-.v2-media-with-text--single-image-2-left {
+.v2-media-with-text--single-image-2-left > div {
   display: flex;
+  gap: 24px;
+  flex-direction: column;
 }
 
 .v2-media-with-text--single-image-2-left .v2-media-with-text__paragraph {
   text-align: left;
 }
 
+p:has(picture) {
+  margin: 0;
+}
+
+.v2-media-with-text--single-image-2-right > div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.v2-media-with-text--single-image-2-right > div > div:first-child {
+  order: 2;
+}
+
+.v2-media-with-text--single-image-2-right .v2-media-with-text__paragraph {
+  text-align: left;
+}
+
 .v2-media-with-text--double-image-1 {
-  border: 1px salmon solid;
+  border: 1px seagreen solid;
+  gap: 32px;
+}
+
+.v2-media-with-text--double-image-1 .v2-media-with-text__paragraph {
+  margin-top: -16px;
+  text-align: left;
 }
 
 @media (min-width: 744px) {
@@ -63,7 +90,36 @@ h4.v2-media-with-text__heading {
   }
 
   .v2-media-with-text__paragraph {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .v2-media-with-text--single-image-1 .v2-media-with-text__paragraph {
+    margin: -16px 0 0;
+  }
+
+  .v2-media-with-text--single-video-autoplay-1 .v2-media-with-text__paragraph {
+    margin: auto;
+    width: 80%;
+  }
+
+  .v2-media-with-text--single-image-2-left > div {
+    gap: 32px;
+  }
+
+  .v2-media-with-text--single-image-2-left .v2-media-with-text__paragraph {
+    text-align: left;
+    margin-left: 0;
     width: 50%;
+  }
+
+  .v2-media-with-text--single-image-2-right .v2-media-with-text__paragraph {
+    margin-left: 0;
+  }
+
+  .v2-media-with-text--double-image-1 .v2-media-with-text__paragraph {
+    margin-left: 0;
   }
 }
 
@@ -92,14 +148,18 @@ h4.v2-media-with-text__heading {
 
   .v2-media-with-text--single-image-1 .v2-media-with-text__paragraph {
     text-align: center;
+    margin: -24px auto 0;
+  }
+
+  .v2-media-with-text--single-video-autoplay-1 .v2-media-with-text__paragraph {
+    width: 61.8%;
+  }
+
+  .v2-media-with-text--single-video-modal-1 .v2-media-with-text__paragraph {
+    margin-top: 0;
   }
 
   /* Single image 2 left / Single image 2 right */
-  .v2-media-with-text--single-image-2-left,
-  .v2-media-with-text--single-image-2-right {
-    flex-direction: row;
-  }
-
   .v2-media-with-text--single-image-2-left .v2-media-with-text__picture,
   .v2-media-with-text--single-image-2-right .v2-media-with-text__picture {
     aspect-ratio: 23 / 20;
@@ -119,16 +179,35 @@ h4.v2-media-with-text__heading {
     margin-bottom: 24px;
   }
 
-  .v2-media-with-text--single-image-2-left > div > div,
-  .v2-media-with-text--single-image-2-right > div > div{
+  .v2-media-with-text--single-image-2-left > div,
+  .v2-media-with-text--single-image-2-right > div {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     height: 100%;
   }
 
-  /* Single image 2 right */
-  .v2-media-with-text--single-image-2-right .v2-media-with-text__picture {
-    order: 2;
+  .v2-media-with-text--single-image-2-left > div > div:nth-child(2),
+  .v2-media-with-text--single-image-2-right > div > div:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-basis: 30%;
   }
+
+  .v2-media-with-text--single-image-2-left .v2-media-with-text__picture img,
+  .v2-media-with-text--single-image-2-right .v2-media-with-text__picture img {
+    aspect-ratio: 23 / 20;
+  }
+
+  /* Single image 2 right */
+  .v2-media-with-text--single-image-2-right > div > div:first-child {
+    order: unset;
+  }
+
+  /* Double image 1 */
+  .v2-media-with-text--double-image-1, .v2-media-with-text--double-image-2 {
+    flex-direction: row;
+  }
+
 }

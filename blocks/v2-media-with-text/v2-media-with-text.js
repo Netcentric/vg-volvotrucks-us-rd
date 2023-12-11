@@ -87,7 +87,7 @@ export default async function decorate(block) {
 
   removeEmptyTags(block);
   const blocksCollection = document.querySelectorAll(`${blockClasses.singleImage1}, 
-        ${blockClasses.singleVideoAutoplay}, ${blockClasses.singleVideoModal}, ${blockClasses.doubleImage1}, ${blockClasses.doubleImage2}`);
+        ${blockClasses.singleVideoAutoplay}, ${blockClasses.singleVideoModal}, ${blockClasses.doubleImage2}`);
 
   blocksCollection.forEach((element) => {
     unwrapDivs(element);
