@@ -672,8 +672,8 @@ const moveClassToHtmlEl = (className, elementSelector = 'main') => {
   }
 };
 
-/* REDESING CLASS CHECK */
+/* REDESIGN CLASS CHECK */
 moveClassToHtmlEl('redesign-v2');
 
-/* ETERNAL APP CLASS CHECK */
+/* EXTERNAL APP CLASS CHECK */
 moveClassToHtmlEl('external-app');
