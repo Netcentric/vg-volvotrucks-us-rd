@@ -42,10 +42,8 @@
 }
 
 .v2-static-content-carousel__heading {
-  font-family: var(--ff-volvo-novum-medium);
-  font-size: var(--f-heading-4-font-size);
-  letter-spacing: var(--f-heading-4-letter-spacing);
-  line-height: var(--f-heading-4-line-height);
+  font: var(--f-heading-5-font-size)/var(--f-heading-5-line-height) var(--ff-volvo-novum-medium);
+  letter-spacing: 0.25px;
 }
 
 .v2-static-content-carousel__text {
@@ -64,9 +62,8 @@
 
 .v2-static-content-carousel__figure-text {
   padding-top: 16px;
-  font-size: var(--f-body-font-size);
-  line-height: var(--f-body-line-heigh);
-  letter-spacing: var(--f-body-letter-spacing);
+  font: var(--f-overline-font-size)/var(--f-overline-line-height) var(--font-family-body);
+  letter-spacing: var(--f-overline-letter-spacing);
 }
 
 .v2-static-content-carousel__arrowcontrols {
@@ -155,6 +152,15 @@
   .v2-static-content-carousel__text-col {
     align-self: center;
     padding-right: 0;
+  }
+
+  .v2-static-content-carousel__heading {
+    font-size: var(--f-heading-4-font-size);
+  }
+
+  .v2-static-content-carousel__figure-text {
+    font: var(--f-body-font-size)/var(--f-body-line-height) var(--font-family-body);
+    letter-spacing: var(--f-body-letter-spacing);
   }
 
   .v2-static-content-carousel__images-list-col {
