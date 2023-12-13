@@ -1,5 +1,5 @@
 .v2-static-content-carousel {
-  --static-content-carousel-row-gap: 32px;
+  --static-content-carousel-row-gap: 24px;
   --static-content-carousel-list-gap: 8px;
   --static-content-carousel-col-gap: 16px;
   --static-content-card-width: 85%;
@@ -22,6 +22,10 @@
   padding-right: 32px;
 }
 
+.v2-static-content-carousel__images-list-col {
+  margin-right: -16px;
+}
+
 .v2-static-content-carousel__images-list {
   list-style-type: none;
   display: flex;
@@ -39,6 +43,10 @@
 .v2-static-content-carousel__images-list-item {
   scroll-snap-align: start;
   flex: 0 0 var(--static-content-card-width);
+}
+
+.v2-static-content-carousel__images-list-item:last-child {
+  margin-right: 16px;
 }
 
 .v2-static-content-carousel__heading {
@@ -109,7 +117,7 @@
 
 @media screen and (min-width: 744px) {
   .v2-static-content-carousel {
-    --static-content-carousel-row-gap: 48px;
+    --static-content-carousel-row-gap: 32px;
     --static-content-carousel-list-gap: 20px;
     --static-content-carousel-col-gap: 24px;
     --static-content-card-width: clamp(506px, 68%, calc((100% - var(--static-content-carousel-list-gap))/1.25));
@@ -118,6 +126,11 @@
 
   .v2-static-content-carousel__images-list-col {
     gap: 32px;
+    margin-right: -32px;
+  }
+
+  .v2-static-content-carousel__images-list-item:last-child {
+    margin-right: 32px;
   }
 
   p.v2-static-content-carousel__text {
@@ -137,12 +150,12 @@
   }
 
   .v2-static-content-carousel {
-    --static-content-carousel-row-gap: 91px;
+    --static-content-carousel-row-gap: 92px;
     --static-content-card-width: calc((100% - var(--static-content-carousel-list-gap))/1.80);
   }
 
   .v2-static-content-carousel__col {
-    min-width: 337px;
+    min-width: 21rem;
   }
 
   .v2-static-content-carousel__row {
@@ -153,6 +166,7 @@
     align-self: center;
     padding-right: 0;
   }
+  
 
   .v2-static-content-carousel__heading {
     font-size: var(--f-heading-4-font-size);
@@ -165,6 +179,11 @@
 
   .v2-static-content-carousel__images-list-col {
     position: relative;
+    margin-right: 0;
+  }
+
+  .v2-static-content-carousel__images-list-item:last-child {
+    margin-right: 0;
   }
 
   .v2-static-content-carousel__images-list-col--gradient::after {
