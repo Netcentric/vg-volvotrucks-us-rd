@@ -162,24 +162,31 @@ export default async function decorate(block) {
   // we can inject the policy content when form content loaded
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
-      const formRef = [...mutation.addedNodes].find((el) => el instanceof Element && el.classList.contains('v2-forms__container'));
+      const formRef = [...mutation.addedNodes];
+      const formContainerEl = formRef.find((el) => el instanceof Element && el.classList.contains('v2-forms__container'));
 
-      if (!formRef) {
+      if (!formContainerEl) {
         return;
       }
 
-      const policyEl = formRef.querySelector('.event-notify__policy');
-      const calendarButtonEl = formRef.querySelector('.event-notify__add-event-button');
-
-      if (formRef) {
-        policyEl.append(policyText);
-        calendarButtonEl.addEventListener('click', () => {
-          const icsFileContent = generateICS(calendarEventData);
-          downloadICSFile(icsFileContent, 'event.ics');
-        });
-
+      if (formContainerEl.getAttribute('data-initialized') === 'true') {
         observer.disconnect();
+        formContainerEl.querySelector('form')?.reset();
+
+        return;
       }
+
+      const policyEl = formContainerEl.querySelector('.event-notify__policy');
+      const calendarButtonEl = formContainerEl.querySelector('.event-notify__add-event-button');
+
+      policyEl.append(policyText);
+      calendarButtonEl.addEventListener('click', () => {
+        const icsFileContent = generateICS(calendarEventData);
+        downloadICSFile(icsFileContent, 'event.ics');
+      });
+
+      observer.disconnect();
+      formContainerEl.setAttribute('data-initialized', 'true');
     });
   });
 
