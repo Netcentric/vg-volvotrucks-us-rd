@@ -157,8 +157,8 @@ ul.v2-static-content-carousel__arrowcontrols {
   }
 
   .v2-static-content-carousel {
-    --static-content-carousel-row-gap: 92px;
-    --static-content-carousel-container-margin: 0px;
+    --static-content-carousel-row-gap: 72px;
+    --static-content-carousel-container-margin: 20px;
     --static-content-card-width: calc((100% - var(--static-content-carousel-list-gap))/1.80);
   }
 
@@ -188,8 +188,14 @@ ul.v2-static-content-carousel__arrowcontrols {
     position: relative;
   }
 
-  .v2-static-content-carousel__images-list::before,
-  .v2-static-content-carousel__images-list::after {
-    display: none;
+  .v2-static-content-carousel__images-list-col::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: var(--static-content-carousel-container-margin);
+    background: var(--background-color);
   }
 }
