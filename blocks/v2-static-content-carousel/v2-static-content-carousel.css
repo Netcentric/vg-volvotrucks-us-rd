@@ -1,9 +1,9 @@
 .v2-static-content-carousel {
-  --static-content-carousel-row-gap: 32px;
+  --static-content-carousel-row-gap: 24px;
   --static-content-carousel-list-gap: 8px;
   --static-content-carousel-col-gap: 16px;
+  --static-content-carousel-container-margin: 16px;
   --static-content-card-width: 85%;
-  --static-content-card-height: 250px;
 }
 
 .v2-static-content-carousel__row {
@@ -22,6 +22,11 @@
   padding-right: 32px;
 }
 
+.v2-static-content-carousel__images-list-col {
+  margin-left: calc(var(--static-content-carousel-container-margin) * -1);
+  margin-right: calc(var(--static-content-carousel-container-margin) * -1);
+}
+
 .v2-static-content-carousel__images-list {
   list-style-type: none;
   display: flex;
@@ -29,7 +34,20 @@
   scroll-behavior: smooth;
   scroll-snap-align: start;
   scroll-snap-type: x mandatory;
+  scrollbar-width: none;
   gap: var(--static-content-carousel-list-gap);
+}
+
+.v2-static-content-carousel__images-list::before,
+.v2-static-content-carousel__images-list::after {
+  content: '';
+  display: block;
+  flex: 0 0 var(--static-content-carousel-container-margin);
+  min-height: 1px;
+}
+
+.v2-static-content-carousel__images-list::after {
+  flex: 0 0 calc(var(--static-content-carousel-container-margin) / 2);
 }
 
 .v2-static-content-carousel__images-list::-webkit-scrollbar {
@@ -37,6 +55,7 @@
 }
 
 .v2-static-content-carousel__images-list-item {
+  scroll-margin: 0 var(--static-content-carousel-container-margin);
   scroll-snap-align: start;
   flex: 0 0 var(--static-content-card-width);
 }
@@ -66,7 +85,8 @@
   letter-spacing: var(--f-overline-letter-spacing);
 }
 
-.v2-static-content-carousel__arrowcontrols {
+ul.v2-static-content-carousel__arrowcontrols {
+  margin-left: var(--static-content-carousel-container-margin);
   list-style-type: none;
   display: flex;
   gap: 24px;
@@ -109,11 +129,11 @@
 
 @media screen and (min-width: 744px) {
   .v2-static-content-carousel {
-    --static-content-carousel-row-gap: 48px;
+    --static-content-carousel-row-gap: 32px;
     --static-content-carousel-list-gap: 20px;
     --static-content-carousel-col-gap: 24px;
+    --static-content-carousel-container-margin: 32px;
     --static-content-card-width: clamp(506px, 68%, calc((100% - var(--static-content-carousel-list-gap))/1.25));
-    --static-content-card-height: 432px;
   }
 
   .v2-static-content-carousel__images-list-col {
@@ -137,12 +157,13 @@
   }
 
   .v2-static-content-carousel {
-    --static-content-carousel-row-gap: 91px;
+    --static-content-carousel-row-gap: 92px;
+    --static-content-carousel-container-margin: 0px;
     --static-content-card-width: calc((100% - var(--static-content-carousel-list-gap))/1.80);
   }
 
   .v2-static-content-carousel__col {
-    min-width: 337px;
+    min-width: 21rem;
   }
 
   .v2-static-content-carousel__row {
@@ -177,5 +198,10 @@
     pointer-events: none;
     background: linear-gradient(90deg, rgb(255 255 255 / 0%) 0%, var(--background-gradient) 100%);
     right: 0;
+  }
+
+  .v2-static-content-carousel__images-list::before,
+  .v2-static-content-carousel__images-list::after {
+    display: none;
   }
 }
