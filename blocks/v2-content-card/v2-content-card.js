@@ -2,8 +2,7 @@ import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 import {
   adjustPretitle, createElement, removeEmptyTags, variantsClassesToBEM,
 } from '../../scripts/common.js';
-import { createVideo, isVideoLink } from '../../scripts/video-helper.js';
-import { getDynamicVideoHeight } from '../v2-media-with-text/v2-media-with-text.js';
+import { createVideo, getDynamicVideoHeight, isVideoLink } from '../../scripts/video-helper.js';
 
 const variantClasses = ['images-grid', 'images-grid-masonry', 'editorial'];
 

@@ -1,95 +1,55 @@
-import { variantsClassesToBEM, removeEmptyTags, unwrapDivs } from '../../scripts/common.js';
 import {
-  isVideoLink, createVideo, setPlaybackControls, wrapImageWithVideoLink,
-  selectVideoLink,
-} from '../../scripts/video-helper.js';
+  addVideoToSection,
+  createElement,
+  createNewSection,
+  unwrapDivs,
+  variantsClassesToBEM,
+} from '../../scripts/common.js';
 
 const blockName = 'v2-media-with-text';
-
-export function getDynamicVideoHeight(video, playbackControls) {
-  // Get the element's height(use requestAnimationFrame to get actual height instead of 0)
-  requestAnimationFrame(() => {
-    const height = video.offsetHeight - 60;
-    playbackControls.style.top = `${height.toString()}px`;
-  });
-
-  // Get the element's height on resize
-  const getVideoHeight = (entries) => {
-    // eslint-disable-next-line no-restricted-syntax
-    for (const entry of entries) {
-      const height = entry.target.offsetHeight - 60;
-      playbackControls.style.top = `${height.toString()}px`;
-    }
-  };
-
-  const resizeObserver = new ResizeObserver(getVideoHeight);
-  resizeObserver.observe(video);
-}
-
-const variantClasses = ['single-image-1', 'single-video-autoplay-1', 'single-video-modal-1', 'single-image-2-left', 'single-image-2-right', 'double-image-1', 'double-image-2'];
-
-const blockClasses = {
-  singleImage1: `.${blockName}--single-image-1`,
-  singleVideoAutoplay: `.${blockName}--single-video-autoplay-1`,
-  singleVideoModal: `.${blockName}--single-video-modal-1`,
-  singleImage2Left: `.${blockName}--single-image-2-left`,
-  singleImage2Right: `.${blockName}--single-image-2-right`,
-  doubleImage1: `.${blockName}--double-image-1`,
-  doubleImage2: `.${blockName}--double-image-2`,
-};
+const variantClasses = ['text-centered', 'full-width', 'media-left', 'media-left', 'media-right', 'media-vertical', 'media-gallery'];
 export default async function decorate(block) {
   variantsClassesToBEM(block.classList, variantClasses, blockName);
 
-  const pictures = block.querySelectorAll('picture');
-  pictures.forEach((picture) => picture.classList.add(`${blockName}__picture`));
+  const isFullWidthBlock = block.className.includes('full-width');
+  if (isFullWidthBlock) block.parentElement.classList.add('full-width');
 
-  const headings = block.querySelectorAll('h4');
-  headings.forEach((heading) => heading.classList.add(`${blockName}__heading`));
+  const cells = block.querySelectorAll(':scope > div > div');
+  let contentSection; let mediaSection; let subTextSection; let
+    containerSection;
 
-  const paragraphs = block.querySelectorAll('p:not(:has(picture))');
-  paragraphs.forEach((paragraph) => paragraph.classList.add(`${blockName}__paragraph`));
+  cells.forEach((cell, index) => {
+    // First cell for content, second for media and last for the subtext
+    const isLastCell = index % 2 === 0 && index === cells.length - 1;
+    const isCellNumberEven = index % 2 === 0;
+    const isTotalCellsEven = cells.length % 2 === 0;
 
-  const picture = block.querySelector('picture');
-  const link = block.querySelector('a');
-  const isVideo = link ? isVideoLink(link) : false;
-  if (isVideo && block.classList.contains(`${blockName}--single-video-autoplay-1`)) {
-    const video = createVideo(link.getAttribute('href'), `${blockName}__video`, {
-      muted: true,
-      autoplay: true,
-      loop: true,
-      playsinline: true,
-    });
-    block.prepend(video);
-
-    const playbackControls = video.querySelector('button');
-    getDynamicVideoHeight(video, playbackControls);
-    setPlaybackControls();
-
-    link.remove();
-  }
-
-  const links = block.querySelectorAll('a');
-  const videos = [...links].filter((singleLink) => isVideoLink(singleLink));
-
-  if (videos.length) {
-    // display image as link with play icon
-    const selectedLink = selectVideoLink(videos);
-
-    if (selectedLink) {
-      picture.after(selectedLink);
-      wrapImageWithVideoLink(selectedLink, picture);
+    if (isLastCell) subTextSection = createNewSection(blockName, 'sub-text', cell); else if (isCellNumberEven) {
+      contentSection = createNewSection(blockName, 'content', cell);
+      const headings = [...cell.querySelectorAll(['h1', 'h2', 'h3', 'h4', 'h5', 'h6'])];
+      headings.forEach((heading) => heading.classList.add(`${blockName}__heading`));
+    } else {
+      mediaSection = createNewSection(blockName, 'media', cell);
+      const link = mediaSection.querySelector('a');
+      mediaSection = addVideoToSection(blockName, mediaSection, link);
     }
 
-    // removing all the videos links excluding the selected one
-    // eslint-disable-next-line max-len
-    videos.forEach((singleLink) => singleLink !== selectedLink && singleLink.parentElement.remove());
-  }
-
-  removeEmptyTags(block);
-  const blocksCollection = document.querySelectorAll(`${blockClasses.singleImage1}, 
-        ${blockClasses.singleVideoAutoplay}, ${blockClasses.singleVideoModal}, ${blockClasses.doubleImage2}`);
-
-  blocksCollection.forEach((element) => {
-    unwrapDivs(element);
+    // If cell number is odd(i.e. a 'media' cell) and not the last cell
+    if (!isLastCell && !isCellNumberEven) {
+      // Wrap with a row if the number of cells is more than 2.
+      if (cells.length > 2) {
+        containerSection = createElement('div', { classes: `${blockName}__container` });
+        containerSection.append(mediaSection, contentSection);
+        block.append(containerSection);
+      } else {
+        // Append the media and content sections directly to the block.
+        block.append(mediaSection, contentSection);
+      }
+    }
+    // For an odd number of cells, append the remaining subTextSection.
+    if (!isTotalCellsEven) {
+      if (subTextSection) block.append(subTextSection);
+    }
   });
+  unwrapDivs(block);
 }

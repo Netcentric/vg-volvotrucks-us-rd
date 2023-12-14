@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import { createElement, getTextLabel } from './common.js';
 
 /* video helpers */
@@ -218,3 +219,23 @@ export const createVideo = (src, className = '', props = {}) => {
 
   return video;
 };
+
+export function getDynamicVideoHeight(video, playbackControls) {
+  // Get the element's height(use requestAnimationFrame to get actual height instead of 0)
+  requestAnimationFrame(() => {
+    const height = video.offsetHeight - 60;
+    playbackControls.style.top = `${height.toString()}px`;
+  });
+
+  // Get the element's height on resize
+  const getVideoHeight = (entries) => {
+    // eslint-disable-next-line no-restricted-syntax
+    for (const entry of entries) {
+      const height = entry.target.offsetHeight - 60;
+      playbackControls.style.top = `${height.toString()}px`;
+    }
+  };
+
+  const resizeObserver = new ResizeObserver(getVideoHeight);
+  resizeObserver.observe(video);
+}
