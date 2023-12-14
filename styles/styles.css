@@ -291,7 +291,7 @@
   --z-index-header: 1050;
 
   /* In page navigation */
-  --inpage-navigation-height: 0;
+  --inpage-navigation-height: 0px;
 
   /* Zindex inpage navigation */
   --z-index-inpage-nav: 1049;
