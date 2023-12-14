@@ -188,18 +188,6 @@ ul.v2-static-content-carousel__arrowcontrols {
     position: relative;
   }
 
-  .v2-static-content-carousel__images-list-col--gradient::after {
-    content: '';
-    display: block;
-    height: 100%;
-    width: 30px;
-    position: absolute;
-    top: 0;
-    pointer-events: none;
-    background: linear-gradient(90deg, rgb(255 255 255 / 0%) 0%, var(--background-gradient) 100%);
-    right: 0;
-  }
-
   .v2-static-content-carousel__images-list::before,
   .v2-static-content-carousel__images-list::after {
     display: none;
