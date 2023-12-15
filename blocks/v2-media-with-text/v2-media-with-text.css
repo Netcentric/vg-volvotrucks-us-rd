@@ -187,7 +187,8 @@
 
   .v2-media-with-text__content-section {
     text-align: center;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .v2-media-with-text__sub-text-section {
