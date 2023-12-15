@@ -1,4 +1,5 @@
 import {
+  addClassIfChildHasClass,
   addVideoToSection,
   createElement,
   createNewSection,
@@ -7,15 +8,11 @@ import {
 } from '../../scripts/common.js';
 
 const blockName = 'v2-media-with-text';
-const variantClasses = ['text-centered', 'full-width', 'media-left', 'media-left', 'media-right', 'media-vertical', 'media-gallery'];
+const variantClasses = ['text-centered', 'expanded-width', 'full-width', 'media-left', 'media-left', 'media-right', 'media-vertical', 'media-gallery'];
 export default async function decorate(block) {
   variantsClassesToBEM(block.classList, variantClasses, blockName);
-
-  const isFullWidthBlock = block.className.includes('full-width');
-  if (isFullWidthBlock) block.parentElement.classList.add('full-width');
-
-  const isExpandedBlock = block.className.includes('media-left') || block.className.includes('media-right');
-  if (isExpandedBlock) block.parentElement.classList.add('expanded-width');
+  addClassIfChildHasClass(block, 'full-width');
+  addClassIfChildHasClass(block, 'expanded-width');
 
   const cells = block.querySelectorAll(':scope > div > div');
   let contentSection; let mediaSection; let subTextSection; let

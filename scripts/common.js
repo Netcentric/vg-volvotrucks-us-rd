@@ -237,6 +237,18 @@ export const variantsClassesToBEM = (blockClasses, expectedVariantsNames, blockN
 };
 
 /**
+ * Adds a CSS class to the parent element of a child element
+ * if the child element's class list includes the specified class.
+ *
+ * @param {HTMLElement} child - The child HTML element.
+ * @param {string} className - The name of the class to check and add.
+ */
+export function addClassIfChildHasClass(child, className) {
+  if (child.className.includes(className)) {
+    child.parentElement.classList.add(className);
+  }
+}
+/**
  *
  * @param {string} blockName - block name with '-' instead of spaces
  * @param {string} blockContent - the content that will be set as block inner HTML
