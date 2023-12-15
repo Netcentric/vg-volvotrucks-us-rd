@@ -158,7 +158,7 @@ export const removeEmptyTags = (block) => {
 
 export const unwrapDivs = (element, options = {}) => {
   const stack = [element];
-  const { ignorDataAlign = false } = options;
+  const { ignoreDataAlign = false } = options;
 
   while (stack.length > 0) {
     const currentElement = stack.pop();
@@ -167,7 +167,7 @@ export const unwrapDivs = (element, options = {}) => {
     while (i < currentElement.children.length) {
       const node = currentElement.children[i];
       const attributesLength = [...node.attributes].filter((el) => {
-        if (ignorDataAlign) {
+        if (ignoreDataAlign) {
           return !(el.name.startsWith('data-align') || el.name.startsWith('data-valign'));
         }
 
