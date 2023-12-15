@@ -120,6 +120,11 @@
   aspect-ratio: 1;
 }
 
+.v2-media-with-text--media-gallery .v2-media-with-text__content-section {
+  margin: auto;
+  text-align: center
+}
+
 
 @media (min-width: 744px) {
   /* Variant: default  */
@@ -162,10 +167,10 @@
     width: 506px;
   }
 
-
   .v2-media-with-text--media-gallery .v2-media-with-text__media-section {
     gap: 20px;
   }
+
 }
 
 @media (min-width: 1200px) {
