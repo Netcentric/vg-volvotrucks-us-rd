@@ -40,11 +40,7 @@
 }
 
 .v2-media-with-text__sub-text-section {
-  color: var(--c-grey-4);
-}
-
-.section--black-background .v2-media-with-text__sub-text-section {
-  color: var(--c-grey-2);
+  color: var(--text-subtle);
 }
 
 /* Variant: text-centered  */
