@@ -117,13 +117,7 @@ button.v2-media-with-tabs__tab:focus-visible {
 }
 
 @media screen and (min-width: 1200px) {
-  .section.v2-media-with-tabs-container .v2-media-with-tabs-wrapper {
-    width: 100%;
-    margin: 0;
-  }
-
   .v2-media-with-tabs {
-    padding: 0 64px 0 32px;
     flex-direction: row;
     gap: 48px;
   }
