@@ -97,9 +97,15 @@
 .v2-media-with-text--media-gallery .v2-media-with-text__media-section {
   display: flex;
   gap: 8px;
-  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scroll-snap-align: start;
+  scrollbar-width: none;
   overflow: auto;
   flex-flow: row nowrap;
+}
+
+.v2-media-with-text--media-gallery .v2-media-with-text__media-section::-webkit-scrollbar {
+  display: none;
 }
 
 .v2-media-with-text--media-gallery .v2-media-with-text__media-section picture {
