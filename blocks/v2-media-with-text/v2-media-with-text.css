@@ -16,7 +16,8 @@
   position: relative;
 }
 
-.v2-media-with-text__media-section img, .v2-media-with-text__media-section video {
+.v2-media-with-text__media-section img,
+.v2-media-with-text__media-section video {
   border-radius: var(--border-radius);
   object-fit: cover;
   aspect-ratio: 7/5;
@@ -52,13 +53,10 @@
 
 /* Variant: full-width  */
 
-.v2-media-with-text--full-width .v2-media-with-text__media-section img, .v2-media-with-text--full-width .v2-media-with-text__media-section video {
+.v2-media-with-text--full-width .v2-media-with-text__media-section img,
+.v2-media-with-text--full-width .v2-media-with-text__media-section video {
   width: 100%;
   height: 210px;
-  border-radius: 0;
-}
-
-.v2-media-with-text--full-width .v2-media-with-text__media-section video {
   border-radius: 0;
 }
 
@@ -67,11 +65,13 @@
 }
 
 /* Variant: media-right, media-left  */
-.v2-media-with-text--media-left, .v2-media-with-text--media-right {
+.v2-media-with-text--media-left,
+.v2-media-with-text--media-right {
   gap: 24px;
 }
 
-.v2-media-with-text--media-left .v2-media-with-text__media-section img, .v2-media-with-text--media-right .v2-media-with-text__media-section img {
+.v2-media-with-text--media-left .v2-media-with-text__media-section img,
+.v2-media-with-text--media-right .v2-media-with-text__media-section img {
   aspect-ratio: 7/5;
   height: 100%;
 }
@@ -121,31 +121,37 @@
 
 @media (min-width: 744px) {
   /* Variant: default  */
-  .v2-media-with-text__media-section img, .v2-media-with-text__media-section video {
+  .v2-media-with-text__media-section img,
+  .v2-media-with-text__media-section video {
     aspect-ratio: 4/3;
   }
 
-  .v2-media-with-text__content-section, .v2-media-with-text__sub-text-section {
+  .v2-media-with-text__content-section,
+  .v2-media-with-text__sub-text-section {
     max-width: 506px;
   }
 
 
   /* Variant: full-width  */
-  .v2-media-with-text--full-width .v2-media-with-text__media-section img, .v2-media-with-text--full-width .v2-media-with-text__media-section video {
+  .v2-media-with-text--full-width .v2-media-with-text__media-section img,
+  .v2-media-with-text--full-width .v2-media-with-text__media-section video {
     height: 418px;
   }
 
 
   /* Variant: media-left, media-right  */
-  .v2-media-with-text--media-left, .v2-media-with-text--media-right {
+  .v2-media-with-text--media-left,
+  .v2-media-with-text--media-right {
     gap: 32px;
   }
 
-  .v2-media-with-text--media-left .v2-media-with-text__content-section, .v2-media-with-text--media-right .v2-media-with-text__content-section {
+  .v2-media-with-text--media-left .v2-media-with-text__content-section,
+  .v2-media-with-text--media-right .v2-media-with-text__content-section {
     max-width: 332px;
   }
 
-  .v2-media-with-text--media-left .v2-media-with-text__media-section img, .v2-media-with-text--media-right .v2-media-with-text__media-section img {
+  .v2-media-with-text--media-left .v2-media-with-text__media-section img,
+  .v2-media-with-text--media-right .v2-media-with-text__media-section img {
     aspect-ratio: 4 / 3;
   }
 
@@ -173,7 +179,8 @@
   }
 
 
-  .v2-media-with-text__media-section img, .v2-media-with-text__media-section video {
+  .v2-media-with-text__media-section img,
+  .v2-media-with-text__media-section video {
     aspect-ratio: 16 / 9;
   }
 
@@ -206,13 +213,15 @@
     padding: 0;
   }
 
-  .v2-media-with-text--full-width .v2-media-with-text__media-section img, .v2-media-with-text--full-width .v2-media-with-text__media-section video {
+  .v2-media-with-text--full-width .v2-media-with-text__media-section img,
+  .v2-media-with-text--full-width .v2-media-with-text__media-section video {
     height: 810px;
   }
 
 
   /* Variant: media-left, media-right  */
-  .v2-media-with-text--media-left, .v2-media-with-text--media-right {
+  .v2-media-with-text--media-left,
+  .v2-media-with-text--media-right {
     align-items: center;
   }
 
@@ -224,12 +233,14 @@
     flex-direction: row-reverse
   }
 
-  .v2-media-with-text--media-left .v2-media-with-text__content-section, .v2-media-with-text--media-right .v2-media-with-text__content-section {
+  .v2-media-with-text--media-left .v2-media-with-text__content-section,
+  .v2-media-with-text--media-right .v2-media-with-text__content-section {
     text-align: left;
     max-width: 309px;
   }
 
-  .v2-media-with-text--media-left .v2-media-with-text__media-section img, .v2-media-with-text--media-right .v2-media-with-text__media-section img {
+  .v2-media-with-text--media-left .v2-media-with-text__media-section img,
+  .v2-media-with-text--media-right .v2-media-with-text__media-section img {
     aspect-ratio: 7 / 6;
   }
 
