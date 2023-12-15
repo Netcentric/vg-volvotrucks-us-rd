@@ -14,6 +14,9 @@ export default async function decorate(block) {
   const isFullWidthBlock = block.className.includes('full-width');
   if (isFullWidthBlock) block.parentElement.classList.add('full-width');
 
+  const isExpandedBlock = block.className.includes('media-left') || block.className.includes('media-right');
+  if (isExpandedBlock) block.parentElement.classList.add('expanded-width');
+
   const cells = block.querySelectorAll(':scope > div > div');
   let contentSection; let mediaSection; let subTextSection; let
     containerSection;
