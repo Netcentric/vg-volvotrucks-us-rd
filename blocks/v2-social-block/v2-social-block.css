@@ -11,7 +11,7 @@
   --social-block-gap: 16px;
   --social-block-list-gap: 24px;
   --social-link-color: var(--c-main-black);
-  --social-text-color: var(--c-main-black);
+  --social-text-color: var(--c-grey-4);
 
   padding: var(--social-block-padding);
   border-radius: 8px;
