@@ -79,7 +79,7 @@
 /* Variant: media-vertical */
 
 .v2-media-with-text--media-vertical {
-  grid-gap: 48px;
+  gap: 48px;
 }
 
 .v2-media-with-text--media-vertical .v2-media-with-text__content-section {
@@ -232,7 +232,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
-    grid-gap: 64px 32px;
+    gap: 64px 32px;
   }
 
 
