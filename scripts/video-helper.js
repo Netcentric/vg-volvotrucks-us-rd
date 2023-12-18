@@ -8,9 +8,7 @@ export function isLowResolutionVideoUrl(url) {
 
 export function isVideoLink(link) {
   const linkString = link.getAttribute('href');
-  return (linkString.includes('youtube.com/embed/')
-      || isLowResolutionVideoUrl(linkString))
-    && link.closest('.block.embed') === null;
+  return (linkString.includes('youtube.com/embed/') || isLowResolutionVideoUrl(linkString)) && link.closest('.block.embed') === null;
 }
 
 export function selectVideoLink(links, preferredType) {
@@ -65,8 +63,7 @@ export function addVideoShowHandler(link) {
 }
 
 export function isSoundcloudLink(link) {
-  return link.getAttribute('href').includes('soundcloud.com/player')
-    && link.closest('.block.embed') === null;
+  return link.getAttribute('href').includes('soundcloud.com/player') && link.closest('.block.embed') === null;
 }
 
 export function addSoundcloudShowHandler(link) {
@@ -122,9 +119,7 @@ export function createIframe(url, { parentEl, classes = [] }) {
   const iframe = createElement('iframe', {
     classes: Array.isArray(classes) ? classes : [classes],
     props: {
-      frameborder: '0',
-      allowfullscreen: 'allowfullscreen',
-      src: url,
+      frameborder: '0', allowfullscreen: 'allowfullscreen', src: url,
     },
   });
 
@@ -163,8 +158,7 @@ export const createVideo = (src, className = '', props = {}) => {
 
   const source = createElement('source', {
     props: {
-      src,
-      type: 'video/mp4',
+      src, type: 'video/mp4',
     },
   });
 
@@ -243,7 +237,7 @@ export function getDynamicVideoHeight(video, playbackControls) {
 /**
  * Creates a video element with a poster image.
  * @param {HTMLElement} linkEl - The link element that contains the video URL.
- * @param {string} poster - The URL of the poster image.
+ * @param {HTMLPictureElement} poster - The URL of the poster image.
  * @param {string} blockName - The name of the CSS block for styling.
  * @return {HTMLElement} - The container element that holds the video and poster.
  */
@@ -252,30 +246,36 @@ export function createVideoWithPoster(linkEl, poster, blockName) {
   const videoContainer = document.createElement('div');
   videoContainer.classList.add(`${blockName}__video-container`, `${blockName}--video-with-poster`);
 
-  let videoOrIframe;
+  let videoOrIframe; let
+    playButton;
+
+  const showVideo = (e) => {
+    const ele = e.currentTarget;
+    const eleParent = ele.parentElement;
+    const picture = eleParent?.querySelector('picture');
+    const video = eleParent?.querySelector('video');
+    const iframe = eleParent?.querySelector('iframe');
+    if (eleParent && picture) {
+      ele.remove();
+      picture.remove();
+      if (video) video.style.display = 'block';
+      if (iframe) iframe.style.display = 'block';
+    }
+  };
+
   if (isLowResolutionVideoUrl(linkUrl)) {
     videoOrIframe = createVideo(linkUrl, `${blockName}__video`, {
       muted: false, autoplay: false, loop: true, playsinline: true, controls: true,
     });
-    videoOrIframe.querySelector('.v2-video__playback-button').addEventListener('click', (e) => {
-      const ele = e.currentTarget;
-      const eleParent = ele.parentElement;
-      const picture = eleParent?.querySelector('picture');
-      const video = eleParent?.querySelector('video');
-      if (eleParent && picture && video) {
-        ele.remove();
-        picture.remove();
-        video.style.display = 'block';
-      }
-    });
   } else {
-    videoOrIframe = createElement('iframe', {
-      classes: `${blockName}__iframe`,
-      props: {
-        frameborder: '0', allowfullscreen: 'allowfullscreen', src: linkUrl,
-      },
+    videoOrIframe = createIframe(linkUrl, { classes: `${blockName}__iframe` });
+    playButton = createElement('button', {
+      props: { type: 'button', class: 'v2-video__playback-button' },
     });
+    addPlayIcon(playButton);
+    videoContainer.append(playButton);
   }
   videoContainer.append(poster, videoOrIframe);
+  videoContainer.querySelector('.v2-video__playback-button').addEventListener('click', showVideo);
   return videoContainer;
 }

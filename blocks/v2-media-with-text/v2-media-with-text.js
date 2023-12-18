@@ -71,6 +71,10 @@ export default async function decorate(block) {
       if (subTextSection) block.append(subTextSection);
     }
   });
+
+  const medias = block.querySelectorAll(['img', 'video', 'iframe']);
+  medias.forEach((media) => media.classList.add(`${blockName}__media`));
+
   unwrapDivs(block);
   removeEmptyTags(block);
 }
