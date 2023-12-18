@@ -185,6 +185,10 @@ export const removeEmptyTags = (block) => {
   block.querySelectorAll('*').forEach((x) => {
     const tagName = `</${x.tagName}>`;
 
+    // exclude iframes
+    if (x.tagName.toUpperCase() === 'IFRAME') {
+      return;
+    }
     // checking that the tag is not autoclosed to make sure we don't remove <meta />
     // checking the innerHTML and trim it to make sure the content inside the tag is 0
     if (
