@@ -277,5 +277,6 @@ export function createVideoWithPoster(linkEl, poster, blockName) {
   }
   videoContainer.append(poster, videoOrIframe);
   videoContainer.querySelector('.v2-video__playback-button').addEventListener('click', showVideo);
+  videoContainer.querySelector('.icon-pause-video')?.remove();
   return videoContainer;
 }

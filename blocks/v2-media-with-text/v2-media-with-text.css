@@ -51,6 +51,12 @@
   transform: none;
 }
 
+.v2-media-with-text--video-with-poster .v2-video__playback-button .icon,
+.v2-media-with-text--video-with-poster .v2-video__playback-button .icon svg {
+  width: 72px;
+  height: 72px;
+}
+
 .v2-media-with-text__content-section,
 .v2-media-with-text__sub-text-section {
   width: 100%;
