@@ -27,6 +27,26 @@
   width: 100%;
 }
 
+.v2-media-with-text--video-with-poster {
+  position: relative
+}
+
+.v2-media-with-text--video-with-poster img {
+  width: 100%;
+}
+
+.v2-media-with-text--video-with-poster video {
+  display: none;
+}
+
+.v2-media-with-text--video-with-poster .v2-video__playback-button {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform: none;
+}
+
 .v2-media-with-text__content-section,
 .v2-media-with-text__sub-text-section {
   width: 100%;

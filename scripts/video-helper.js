@@ -239,3 +239,43 @@ export function getDynamicVideoHeight(video, playbackControls) {
   const resizeObserver = new ResizeObserver(getVideoHeight);
   resizeObserver.observe(video);
 }
+
+/**
+ * Creates a video element with a poster image.
+ * @param {HTMLElement} linkEl - The link element that contains the video URL.
+ * @param {string} poster - The URL of the poster image.
+ * @param {string} blockName - The name of the CSS block for styling.
+ * @return {HTMLElement} - The container element that holds the video and poster.
+ */
+export function createVideoWithPoster(linkEl, poster, blockName) {
+  const linkUrl = linkEl.getAttribute('href');
+  const videoContainer = document.createElement('div');
+  videoContainer.classList.add(`${blockName}__video-container`, `${blockName}--video-with-poster`);
+
+  let videoOrIframe;
+  if (isLowResolutionVideoUrl(linkUrl)) {
+    videoOrIframe = createVideo(linkUrl, `${blockName}__video`, {
+      muted: false, autoplay: false, loop: true, playsinline: true, controls: true,
+    });
+    videoOrIframe.querySelector('.v2-video__playback-button').addEventListener('click', (e) => {
+      const ele = e.currentTarget;
+      const eleParent = ele.parentElement;
+      const picture = eleParent?.querySelector('picture');
+      const video = eleParent?.querySelector('video');
+      if (eleParent && picture && video) {
+        ele.remove();
+        picture.remove();
+        video.style.display = 'block';
+      }
+    });
+  } else {
+    videoOrIframe = createElement('iframe', {
+      classes: `${blockName}__iframe`,
+      props: {
+        frameborder: '0', allowfullscreen: 'allowfullscreen', src: linkUrl,
+      },
+    });
+  }
+  videoContainer.append(poster, videoOrIframe);
+  return videoContainer;
+}

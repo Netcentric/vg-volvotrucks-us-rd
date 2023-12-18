@@ -3,20 +3,24 @@ import {
   addVideoToSection,
   createElement,
   createNewSection,
+  removeEmptyTags,
   unwrapDivs,
   variantsClassesToBEM,
 } from '../../scripts/common.js';
+import { createVideoWithPoster, isVideoLink, selectVideoLink } from '../../scripts/video-helper.js';
 
 const blockName = 'v2-media-with-text';
-const variantClasses = ['text-centered', 'expanded-width', 'full-width', 'media-left', 'media-left', 'media-right', 'media-vertical', 'media-gallery'];
+const variantClasses = ['text-centered', 'expanded-width', 'full-width', 'media-left', 'media-left', 'media-right', 'media-vertical', 'media-gallery', 'media-autoplay'];
 export default async function decorate(block) {
   variantsClassesToBEM(block.classList, variantClasses, blockName);
   addClassIfChildHasClass(block, 'full-width');
   addClassIfChildHasClass(block, 'expanded-width');
 
   const cells = block.querySelectorAll(':scope > div > div');
-  let contentSection; let mediaSection; let subTextSection; let
-    containerSection;
+  let contentSection;
+  let mediaSection;
+  let subTextSection;
+  let containerSection;
 
   cells.forEach((cell, index) => {
     // First cell for content, second for media and last for the subtext
@@ -30,8 +34,24 @@ export default async function decorate(block) {
       headings.forEach((heading) => heading.classList.add(`${blockName}__heading`));
     } else {
       mediaSection = createNewSection(blockName, 'media', cell);
-      const link = mediaSection.querySelector('a');
-      mediaSection = addVideoToSection(blockName, mediaSection, link);
+
+      const videos = [...mediaSection.querySelectorAll('a')].filter((link) => isVideoLink(link));
+      const picture = mediaSection.querySelector('picture');
+      const videoButtons = mediaSection.querySelectorAll('.button-container'); // need to remove it later from DOM
+
+      if (videos.length) {
+        const linkEl = selectVideoLink(videos);
+
+        if (linkEl) {
+          if (picture) {
+            const videoWithPoster = createVideoWithPoster(linkEl, picture, blockName);
+            videoButtons.forEach((button) => button.remove());
+            mediaSection.append(videoWithPoster);
+          } else {
+            mediaSection = addVideoToSection(blockName, mediaSection, linkEl);
+          }
+        }
+      }
     }
 
     // If cell number is odd(i.e. a 'media' cell) and not the last cell
@@ -52,4 +72,5 @@ export default async function decorate(block) {
     }
   });
   unwrapDivs(block);
+  removeEmptyTags(block);
 }
