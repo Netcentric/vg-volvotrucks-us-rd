@@ -28,13 +28,30 @@ export function selectVideoLink(links, preferredType) {
 export function createLowResolutionBanner() {
   const lowResolutionMessage = getTextLabel('Low resolution video message');
   const changeCookieSettings = getTextLabel('Change cookie settings');
+  let banner;
 
-  const banner = document.createElement('div');
-  banner.classList.add('low-resolution-banner');
-  banner.innerHTML = `${lowResolutionMessage} <button class="low-resolution-banner-cookie-settings">${changeCookieSettings}</button>`;
-  banner.querySelector('button').addEventListener('click', () => {
-    window.OneTrust.ToggleInfoDisplay();
-  });
+  if (document.documentElement.classList.contains('redesign-v2')) {
+    banner = createElement('div', { classes: 'low-resolution-banner' });
+    const bannerText = createElement('p');
+    const bannerButton = createElement('button', { classes: ['button', 'secondary', 'dark'] });
+
+    bannerText.textContent = lowResolutionMessage;
+    bannerButton.textContent = changeCookieSettings;
+
+    banner.appendChild(bannerText);
+    banner.appendChild(bannerButton);
+
+    bannerButton.addEventListener('click', () => {
+      window.OneTrust.ToggleInfoDisplay();
+    });
+  } else {
+    banner = document.createElement('div');
+    banner.classList.add('low-resolution-banner');
+    banner.innerHTML = `${lowResolutionMessage} <button class="low-resolution-banner-cookie-settings">${changeCookieSettings}</button>`;
+    banner.querySelector('button').addEventListener('click', () => {
+      window.OneTrust.ToggleInfoDisplay();
+    });
+  }
 
   return banner;
 }
