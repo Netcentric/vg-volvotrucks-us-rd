@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-cycle
-import { createElement, getTextLabel } from './common.js';
+import { createElement, getTextLabel, isExternalVideoAllowed } from './common.js';
 
 /* video helpers */
 export function isLowResolutionVideoUrl(url) {
@@ -13,9 +13,7 @@ export function isVideoLink(link) {
 
 export function selectVideoLink(links, preferredType) {
   const linksList = [...links];
-  const optanonConsentCookieValue = decodeURIComponent(document.cookie.split(';').find((cookie) => cookie.trim().startsWith('OptanonConsent=')));
-  const cookieConsentForExternalVideos = optanonConsentCookieValue.includes('C0005:1');
-  const shouldUseYouTubeLinks = cookieConsentForExternalVideos && preferredType !== 'local';
+  const shouldUseYouTubeLinks = isExternalVideoAllowed() && preferredType !== 'local';
   const youTubeLink = linksList.find((link) => link.getAttribute('href').includes('youtube.com/embed/'));
   const localMediaLink = linksList.find((link) => link.getAttribute('href').split('?')[0].endsWith('.mp4'));
 
