@@ -1571,6 +1571,11 @@ main.blue-contract .section.section-with-title p {
   fill: var(--c-grey-50);
 }
 
+.v2-video__playback-button .icon {
+    height: 100%;
+    align-items: center;
+}
+
 /* stylelint-disable-next-line no-descending-specificity */
 .v2-video__playback-button .icon svg {
   width: 32px;
