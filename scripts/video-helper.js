@@ -17,6 +17,9 @@ export function selectVideoLink(links, preferredType) {
   const youTubeLink = linksList.find((link) => link.getAttribute('href').includes('youtube.com/embed/'));
   const localMediaLink = linksList.find((link) => link.getAttribute('href').split('?')[0].endsWith('.mp4'));
 
+  if (preferredType === 'singleVideo' && youTubeLink) {
+    return youTubeLink;
+  }
   if (shouldUseYouTubeLinks && youTubeLink) {
     return youTubeLink;
   }

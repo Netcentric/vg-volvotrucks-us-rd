@@ -228,8 +228,20 @@
       "Text": "Model year"
     },
     {
-      "Key": "go to top",
-      "Text": "Go to the top of the page"
+      "Key": "single video message title",
+      "Text": "Enable cookies to view the reveal in high resolution?"
+    },
+    {
+      "Key": "single video message text",
+      "Text": "Our media viewer uses social media cookies and/or similar technologies set by third-party services, as outlined in our <a href='#'>cookie policy</a>. Use the “Okay” button or close this notice to consent and view hi-res media. Select “Deny” to view in low resolution."
+    },
+    {
+      "Key": "single video message button",
+      "Text": "Okay"
+    },
+    {
+      "Key": "single video message button deny",
+      "Text": "Deny"
     }
   ],
   ":type": "sheet"

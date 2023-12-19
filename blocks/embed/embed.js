@@ -1,3 +1,4 @@
+import { getTextLabel, isExternalVideoAllowed } from '../../scripts/common.js';
 import {
   selectVideoLink, addPlayIcon, showVideoModal, isLowResolutionVideoUrl,
   createLowResolutionBanner, createIframe,
@@ -5,6 +6,7 @@ import {
 
 export default function decorate(block) {
   const isAutoplay = block.classList.contains('autoplay');
+  const isSingleVideo = block.classList.contains('single-video');
   const isLoopedVideo = block.classList.contains('loop');
   const isFullWidth = block.classList.contains('full-width');
   const hideLowResolutionBanner = block.classList.contains('no-banner');
@@ -13,10 +15,33 @@ export default function decorate(block) {
   block.classList.remove('loop', 'autoplay', 'full-width');
   videoWrapper.classList.add('embed-video');
 
+  const preferredType = (() => {
+    if (isSingleVideo) return 'singleVideo';
+    if (isFullWidth) return 'local';
+    return 'auto';
+  })();
+
   const links = block.querySelectorAll('a');
-  const selectedLink = selectVideoLink(links, isFullWidth ? 'local' : 'auto');
+  const selectedLink = selectVideoLink(links, preferredType);
   const video = document.createElement('video');
   const source = document.createElement('source');
+
+  if (isSingleVideo && !isExternalVideoAllowed()) {
+    block.innerHTML = '';
+
+    const cookieMessage = document.createRange().createContextualFragment(`
+    <div class="cookie-message">
+      <h3 class="cookie-message__title">${getTextLabel('single video message title')}</h3>
+      <p class="cookie-message__text">${getTextLabel('single video message text')}</p>
+      <div class="cookie-message__button-container">
+        <button class="primary dark">${getTextLabel('single video message button')}</button>
+        <button class="secondary dark">${getTextLabel('single video message button deny')}</button>
+      </div>
+    </div>`);
+    block.append(cookieMessage);
+
+    return;
+  }
 
   if (!selectedLink) {
     block.innerHTML = '';
