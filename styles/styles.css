@@ -792,6 +792,8 @@ main .section.tabbed-container ul.tab-navigation button {
 
 .redesign-v2 .icon {
   display: flex;
+  height: 100%;
+  align-items: center;
 }
 
 .redesign-v2 .icon svg {
