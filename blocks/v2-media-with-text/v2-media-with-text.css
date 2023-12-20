@@ -296,7 +296,6 @@
 
   .v2-media-with-text--media-vertical .v2-media-with-text__sub-text-section {
     grid-column: 1 / -1;
-    max-width: 694px;
     margin: auto;
   }
 
@@ -313,7 +312,3 @@
     margin-right: 0;
   }
 }
-
-
-
-
