@@ -38,7 +38,7 @@ function generateICS(event) {
     `DTSTART:${formatDateToICS(event.startDate)}`,
     `DTEND:${formatDateToICS(event.endDate)}`,
     `DESCRIPTION:${event.description}`,
-    'LOCATION:online',
+    `LOCATION:${event.location}`,
     'END:VEVENT',
     'END:VCALENDAR',
   ].join('\r\n');
@@ -68,7 +68,7 @@ const onSuccess = async (calendarEventData) => {
   addToEventButton.classList.add('primary');
   addToEventButton.addEventListener('click', () => {
     const icsFileContent = generateICS(calendarEventData);
-    downloadICSFile(icsFileContent, 'event.ics');
+    downloadICSFile(icsFileContent, `${calendarEventData.fileName}.ics`);
   });
 
   const socialsLinksBlock = document.createRange().createContextualFragment(`
@@ -120,10 +120,12 @@ export default async function decorate(block) {
   // Calendar event meta data
   const blockSection = block.parentElement?.parentElement;
   const calendarEventData = {
+    fileName: blockSection?.dataset.eventFileName,
     summary: blockSection?.dataset.eventSummary,
     startDate: new Date(blockSection?.dataset.eventStartDate),
     endDate: new Date(blockSection?.dataset.eventEndDate),
     description: blockSection?.dataset.eventDescription,
+    location: blockSection?.dataset.eventLocation,
   };
 
   window.logResult = function logResult(json) {
@@ -186,7 +188,7 @@ export default async function decorate(block) {
       policyEl.append(policyText);
       calendarButtonEl.addEventListener('click', () => {
         const icsFileContent = generateICS(calendarEventData);
-        downloadICSFile(icsFileContent, 'event.ics');
+        downloadICSFile(icsFileContent, `${calendarEventData.fileName}.ics`);
       });
 
       observer.disconnect();
