@@ -148,9 +148,11 @@ button.v2-media-with-tabs__tab:focus-visible {
     text-wrap: balance;
   }
 
-  .v2-media-with-tabs__subtitle {
+  .v2-media-with-tabs__texts-section .v2-media-with-tabs__subtitle {
     margin-bottom: 48px;
     font-size: var(--f-body-2-font-size);
+    letter-spacing: var(--f-body-2-letter-spacing);
+    line-height: var(--f-body-2-line-height);
   }
 
   .v2-media-with-tabs__image img {
