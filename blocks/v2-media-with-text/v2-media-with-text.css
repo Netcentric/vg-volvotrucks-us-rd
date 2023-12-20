@@ -12,7 +12,8 @@
   gap: 32px;
 }
 
-.v2-media-with-text__media-section {
+.v2-media-with-text__media-section,
+.v2-media-with-text--video-with-poster {
   position: relative;
 }
 
@@ -23,15 +24,8 @@
   display: block;
 }
 
-.v2-media-with-text__media-section video {
-  width: 100%;
-}
-
-.v2-media-with-text--video-with-poster {
-  position: relative
-}
-
-.v2-media-with-text--video-with-poster .v2-media-with-text__media {
+.v2-media-with-text--video-with-poster .v2-media-with-text__media,
+.v2-media-with-text__media-section video.v2-media-with-text__media {
   width: 100%;
 }
 
