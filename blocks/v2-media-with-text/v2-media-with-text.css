@@ -99,6 +99,8 @@
 
 .v2-media-with-text--full-width .v2-media-with-text__content-section {
   padding: 0 16px;
+  align-self: center;
+  text-align: center;
 }
 
 /* Variant: media-right, media-left  */
