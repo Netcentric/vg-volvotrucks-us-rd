@@ -7,10 +7,12 @@ import {
   unwrapDivs,
   variantsClassesToBEM,
 } from '../../scripts/common.js';
-import { createVideoWithPoster, isVideoLink, selectVideoLink } from '../../scripts/video-helper.js';
+import {
+  addMuteControls, createVideoWithPoster, isVideoLink, selectVideoLink,
+} from '../../scripts/video-helper.js';
 
 const blockName = 'v2-media-with-text';
-const variantClasses = ['text-centered', 'expanded-width', 'full-width', 'media-left', 'media-left', 'media-right', 'media-vertical', 'media-gallery', 'media-autoplay'];
+const variantClasses = ['text-centered', 'expanded-width', 'full-width', 'media-left', 'media-left', 'media-right', 'media-vertical', 'media-gallery', 'media-autoplay', 'mute-controls'];
 export default async function decorate(block) {
   variantsClassesToBEM(block.classList, variantClasses, blockName);
   addClassIfChildHasClass(block, 'full-width');
@@ -49,6 +51,7 @@ export default async function decorate(block) {
             mediaSection.append(videoWithPoster);
           } else {
             mediaSection = addVideoToSection(blockName, mediaSection, linkEl);
+            if (block.classList.contains(`${blockName}--mute-controls`)) addMuteControls(mediaSection);
           }
         }
       }
