@@ -68,9 +68,14 @@
   margin-bottom: 0;
 }
 
+.v2-media-with-text__content-section p:first-of-type {
+  margin-top: 0;
+}
+
 .v2-media-with-text__heading {
   font: 400 var(--f-heading-5-font-size) / var(--f-heading-5-line-height) var(--font-family-heading);
   letter-spacing: var(--f-heading-5-letter-spacing);
+  margin-bottom: 16px;
 }
 
 .v2-media-with-text__sub-text-section {
@@ -243,6 +248,7 @@
   .v2-media-with-text__heading {
     font: 400 var(--f-heading-4-font-size) / var(--f-heading-4-line-height) var(--font-family-heading);
     letter-spacing: var(--f-heading-4-letter-spacing);
+    margin-bottom: 24px;
   }
 
   /* Variant: full-width  */
