@@ -126,10 +126,14 @@
 
 /* Variant: media-gallery */
 
+.v2-media-with-text--media-gallery{
+  --media-gallery-gap:8px;
+  --media-gallery-slide-peek:16px
+}
 
 .v2-media-with-text--media-gallery .v2-media-with-text__media-section {
   display: flex;
-  gap: 8px;
+  gap: var(--media-gallery-gap);
   scroll-behavior: smooth;
   scroll-snap-align: start;
   scrollbar-width: none;
@@ -145,7 +149,7 @@
 
 .v2-media-with-text--media-gallery .v2-media-with-text__media-section picture {
   scroll-snap-align: center;
-  width: 335px;
+  width: calc(100% - var(--media-gallery-gap) - var(--media-gallery-slide-peek));
   flex-shrink: 0;
 }
 
