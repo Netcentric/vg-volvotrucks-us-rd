@@ -877,13 +877,14 @@ a.button.text-link-with-video::after {
 .redesign-v2 .low-resolution-banner {
   margin-bottom: 16px;
   padding: 16px;
-  background: var(--c-grey-950);
+  background: var(--c-grey-4);
   text-align: left;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
+  color: var(--c-white);
 }
 
 .redesign-v2 .low-resolution-banner p {

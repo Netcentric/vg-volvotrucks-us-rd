@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-cycle
 import { loadScript, sampleRUM } from './lib-franklin.js';
+import { getCookie } from './common.js';
 
 const COOKIES = {
   performance: 'C0002:1',
@@ -57,9 +58,11 @@ if (!window.location.pathname.includes('srcdoc')
       return s1 === s2;
     }
 
+    const isSingleVideo = getCookie('isSingleVideo');
+
     window.OneTrust.OnConsentChanged(() => {
       // reloading the page only when the active group has changed
-      if (!isSameGroups(currentOnetrustActiveGroups, window.OnetrustActiveGroups)) {
+      if (!isSameGroups(currentOnetrustActiveGroups, window.OnetrustActiveGroups) && !isSingleVideo) {
         window.location.reload();
       }
     });
