@@ -1,6 +1,5 @@
 // eslint-disable-next-line import/no-cycle
 import { loadScript, sampleRUM } from './lib-franklin.js';
-import { getCookie } from './common.js';
 
 const COOKIES = {
   performance: 'C0002:1',
@@ -58,11 +57,14 @@ if (!window.location.pathname.includes('srcdoc')
       return s1 === s2;
     }
 
-    const isSingleVideo = getCookie('isSingleVideo');
+    const isSingleVideo = document.cookie.split('; ').reduce((r, v) => {
+      const parts = v.split('=');
+      return parts[0] === 'isSingleVideo' ? decodeURIComponent(parts[1]) : r;
+    }, '');
 
     window.OneTrust.OnConsentChanged(() => {
       // reloading the page only when the active group has changed
-      if (!isSameGroups(currentOnetrustActiveGroups, window.OnetrustActiveGroups) && !isSingleVideo) {
+      if (!isSameGroups(currentOnetrustActiveGroups, window.OnetrustActiveGroups) && isSingleVideo !== 'true') {
         window.location.reload();
       }
     });

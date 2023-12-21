@@ -377,10 +377,3 @@ export const getLanguagePath = () => {
   const langCodeMatch = pathname.match('^(/[a-z]{2}(-[a-z]{2})?/).*');
   return langCodeMatch ? langCodeMatch[1] : '/';
 };
-
-export function getCookie(name) {
-  return document.cookie.split('; ').reduce((r, v) => {
-    const parts = v.split('=');
-    return parts[0] === name ? decodeURIComponent(parts[1]) : r;
-  }, '');
-}

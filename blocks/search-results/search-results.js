@@ -1,6 +1,5 @@
 import templates from './templates.js';
 import { loadScript } from '../../scripts/lib-franklin.js';
-import { getCookie } from '../../scripts/common.js';
 
 // Implementation based on searchtax documentation https://www.searchstax.com/docs/searchstudio/searchstax-studio-searchjs-module/
 export default async function decorate(block) {
@@ -30,6 +29,13 @@ export default async function decorate(block) {
   function setCookie(name, value, days = 7, path = '/') {
     const expires = new Date(Date.now() + days * 864e5).toUTCString();
     document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=${path}`;
+  }
+
+  function getCookie(name) {
+    return document.cookie.split('; ').reduce((r, v) => {
+      const parts = v.split('=');
+      return parts[0] === name ? decodeURIComponent(parts[1]) : r;
+    }, '');
   }
 
   // generating random value for cookie when value is missing
