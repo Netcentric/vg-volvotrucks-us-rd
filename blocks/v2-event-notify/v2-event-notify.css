@@ -44,7 +44,7 @@
 }
 
 .v2-event-notify__container .v2-forms__container input {
-  background: var(--c-primary-white);
+  background: var(--c-white);
   font-size: var(--f-body-font-size);
   letter-spacing: var(--f-body-letter-spacing);
   line-height: var(--f-body-line-height);
