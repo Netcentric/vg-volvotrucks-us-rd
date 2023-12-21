@@ -92,10 +92,6 @@
   margin-bottom: 40px;
 }
 
-.v2-event-notify__container .v2-social-block {
-  max-width: unset;
-}
-
 .v2-event-notify__container input:user-invalid,
 .v2-event-notify__container input:user-invalid:hover,
 .v2-event-notify__container input:user-invalid:focus {

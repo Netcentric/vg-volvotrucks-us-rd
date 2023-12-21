@@ -9,7 +9,6 @@ const blockName = 'v2-event-notify';
 
 let successText;
 let errorText;
-let socialsLinks;
 
 // Convert date to ICS format (e.g., 20231210T120000Z)
 function formatDateToICS(date) {
@@ -71,20 +70,8 @@ const onSuccess = async (calendarEventData) => {
     downloadICSFile(icsFileContent, `${calendarEventData.fileName}.ics`);
   });
 
-  const socialsLinksBlock = document.createRange().createContextualFragment(`
-    <div class="v2-social-block v2-social-block--gray block" data-block-name="v2-social-block" data-block-status="">
-      <div>
-        <div></div>
-      </div>
-    </div>`);
-
-  const socialLinkBlockEl = socialsLinksBlock.children[0];
-  socialLinkBlockEl.querySelector(':scope > div > div').innerHTML = socialsLinks.innerHTML;
-
-  await loadBlock(socialLinkBlockEl);
-
   buttonWrapper.append(addToEventButton);
-  block.append(successText, buttonWrapper, socialLinkBlockEl);
+  block.append(successText, buttonWrapper);
 };
 
 const onError = (error) => {
@@ -110,8 +97,6 @@ export default async function decorate(block) {
   const formLink = contentData.link.innerText.trim();
   const beforeFormText = contentData['before form'];
   const policyText = contentData.policy;
-  socialsLinks = contentData.socials;
-  socialsLinks.classList.add(`${blockName}__socials`);
   errorText = contentData['error message'];
   errorText.classList.add(`${blockName}__message-text`);
   successText = contentData['success message'];
