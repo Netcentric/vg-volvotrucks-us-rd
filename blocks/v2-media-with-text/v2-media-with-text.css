@@ -92,7 +92,7 @@
 
 .v2-media-with-text--full-width .v2-media-with-text__media-section .v2-media-with-text__media {
   width: 100%;
-  height: 210px;
+  aspect-ratio: 16/9;
   border-radius: 0;
 }
 
@@ -125,9 +125,6 @@
   max-width: 100%;
 }
 
-.v2-media-with-text--media-vertical .v2-media-with-text__media-section .v2-media-with-text__media {
-  aspect-ratio: 4/3;
-}
 
 /* Variant: media-gallery */
 
@@ -167,12 +164,12 @@
 .v2-media-with-text--media-gallery .v2-media-with-text__media-section picture {
   scroll-snap-align: center;
   width: calc(100% - (var(--media-gallery-container-margin) * 2) - var(--media-gallery-gap));
-  max-width: var(--media-gallery-max-image-width);
   flex-shrink: 0;
 }
 
 .v2-media-with-text--media-gallery .v2-media-with-text__media-section .v2-media-with-text__media {
   aspect-ratio: 1;
+  max-width: var(--media-gallery-max-image-width);
 }
 
 .v2-media-with-text--media-gallery .v2-media-with-text__content-section {
@@ -190,12 +187,6 @@
   /* Variant: video with poster  */
   .v2-media-with-text--video-with-poster .v2-media-with-text__media {
     aspect-ratio: 1;
-  }
-
-
-  /* Variant: full-width  */
-  .v2-media-with-text--full-width .v2-media-with-text__media-section .v2-media-with-text__media {
-    height: 418px;
   }
 
 
@@ -228,7 +219,13 @@
   }
 
   .v2-media-with-text--media-gallery .v2-media-with-text__media-section picture {
-    max-width: 506px;
+    max-width: var(--media-gallery-max-image-width);
+  }
+}
+
+@media (min-width: 1024px) {
+  .v2-media-with-text--media-gallery {
+    --media-gallery-max-image-width: 575px;
   }
 }
 
@@ -239,7 +236,7 @@
   }
 
 
-  .v2-media-with-text__media-section .v2-media-with-text__media {
+  .v2-media-with-text__media-section video.v2-media-with-text__media {
     aspect-ratio: 16/9;
   }
 
@@ -269,10 +266,6 @@
   /* Variant: full-width  */
   .v2-media-with-text--full-width .v2-media-with-text__content-section {
     padding: 0;
-  }
-
-  .v2-media-with-text--full-width .v2-media-with-text__media-section .v2-media-with-text__media {
-    height: 810px;
   }
 
 
@@ -316,6 +309,11 @@
 
   /* Variant: media-gallery */
   .v2-media-with-text--media-gallery {
-    --media-gallery-max-image-width: 575px;
+    --media-gallery-container-margin: 0px;
+  }
+
+  .v2-media-with-text--media-gallery .v2-media-with-text__media-section::before,
+  .v2-media-with-text--media-gallery .v2-media-with-text__media-section::after {
+    display: none;
   }
 }
