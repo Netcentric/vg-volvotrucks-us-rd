@@ -110,7 +110,7 @@
 
 .v2-media-with-text--media-left .v2-media-with-text__media-section .v2-media-with-text__media,
 .v2-media-with-text--media-right .v2-media-with-text__media-section .v2-media-with-text__media {
-  aspect-ratio: 7/5;
+  aspect-ratio: 4/3;
   height: 100%;
 }
 
@@ -296,10 +296,6 @@
     max-width: 309px;
   }
 
-  .v2-media-with-text--media-left .v2-media-with-text__media-section .v2-media-with-text__media {
-    aspect-ratio: 7/6;
-  }
-
   /* Variant: media-vertical  */
   .v2-media-with-text--media-vertical {
     display: grid;
@@ -314,7 +310,7 @@
   }
 
   .v2-media-with-text--media-vertical .v2-media-with-text__sub-text-section {
-    grid-column: 1 / -1;
+    grid-column: 1/-1;
     margin: auto;
   }
 
