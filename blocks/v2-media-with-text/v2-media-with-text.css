@@ -12,8 +12,7 @@
   gap: 32px;
 }
 
-.v2-media-with-text__media-section,
-.v2-media-with-text--video-with-poster {
+.v2-media-with-text__media-section {
   position: relative;
 }
 
@@ -24,9 +23,16 @@
   display: block;
 }
 
-.v2-media-with-text--video-with-poster .v2-media-with-text__media,
+
+/* Video  */
 .v2-media-with-text__media-section video.v2-media-with-text__media {
   width: 100%;
+}
+
+
+/* Video with poster  */
+.v2-media-with-text--video-with-poster .v2-media-with-text__media {
+  aspect-ratio: 1;
 }
 
 .v2-media-with-text--video-with-poster video.v2-media-with-text__media,
@@ -41,8 +47,7 @@
 .v2-media-with-text--video-with-poster .v2-video__playback-button {
   width: 100%;
   height: 100%;
-  top: 0;
-  left: 0;
+  inset: 0;
   transform: none;
 }
 
@@ -175,22 +180,18 @@
   text-align: center
 }
 
-/* Video  */
-.v2-media-with-text__media-section .v2-video__playback-button,
-.v2-media-with-text__media-section .v2-video__mute-controls {
-  bottom: 18px;
-  top: initial;
-}
-
-.v2-media-with-text__media-section .v2-video__mute-controls {
-  bottom: 70px;
-}
-
 @media (min-width: 744px) {
   /* Variant: default  */
   .v2-media-with-text__media-section .v2-media-with-text__media {
     aspect-ratio: 4/3;
   }
+
+
+  /* Variant: video with poster  */
+  .v2-media-with-text--video-with-poster .v2-media-with-text__media {
+    aspect-ratio: 1;
+  }
+
 
   /* Variant: full-width  */
   .v2-media-with-text--full-width .v2-media-with-text__media-section .v2-media-with-text__media {
@@ -210,7 +211,7 @@
   }
 
   .v2-media-with-text--media-left .v2-media-with-text__media-section .v2-media-with-text__media {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 4/3;
   }
 
 
@@ -239,7 +240,7 @@
 
 
   .v2-media-with-text__media-section .v2-media-with-text__media {
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 16/9;
   }
 
   .v2-media-with-text__content-section {
@@ -296,7 +297,7 @@
   }
 
   .v2-media-with-text--media-left .v2-media-with-text__media-section .v2-media-with-text__media {
-    aspect-ratio: 7 / 6;
+    aspect-ratio: 7/6;
   }
 
   /* Variant: media-vertical  */
