@@ -181,13 +181,13 @@
   text-align: center
 }
 
-.v2-media-with-text--mute-controls .v2-video__playback-button,
-.v2-media-with-text--mute-controls .v2-video__mute-controls {
+.v2-media-with-text .v2-video__playback-button,
+.v2-media-with-text .v2-video__mute-controls {
   bottom: 18px;
   top: unset;
 } 
 
-.v2-media-with-text--mute-controls .v2-video__mute-controls {
+.v2-media-with-text .v2-video__mute-controls {
   bottom: 70px ;
 }
 
