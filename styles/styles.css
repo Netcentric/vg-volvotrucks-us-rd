@@ -1605,9 +1605,7 @@ main.blue-contract .section.section-with-title p {
     --section-div-padding: 24px 32px;
     --text-block-max-width: 506px;
   }
-}
 
-@media (min-width: 1200px) {
   .v2-video__playback-button,
   .v2-video__mute-controls{
     bottom: 18px;
@@ -1618,6 +1616,7 @@ main.blue-contract .section.section-with-title p {
     bottom: 70px;
   }
 }
+
 
 @media (min-width: 1200px) {
   :root {
