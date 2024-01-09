@@ -55,6 +55,10 @@
   gap: 16px;
 }
 
+.embed.single-video .embed-video-element {
+  border-radius: var(--border-radius);
+}
+
 @media screen and (min-width: 768px) {
   .embed-video {
     width: 726px;
