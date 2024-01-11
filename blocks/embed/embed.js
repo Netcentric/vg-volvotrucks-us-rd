@@ -1,12 +1,11 @@
-import { createElement, getTextLabel, isExternalVideoAllowed } from '../../scripts/common.js';
 import {
-  selectVideoLink, addPlayIcon, showVideoModal, isLowResolutionVideoUrl,
+  selectVideoLink, addPlayIcon,
+  showVideoModal, isLowResolutionVideoUrl,
   createLowResolutionBanner, createIframe,
 } from '../../scripts/video-helper.js';
 
 export default function decorate(block) {
   const isAutoplay = block.classList.contains('autoplay');
-  const isSingleVideo = block.classList.contains('single-video');
   const isLoopedVideo = block.classList.contains('loop');
   const isFullWidth = block.classList.contains('full-width');
   const hideLowResolutionBanner = block.classList.contains('no-banner');
@@ -16,7 +15,6 @@ export default function decorate(block) {
   videoWrapper.classList.add('embed-video');
 
   const preferredType = (() => {
-    if (isSingleVideo) return 'singleVideo';
     if (isFullWidth) return 'local';
     return 'auto';
   })();
@@ -25,34 +23,6 @@ export default function decorate(block) {
   const selectedLink = selectVideoLink(links, preferredType);
   const video = document.createElement('video');
   const source = document.createElement('source');
-
-  if (isSingleVideo && !isExternalVideoAllowed()) {
-    const img = block.querySelector('picture img');
-    block.innerHTML = '';
-
-    const cookieMsgConatiner = createElement('div', {
-      classes: 'cookie-message',
-    });
-    cookieMsgConatiner.style.background = `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.80) 100%), url(${img.src}) 100% center / cover no-repeat`;
-
-    const cookieMessage = document.createRange().createContextualFragment(`
-      <h3 class="cookie-message__title">${getTextLabel('single video message title')}</h3>
-      <p class="cookie-message__text">${getTextLabel('single video message text')}</p>
-      <div class="cookie-message__button-container">
-        <button class="primary dark">${getTextLabel('single video message button')}</button>
-        <button class="secondary dark">${getTextLabel('single video message button deny')}</button>
-      </div>
-    `);
-
-    cookieMsgConatiner.append(cookieMessage);
-    block.append(cookieMsgConatiner);
-
-    block.querySelector('.cookie-message__button-container .primary')?.addEventListener('click', () => {
-      document.cookie = 'isSingleVideo=true';
-    });
-
-    return;
-  }
 
   if (!selectedLink) {
     block.innerHTML = '';

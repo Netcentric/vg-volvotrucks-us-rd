@@ -48,17 +48,6 @@
   text-decoration: underline;
 }
 
-.embed .cookie-message__button-container {
-  margin-top: 16px;
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-}
-
-.embed.single-video .embed-video-element {
-  border-radius: var(--border-radius);
-}
-
 @media screen and (min-width: 768px) {
   .embed-video {
     width: 726px;
@@ -66,18 +55,6 @@
 
   .embed.embed-full-width .embed-video {
     width: 100%;
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  .embed .cookie-message__title {
-    font-size: var(--f-heading-4-font-size);
-    line-height: var(--f-heading-4-line-height);
-  }
-
-  .embed .cookie-message__text {
-    font-size: var(--f-body-2-font-size);
-    line-height: var(--f-body-2-line-height);
   }
 }
 
